@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- Zero-flicker Dark/Light Theme Initialization -->
+  <script>
+    (function() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlTheme = urlParams.get('theme');
+        const savedTheme = urlTheme || localStorage.getItem('fusionlabs3d_theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+
+  <title>FusionLabs3D | Precision Additive Manufacturing &amp; Engineering Prototyping</title>
+  
+  <meta name="title" content="FusionLabs3D | Precision Additive Manufacturing &amp; Engineering Prototyping">
+  <meta name="description" content="Industrial 3D prototyping and additive manufacturing using PA-CF, PPA-CF, PA-GF, ABS, ASA, PETG, PLA, and TPU 95A. Calibrated in Jaipur, India.">
+  <meta name="author" content="FusionLabs3D">
+  <meta name="robots" content="index, follow">
+  
+  <link rel="canonical" href="https://fusionlabs3d.github.io/">
+  <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="assets/logo/favicon-64.png">
+  <meta name="theme-color" content="#000028">
+
+  <!-- Google Fonts: Space Grotesk, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css?v=2.1">
+
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+
+
+  <!-- ==========================================================================
+       1. SIEMENS TOP UTILITY BAR (Screenshot 2, 3, 5)
+       ========================================================================== -->
+  <div class="siemens-top-strip">
+    <div class="container siemens-top-inner">
+      <div class="top-left-info">
+        <span class="top-info-item">
+          <span class="top-dot-green"></span>
+          <span>CALIBRATED WORKSHOP • JAIPUR, INDIA</span>
+        </span>
+        <span class="header-divider-v"></span>
+        <span class="top-info-item">SUPPORTED: .STEP, .STL, .3MF, .OBJ</span>
+      </div>
+      <div class="top-right-nav">
+        <a href="quote.html" class="top-right-link">
+          <span>Direct CAD Submission</span>
+          <span>&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. SIEMENS MAIN CORPORATE NAVBAR (Screenshot 2, 3)
+       ========================================================================== -->
+  <header class="siemens-header" id="header">
+    <div class="container siemens-nav-inner">
+      <a href="#hero" class="siemens-brand" aria-label="FusionLabs3D Homepage">
+        <img src="assets/logo/logo-full.png" alt="FusionLabs3D" height="42" style="display:block;">
+        <span class="siemens-brand-sub" style="border-left-color: var(--fl-saffron); color: var(--fl-saffron);">ADDITIVE MANUFACTURING</span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="siemens-nav-links">
+          <li class="siemens-nav-item"><a href="#solutions" class="active">Solutions</a></li>
+          <li class="siemens-nav-item"><a href="#materials">Materials Catalog</a></li>
+          <li class="siemens-nav-item"><a href="#showcase">Reference Parts</a></li>
+          <li class="siemens-nav-item"><a href="#matrix">Specifications Matrix</a></li>
+          <li class="siemens-nav-item"><a href="#process">Process</a></li>
+          <li class="siemens-nav-item"><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="siemens-header-actions">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-siemens" id="themeToggle" aria-label="Toggle Theme" title="Toggle Dark/Light Mode">
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+
+        <!-- Siemens Mint Action Button -->
+        <a href="quote.html" class="btn-siemens-mint">
+          <span>GET A QUOTE</span>
+          <svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
+          <span class="mobile-bar"></span>
+          <span class="mobile-bar"></span>
+          <span class="mobile-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="siemens-mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="mobile-drawer-header">
+      <div class="mobile-drawer-brand">
+        <img src="assets/logo/logo-full.png" alt="FusionLabs3D" height="28">
+      </div>
+      <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Close navigation">&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="#solutions" class="mobile-nav-link">Solutions</a>
+      <a href="#materials" class="mobile-nav-link">Materials Catalog</a>
+      <a href="#showcase" class="mobile-nav-link">Reference Parts</a>
+      <a href="#matrix" class="mobile-nav-link">Specifications Matrix</a>
+      <a href="#process" class="mobile-nav-link">Process</a>
+      <a href="#contact" class="mobile-nav-link">Contact</a>
+    </nav>
+    <div class="mobile-drawer-footer">
+      <a href="quote.html" class="btn-saffron-solid mobile-drawer-quote">
+        <span>REQUEST A QUOTE</span>
+        <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop"></div>
+
+  <main id="main-content">
+
+    <!-- ==========================================================================
+         3. CINEMATIC HERO: AUTHENTIC 3D PRINTER MACRO & SAFFRON GRADIENT MERGE
+         Directly inspired by Siemens train & infinity composition
+         ========================================================================== -->
+    <section class="cinema-saffron-hero" id="hero">
+      <!-- Background Ambient Saffron & Twilight Lighting Glow -->
+      <div class="hero-saffron-ambient-glow" aria-hidden="true"></div>
+
+      <!-- Single-Swap Unified Hero Carousel (Text + Image Swap in Complete Lockstep) -->
+      <div class="hero-unified-viewport" id="heroUnifiedViewport">
+        <div class="hero-unified-track" id="heroUnifiedTrack">
+
+          <!-- Unified Slide 1 -->
+          <div class="hero-unified-slide active" data-slide="0">
+            <div class="hero-slide-bg-visual" aria-hidden="true">
+              <img src="assets/images/hero-slide1-full.jpg" alt="Precision 3D Printer Hotend Extruding Saffron Lattice" class="hero-slide-full-img" data-img-id="hero_slide1_img">
+              <div class="hero-slide-middle-blend"></div>
+            </div>
+            <div class="container hero-slide-container">
+              <div class="hero-slide-content">
+                <div class="hero-breadcrumb-home">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                  </svg>
+                </div>
+                <h1 class="hero-cinematic-title">Precision additive manufacturing for everyone</h1>
+                <p class="hero-cinematic-desc">
+                  Discover the next dimension of industrial polymers and continuous carbon-fiber composites. We fabricate functional production prototypes calibrated for aerospace airframes, robotics assemblies, and extreme thermal environments — at maximum mechanical endurance.
+                </p>
+                <div class="hero-cinematic-cta-group">
+                  <a href="quote.html" class="btn-saffron-solid">
+                    <span>REQUEST A PROJECT QUOTE</span>
+                    <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+                      <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                    </svg>
+                  </a>
+                  <a href="#materials" class="hero-link-secondary">
+                    <span>Explore Calibrated Materials &rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Unified Slide 2 (Middle Image: User's Additive Specimen on Supports) -->
+          <div class="hero-unified-slide" data-slide="1">
+            <div class="hero-slide-bg-visual" aria-hidden="true">
+              <img src="assets/images/hero-slide2-full.jpg" alt="High-Precision Medical and Aerospace Additive Lattice Specimen" class="hero-slide-full-img" data-img-id="hero_slide2_img">
+              <div class="hero-slide-middle-blend"></div>
+            </div>
+            <div class="container hero-slide-container">
+              <div class="hero-slide-content">
+                <div class="hero-breadcrumb-home">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                  </svg>
+                </div>
+                <h1 class="hero-cinematic-title">Ultra-high temperature PPA-CF at 215°C HDT</h1>
+                <p class="hero-cinematic-desc">
+                  Engineered to replace machined 6061 aluminum in under-hood fluid manifolds, heat-shield brackets, and high-temperature ducts with zero thermal creep or chemical degradation under cyclic loading.
+                </p>
+                <div class="hero-cinematic-cta-group">
+                  <a href="material.html?mat=ppa-cf" class="btn-saffron-solid">
+                    <span>EXPLORE PPA-CF DATASHEET</span>
+                    <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+                      <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                    </svg>
+                  </a>
+                  <a href="quote.html?material=ppa-cf" class="hero-link-secondary">
+                    <span>Submit CAD for PPA-CF &rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Unified Slide 3 -->
+          <div class="hero-unified-slide" data-slide="2">
+            <div class="hero-slide-bg-visual" aria-hidden="true">
+              <img src="assets/images/hero-slide3-full.jpg" alt="Precision Calibrated Carbon Fiber Bracket Inspection" class="hero-slide-full-img" data-img-id="hero_slide3_img">
+              <div class="hero-slide-middle-blend"></div>
+            </div>
+            <div class="container hero-slide-container">
+              <div class="hero-slide-content">
+                <div class="hero-breadcrumb-home">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                  </svg>
+                </div>
+                <h1 class="hero-cinematic-title">Direct native STEP &amp; STL ingestion</h1>
+                <p class="hero-cinematic-desc">
+                  Direct parametric ingestion without CAD conversion errors. Our engineering team in Jaipur evaluates wall thicknesses, overhang angles, layer shear orientations, and moisture extraction protocols for mission-critical parts.
+                </p>
+                <div class="hero-cinematic-cta-group">
+                  <a href="quote.html" class="btn-saffron-solid">
+                    <span>UPLOAD YOUR CAD FILE</span>
+                    <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+                      <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                    </svg>
+                  </a>
+                  <a href="#matrix" class="hero-link-secondary">
+                    <span>View Engineering Specifications &rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Carousel Navigation Controls (Stationary at Bottom) -->
+      <div class="container hero-carousel-wrapper">
+        <div class="hero-carousel-bar">
+          <button type="button" class="hero-carousel-arrow" id="heroPrevBtn" aria-label="Previous Slide">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <div class="hero-carousel-center-ctrls">
+            <button type="button" class="hero-carousel-pause" id="heroPauseBtn" aria-label="Pause Carousel">
+              <svg id="pauseIcon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+              </svg>
+              <svg id="playIcon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="display: none;">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </button>
+
+            <div class="hero-carousel-indicators" id="heroIndicators">
+              <button type="button" class="hero-ind-pill active" data-slide-to="0" aria-label="Slide 1"></button>
+              <button type="button" class="hero-ind-dot" data-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" class="hero-ind-dot" data-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+          </div>
+
+          <button type="button" class="hero-carousel-arrow" id="heroNextBtn" aria-label="Next Slide">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. SIEMENS HIGHLIGHT TICKER (Soft Gradient Transition)
+         ========================================================================== -->
+    <div class="siemens-white-highlight-bar">
+      <div class="container highlight-bar-inner">
+        <div class="highlight-lead-item">
+          <img src="assets/images/parts/pa6cf-bracket.jpg" alt="FusionLabs3D Workshop Specimen" class="highlight-lead-thumb" data-img-id="workshop_lead_thumb">
+          <div class="highlight-lead-text">
+            <h2 class="highlight-lead-title">FusionLabs3D Engineering Workshop • Jaipur</h2>
+            <p class="highlight-lead-sub">Calibrated industrial thermoplastics, continuous carbon-fiber composites, and direct STEP/STL parametric ingestion.</p>
+          </div>
+        </div>
+
+        <a href="quote.html" class="btn-highlight-box">
+          <span>Submit Your CAD File &rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         5. SIEMENS "UPGRADE REALITY" 3-COLUMN SHOWCASE (Screenshot 2)
+         ========================================================================== -->
+    <section class="siemens-upgrade-section" id="solutions">
+      <div class="container">
+        <div class="siemens-section-intro">
+          <div class="hero-eyebrow" style="margin-bottom: 8px;">// 01 • SECTOR SOLUTIONS</div>
+          <h2 class="siemens-section-title">Upgrade reality: Solutions for industry</h2>
+          <p class="siemens-section-sub">
+            Sector-tailored additive manufacturing engineered to replace machined metal and deliver functional production prototypes.
+          </p>
+        </div>
+
+        <div class="upgrade-reality-grid">
+          <!-- Column 1: Vertical Tabs -->
+          <div class="vertical-tab-list" role="tablist">
+            <button class="v-tab-btn active" data-solution="aerospace" role="tab">Aerospace &amp; UAVs &rarr;</button>
+            <button class="v-tab-btn" data-solution="robotics" role="tab">Robotics &amp; Automation &rarr;</button>
+            <button class="v-tab-btn" data-solution="automotive" role="tab">Automotive &amp; Motorsport &rarr;</button>
+            <button class="v-tab-btn" data-solution="enclosures" role="tab">Industrial Enclosures &amp; IoT &rarr;</button>
+            <button class="v-tab-btn" data-solution="tooling" role="tab">Rapid Tooling &amp; Fixtures &rarr;</button>
+          </div>
+
+          <!-- Column 2: Center Featured Story Card -->
+          <article class="middle-story-card" id="featuredCaseCard">
+            <div class="story-media-frame">
+              <img src="assets/images/parts/pa6cf-bracket.jpg" alt="Aerospace UAV structural component" class="story-media-img" id="featuredCaseImg" data-img-id="featured_case_img">
+            </div>
+            <div class="story-content">
+              <span class="story-category-tag" id="featuredCaseBadge">AEROSPACE &amp; UAV</span>
+              <h3 class="story-title" id="featuredCaseTitle">Lightweight, aerodynamic UAV airframes in PA-CF &amp; PPA-CF.</h3>
+              <p class="story-desc" id="featuredCaseDesc">
+                High-stiffness carbon fiber composites engineered to resist high torsional stresses and cyclic vibration while delivering significant weight savings over machined aluminum 6061.
+              </p>
+              <a href="quote.html?material=pa-cf" class="story-link" id="featuredCaseLink">
+                <span>Submit CAD for UAV components</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Column 3: Stacked Feature Cards -->
+          <div class="stacked-cards-col">
+            <!-- Top Card: Deep Navy Technical Card -->
+            <div class="stacked-navy-card">
+              <div>
+                <span class="stacked-navy-tag">PARAMETRIC VALIDATION</span>
+                <h3 class="stacked-navy-title">Direct STEP &amp; STL Feasibility Assessment.</h3>
+                <p class="stacked-navy-desc">
+                  Upload your mechanical CAD file. We evaluate wall thicknesses, overhang angles, layer shear orientations, and recommend calibrated extrusion infill strategies.
+                </p>
+              </div>
+              <a href="quote.html" class="stacked-navy-link">
+                <span>Submit CAD Model &rarr;</span>
+              </a>
+            </div>
+
+            <!-- Bottom Card: Light Material Card -->
+            <div class="stacked-light-card">
+              <div>
+                <span class="stacked-light-tag">MATERIAL RIGOR</span>
+                <h3 class="stacked-light-title">Moisture Dehydration &amp; Extrusion Control.</h3>
+                <p class="stacked-light-desc">
+                  Polyamides and composites undergo strict moisture extraction before extrusion, ensuring zero porosity and continuous layer adhesion.
+                </p>
+              </div>
+              <a href="#matrix" class="stacked-light-link">
+                <span>View engineering matrix &rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. AUTODESK "ALL PRODUCTS" 4-COLUMN CARD GRID (Screenshot 1)
+         ========================================================================== -->
+    <section class="autodesk-products-section" id="materials">
+      <div class="container">
+        <!-- Header row matching Screenshot 1 -->
+        <div class="autodesk-header-row">
+          <div>
+            <h2 class="autodesk-title">All Materials &amp; Composites</h2>
+            <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;" id="materialsCounter">
+              Showing 8 calibrated engineering materials
+            </div>
+          </div>
+          <a href="#matrix" class="autodesk-view-all">Compare specifications in matrix &rarr;</a>
+        </div>
+
+        <!-- Filter pills matching Screenshot 1 -->
+        <div class="autodesk-pills-bar">
+          <span class="pills-label">CATEGORY:</span>
+          <div class="pills-group">
+            <button class="autodesk-pill-btn active" data-category="all">All</button>
+            <button class="autodesk-pill-btn" data-category="Carbon & Composites">Carbon &amp; Composites</button>
+            <button class="autodesk-pill-btn" data-category="Engineering Thermoplastics">Engineering Thermoplastics</button>
+            <button class="autodesk-pill-btn" data-category="Flexible Elastomers">Flexible Elastomers</button>
+          </div>
+        </div>
+
+        <!-- 4-Column Product Cards Grid -->
+        <div class="autodesk-cards-grid" id="materialsGrid">
+
+          <!-- Card 1: PA-CF -->
+          <article class="autodesk-card" data-category="Carbon & Composites" data-id="pa-cf">
+            <div class="autodesk-top-banner">HIGH-PERFORMANCE COMPOSITE</div>
+            <div class="autodesk-card-body">
+            <div class="autodesk-card-thumb-wrap">
+              <img src="assets/images/parts/pa6cf-bracket.jpg" alt="PA-CF Calibrated Specimen" class="autodesk-card-thumb" data-img-id="mat_img_pa-cf" loading="lazy">
+            </div>
+            
+              <div class="autodesk-card-brand-row">
+                <div class="autodesk-logo-square sq-orange">CF</div>
+                <div>
+                  <h3 class="autodesk-card-name">PA-CF Carbon Composite</h3>
+                  <div style="font-size: 11px; color: var(--text-light); font-family: var(--font-mono);">Structural Polyamide</div>
+                </div>
+              </div>
+              <p class="autodesk-card-desc">
+                Polyamide 6 matrix reinforced with 20% chopped carbon fibers for ultra-high stiffness and aluminum replacement.
+              </p>
+              <div class="autodesk-platform-icons">
+                <span class="top-dot-green"></span>
+                <strong>105 MPa Tensile</strong> • 150°C HDT • 7.2 GPa
+              </div>
+              <div class="autodesk-price-row">
+                <div class="autodesk-price-val">Precision Fit</div>
+                <div class="autodesk-price-sub">Calibrated direct extrusion</div>
+              </div>
+              <select class="autodesk-select-box">
+                <option value="0.16">Layer: 0.16mm (Fine Mechanical)</option>
+                <option value="0.20" selected>Layer: 0.20mm (Standard Structural)</option>
+                <option value="0.24">Layer: 0.24mm (High Speed)</option>
+              </select>
+              <a href="quote.html?material=pa-cf" class="btn-autodesk-black">Request a Quote</a>
+              <a href="material.html?mat=pa-cf" class="btn-autodesk-outline">Product details</a>
+            </div>
+          </article>
+
+          <!-- Card 2: PPA-CF -->
+          <article class="autodesk-card" data-category="Carbon & Composites" data-id="ppa-cf">
+            <div class="autodesk-top-banner" style="background: #047857;">215°C THERMAL RESISTANCE</div>
+            <div class="autodesk-card-body">
+            <div class="autodesk-card-thumb-wrap">
+              <img src="assets/images/parts/ppa-cf.jpg" alt="PPA-CF Calibrated Specimen" class="autodesk-card-thumb" data-img-id="mat_img_ppa-cf" loading="lazy">
+            </div>
+            
+              <div class="autodesk-card-brand-row">
+                <div class="autodesk-logo-square sq-emerald">PPA</div>
+                <div>
+                  <h3 class="autodesk-card-name">PPA-CF High-Temp</h3>
+                  <div style="font-size: 11px; color: var(--text-light); font-family: var(--font-mono);">Aerospace Composite</div>
+                </div>
+              </div>
+              <p class="autodesk-card-desc">
+                Semi-aromatic polyphthalamide composite with 215°C heat deflection and extreme stiffness for harsh thermal loads.
+              </p>
+              <div class="autodesk-platform-icons">
+                <span class="top-dot-green"></span>
+                <strong>145 MPa Tensile</strong> • 215°C HDT • 9.8 GPa
+              </div>
+              <div class="autodesk-price-row">
+                <div class="autodesk-price-val">215°C Service</div>
+                <div class="autodesk-price-sub">Extreme environment continuous</div>
+              </div>
+              <select class="autodesk-select-box">
+                <option value="0.16">Layer: 0.16mm (Fine Mechanical)</option>
+                <option value="0.20" selected>Layer: 0.20mm (High Temp Manifold)</option>
+              </select>
+              <a href="quote.html?material=ppa-cf" class="btn-autodesk-black">Request a Quote</a>
+              <a href="material.html?mat=ppa-cf" class="btn-autodesk-outline">Product details</a>
+            </div>
+          </article>
+
+          <!-- Card 3: PA-GF -->
+          <article class="autodesk-card" data-category="Carbon & Composites" data-id="pa-gf">
+            <div class="autodesk-top-banner" style="background: var(--autodesk-blue);">WEAR &amp; DIELECTRIC INSULATOR</div>
+            <div class="autodesk-card-body">
+            <div class="autodesk-card-thumb-wrap">
+              <img src="assets/images/parts/pa6gf-block.jpg" alt="PA-GF Calibrated Specimen" class="autodesk-card-thumb" data-img-id="mat_img_pa-gf" loading="lazy">
+            </div>
+            
+              <div class="autodesk-card-brand-row">
+                <div class="autodesk-logo-square sq-blue">GF</div>
+                <div>
+                  <h3 class="autodesk-card-name">PA-GF Glass Composite</h3>
+                  <div style="font-size: 11px; color: var(--text-light); font-family: var(--font-mono);">Abrasion Resistant</div>
+                </div>
+              </div>
+              <p class="autodesk-card-desc">
+                Polyamide 6 matrix reinforced with glass fibers for increased wear endurance and non-conductive electrical insulation.
+              </p>
+              <div class="autodesk-platform-icons">
+                <span class="top-dot-green"></span>
+                <strong>85 MPa Tensile</strong> • 130°C HDT • 5.4 GPa
+              </div>
+              <div class="autodesk-price-row">
+                <div class="autodesk-price-val">Wear Resistant</div>
+                <div class="autodesk-price-sub">Tooling &amp; slide assemblies</div>
+              </div>
+              <select class="autodesk-select-box">
+                <option value="0.16">Layer: 0.16mm (Precision Guide)</option>
+                <option value="0.20" selected>Layer: 0.20mm (Tooling Fixture)</option>
+              </select>
+              <a href="quote.html?material=pa-gf" class="btn-autodesk-black">Request a Quote</a>
+              <a href="material.html?mat=pa-gf" class="btn-autodesk-outline">Product details</a>
+            </div>
+          </article>
+
+          <!-- Card 4: PETG -->
+          <article class="autodesk-card" data-category="Engineering Thermoplastics" data-id="petg">
+            <div class="autodesk-top-banner" style="background: var(--siemens-teal);">CHEMICAL &amp; FLUID RESISTANT</div>
+            <div class="autodesk-card-body">
+            <div class="autodesk-card-thumb-wrap">
+              <img src="assets/images/parts/petg-enclosure.jpg" alt="PETG Calibrated Specimen" class="autodesk-card-thumb" data-img-id="mat_img_petg" loading="lazy">
+            </div>
+            
+              <div class="autodesk-card-brand-row">
+                <div class="autodesk-logo-square sq-teal">PET</div>
+                <div>
+                  <h3 class="autodesk-card-name">PETG Thermoplastic</h3>
+                  <div style="font-size: 11px; color: var(--text-light); font-family: var(--font-mono);">Functional Enclosures</div>
+                </div>
+              </div>
+              <p class="autodesk-card-desc">
+                High interlayer cohesion, water-tight printing, chemical resistance to oils and acids, with balanced functional toughness.
+              </p>
+              <div class="autodesk-platform-icons">
+                <span class="top-dot-green"></span>
+                <strong>50 MPa Tensile</strong> • 75°C HDT • 20% Elongation
+              </div>
+              <div class="autodesk-price-row">
+                <div class="autodesk-price-val">Watertight</div>
+                <div class="autodesk-price-sub">Industrial housing &amp; ducting</div>
+              </div>
+              <select class="autodesk-select-box">
+                <option value="0.16">Layer: 0.16mm (Smooth Finish)</option>
+                <option value="0.20" selected>Layer: 0.20mm (Functional)</option>
+              </select>
+              <a href="quote.html?material=petg" class="btn-autodesk-black">Request a Quote</a>
+              <a href="material.html?mat=petg" class="btn-autodesk-outline">Product details</a>
+            </div>
+          </article>
+
+          <!-- Card 5: ABS -->
+          <article class="autodesk-card" data-category="Engineering Thermoplastics" data-id="abs">
+            <div class="autodesk-top-banner" style="background: #C2410C;">HIGH-IMPACT TOUGHNESS</div>
+            <div class="autodesk-card-body">
+            <div class="autodesk-card-thumb-wrap">
+              <img src="assets/images/parts/abs-bracket.jpg" alt="ABS Calibrated Specimen" class="autodesk-card-thumb" data-img-id="mat_img_abs" loading="lazy">
+            </div>
+            
+              <div class="autodesk-card-brand-row">
+                <div class="autodesk-logo-square" style="background: #C2410C;">ABS</div>
+                <div>
+                  <h3 class="autodesk-card-name">ABS Thermoplastic</h3>
+                  <div style="font-size: 11px; color: var(--text-light); font-family: var(--font-mono);">Mechanical Assemblies</div>
+                </div>
+              </div>
+              <p class="autodesk-card-desc">
+                Rigid engineering polymer calibrated in heated enclosures for functional assemblies, post-machinability, and impact resilience.
+              </p>
+              <div class="autodesk-platform-icons">
+                <span class="top-dot-green"></span>
+                <strong>42 MPa Tensile</strong> • 85°C HDT • 22 kJ/m² Impact
+              </div>
+              <div class="autodesk-price-row">
+                <div class="autodesk-price-val">High Impact</div>
+                <div class="autodesk-price-sub">Enclosed chamber calibrated</div>
+              </div>
+              <select class="autodesk-select-box">
+                <option value="0.16">Layer: 0.16mm (Assembly Fit)</option>
+                <option value="0.20" selected>Layer: 0.20mm (Standard Impact)</option>
+              </select>
+              <a href="quote.html?material=abs" class="btn-autodesk-black">Request a Quote</a>
+              <a href="material.html?mat=abs" class="btn-autodesk-outline">Product details</a>
+            </div>
+          </article>
+
+          <!-- Card 6: ASA -->
+          <article class="autodesk-card" data-category="Engineering Thermoplastics" data-id="asa">
+            <div class="autodesk-top-banner" style="background: #D97706;">PERMANENT UV &amp; WEATHERPROOF</div>
+            <div class="autodesk-card-body">
+            <div class="autodesk-card-thumb-wrap">
+              <img src="assets/images/parts/asa-bracket.jpg" alt="ASA Calibrated Specimen" class="autodesk-card-thumb" data-img-id="mat_img_asa" loading="lazy">
+            </div>
+            
+              <div class="autodesk-card-brand-row">
+                <div class="autodesk-logo-square" style="background: #D97706;">ASA</div>
+                <div>
+                  <h3 class="autodesk-card-name">ASA Exterior Polymer</h3>
+                  <div style="font-size: 11px; color: var(--text-light); font-family: var(--font-mono);">Outdoor Field Hardware</div>
+                </div>
+              </div>
+              <p class="autodesk-card-desc">
+                Permanent UV stability and resistance to sun embrittlement. Ideal for exterior drone chassis, marine parts, and sensor housings.
+              </p>
+              <div class="autodesk-platform-icons">
+                <span class="top-dot-green"></span>
+                <strong>44 MPa Tensile</strong> • 90°C HDT • Zero UV Yellowing
+              </div>
+              <div class="autodesk-price-row">
+                <div class="autodesk-price-val">UV Stable</div>
+                <div class="autodesk-price-sub">Exterior grade zero degradation</div>
+              </div>
+              <select class="autodesk-select-box">
+                <option value="0.16">Layer: 0.16mm (Outdoor Enclosure)</option>
+                <option value="0.20" selected>Layer: 0.20mm (Standard Outdoor)</option>
+              </select>
+              <a href="quote.html?material=asa" class="btn-autodesk-black">Request a Quote</a>
+              <a href="material.html?mat=asa" class="btn-autodesk-outline">Product details</a>
+            </div>
+          </article>
+
+          <!-- Card 7: PLA -->
+          <article class="autodesk-card" data-category="Engineering Thermoplastics" data-id="pla">
+            <div class="autodesk-top-banner" style="background: #B45309;">RAPID DIMENSIONAL VALIDATION</div>
+            <div class="autodesk-card-body">
+            <div class="autodesk-card-thumb-wrap">
+              <img src="assets/images/parts/pla-mechanism.jpg" alt="PLA Calibrated Specimen" class="autodesk-card-thumb" data-img-id="mat_img_pla" loading="lazy">
+            </div>
+            
+              <div class="autodesk-card-brand-row">
+                <div class="autodesk-logo-square" style="background: #B45309;">PLA</div>
+                <div>
+                  <h3 class="autodesk-card-name">PLA Precision Polymer</h3>
+                  <div style="font-size: 11px; color: var(--text-light); font-family: var(--font-mono);">Concept Models &amp; Fit Checks</div>
+                </div>
+              </div>
+              <p class="autodesk-card-desc">
+                Ultra-high geometric accuracy, razor-sharp edges, zero warpage, and rapid turnaround for early-stage fit and clearance testing.
+              </p>
+              <div class="autodesk-platform-icons">
+                <span class="top-dot-green"></span>
+                <strong>55 MPa Tensile</strong> • 55°C HDT • 3.6 GPa
+              </div>
+              <div class="autodesk-price-row">
+                <div class="autodesk-price-val">Sharp Geometry</div>
+                <div class="autodesk-price-sub">Early stage fit &amp; clearance</div>
+              </div>
+              <select class="autodesk-select-box">
+                <option value="0.12">Layer: 0.12mm (Ultra Precision)</option>
+                <option value="0.16" selected>Layer: 0.16mm (Fine Fit Check)</option>
+              </select>
+              <a href="quote.html?material=pla" class="btn-autodesk-black">Request a Quote</a>
+              <a href="material.html?mat=pla" class="btn-autodesk-outline">Product details</a>
+            </div>
+          </article>
+
+          <!-- Card 8: TPU -->
+          <article class="autodesk-card" data-category="Flexible Elastomers" data-id="tpu">
+            <div class="autodesk-top-banner" style="background: var(--autodesk-purple);">FLEXIBLE ELASTOMER 95A</div>
+            <div class="autodesk-card-body">
+            <div class="autodesk-card-thumb-wrap">
+              <img src="assets/images/parts/tpu-gasket.jpg" alt="TPU Calibrated Specimen" class="autodesk-card-thumb" data-img-id="mat_img_tpu" loading="lazy">
+            </div>
+            
+              <div class="autodesk-card-brand-row">
+                <div class="autodesk-logo-square sq-purple">TPU</div>
+                <div>
+                  <h3 class="autodesk-card-name">TPU Shore 95A</h3>
+                  <div style="font-size: 11px; color: var(--text-light); font-family: var(--font-mono);">Gaskets &amp; Dampers</div>
+                </div>
+              </div>
+              <p class="autodesk-card-desc">
+                High-durability thermoplastic elastomer with extreme tear resistance, 450% elongation, and high vibration damping capacity.
+              </p>
+              <div class="autodesk-platform-icons">
+                <span class="top-dot-green"></span>
+                <strong>35 MPa Tensile</strong> • 450% Elongation • Shore 95A
+              </div>
+              <div class="autodesk-price-row">
+                <div class="autodesk-price-val">450% Elongation</div>
+                <div class="autodesk-price-sub">Direct drive elastomeric</div>
+              </div>
+              <select class="autodesk-select-box">
+                <option value="0.16">Layer: 0.16mm (Precision Gasket)</option>
+                <option value="0.20" selected>Layer: 0.20mm (Standard Bumper)</option>
+              </select>
+              <a href="quote.html?material=tpu" class="btn-autodesk-black">Request a Quote</a>
+              <a href="material.html?mat=tpu" class="btn-autodesk-outline">Product details</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. SIEMENS 3-CARD SHOWCASE ("Go to marketplace" style - Screenshot 4)
+         ========================================================================== -->
+    <section class="siemens-showcase-section" id="showcase">
+      <div class="container">
+        <div class="showcase-header-row">
+          <div class="showcase-title-box">
+            <div class="hero-eyebrow" style="color: var(--siemens-teal); margin-bottom: 8px;">// 02 • PHYSICAL VALIDATION</div>
+            <h2 class="siemens-section-title" style="margin-bottom: 6px;">Engineered prototypes in production</h2>
+            <p class="showcase-sub">Functional components fabricated in our calibrated Jaipur facility and validated for mechanical loads.</p>
+          </div>
+          <a href="quote.html" class="btn-marketplace-outline">Go to RFQ portal &rarr;</a>
+        </div>
+
+        <div class="siemens-cards-row">
+          <!-- Card 1 -->
+          <article class="siemens-proto-card">
+            <div class="proto-img-wrap">
+              <img src="assets/images/parts/pa6cf-bracket.jpg" alt="PA-CF Drone Motor Arm" class="proto-img" data-img-id="proto_img_drone">
+              <div class="frosted-pill-badge">
+                <span class="top-dot-green"></span>
+                <span>FusionLabs3D Calibrated</span>
+              </div>
+            </div>
+            <div class="proto-card-content">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--siemens-teal); margin-bottom: 8px;">AEROSPACE &amp; DEFENSE</div>
+              <h3 class="proto-title">Aerodynamic UAV Airframe Bracket in Continuous PA-CF</h3>
+              <p class="proto-desc">
+                High-modulus carbon-fiber matrix replacing CNC cut carbon sheets. Yields integrated motor mounts and aerodynamic arm fillets with zero mechanical delamination under high vibration.
+              </p>
+              <a href="material.html?mat=pa-cf" class="proto-find-link">
+                <span>View material specifications</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="siemens-proto-card">
+            <div class="proto-img-wrap">
+              <img src="assets/images/parts/ppa-cf.jpg" alt="PPA-CF High Temp Manifold" class="proto-img" data-img-id="proto_img_manifold">
+              <div class="frosted-pill-badge">
+                <span class="top-dot-green"></span>
+                <span>215°C HDT Tested</span>
+              </div>
+            </div>
+            <div class="proto-card-content">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--siemens-teal); margin-bottom: 8px;">AUTOMOTIVE &amp; MOTORSPORT</div>
+              <h3 class="proto-title">Under-Hood Intake Manifold in PPA-CF</h3>
+              <p class="proto-desc">
+                Continuous exposure to hot engine fluids and 200°C+ radiant heat. Semi-aromatic polyphthalamide composite maintains tight tolerance without creep or warping.
+              </p>
+              <a href="material.html?mat=ppa-cf" class="proto-find-link">
+                <span>View material specifications</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="siemens-proto-card">
+            <div class="proto-img-wrap">
+              <img src="assets/images/parts/pa6gf-block.jpg" alt="PA-GF Linear Slide Block" class="proto-img" data-img-id="proto_img_slide">
+              <div class="frosted-pill-badge">
+                <span class="top-dot-green"></span>
+                <span>Friction &amp; Wear Rated</span>
+              </div>
+            </div>
+            <div class="proto-card-content">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--siemens-teal); margin-bottom: 8px;">ROBOTICS &amp; AUTOMATION</div>
+              <h3 class="proto-title">Low-Friction Linear Guide Blocks in PA-GF</h3>
+              <p class="proto-desc">
+                Glass-fiber reinforced polyamide bearing block with integrated brass threaded inserts. Withstands cyclic friction and provides dielectric electrical isolation.
+              </p>
+              <a href="material.html?mat=pa-gf" class="proto-find-link">
+                <span>View material specifications</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         8. COMPARATIVE SPECIFICATION MATRIX
+         ========================================================================== -->
+    <section class="siemens-matrix-section" id="matrix">
+      <div class="container">
+        <div class="siemens-section-intro">
+          <div class="hero-eyebrow" style="color: var(--siemens-teal); margin-bottom: 8px;">// 03 • TECHNICAL BENCHMARK</div>
+          <h2 class="siemens-section-title">Comparative Material Matrix</h2>
+          <p class="siemens-section-sub">Calibrated mechanical, thermal, and chemical metrics across our 8 production filaments.</p>
+        </div>
+
+        <div class="matrix-overflow-wrap">
+          <table class="siemens-specs-table">
+            <thead>
+              <tr>
+                <th scope="col">Material</th>
+                <th scope="col">Tensile Strength</th>
+                <th scope="col">Heat Deflection (HDT)</th>
+                <th scope="col">Flexural Modulus</th>
+                <th scope="col">Elongation</th>
+                <th scope="col">Key Mechanical Trait</th>
+                <th scope="col">Datasheet</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pill-poly pill-orange">PA-CF</span> <strong>Carbon Fiber</strong></td>
+                <td><strong style="color: var(--siemens-teal);">105 MPa</strong></td>
+                <td>150°C (0.45 MPa)</td>
+                <td>7.2 GPa</td>
+                <td>4.5%</td>
+                <td>Ultra-high stiffness, aluminum replacement</td>
+                <td><a href="material.html?mat=pa-cf" style="color: var(--siemens-teal); font-weight: 600;">Datasheet &rarr;</a></td>
+              </tr>
+              <tr>
+                <td><span class="pill-poly pill-emerald">PPA-CF</span> <strong>High-Temp Nylon</strong></td>
+                <td><strong style="color: var(--siemens-teal);">145 MPa</strong></td>
+                <td>215°C (0.45 MPa)</td>
+                <td>9.8 GPa</td>
+                <td>3.2%</td>
+                <td>215°C thermal resistance, extreme rigidity</td>
+                <td><a href="material.html?mat=ppa-cf" style="color: var(--siemens-teal); font-weight: 600;">Datasheet &rarr;</a></td>
+              </tr>
+              <tr>
+                <td><span class="pill-poly pill-blue">PA-GF</span> <strong>Glass Fiber</strong></td>
+                <td><strong style="color: var(--siemens-teal);">85 MPa</strong></td>
+                <td>130°C (0.45 MPa)</td>
+                <td>5.4 GPa</td>
+                <td>6.0%</td>
+                <td>Wear resistance, dielectric insulator</td>
+                <td><a href="material.html?mat=pa-gf" style="color: var(--siemens-teal); font-weight: 600;">Datasheet &rarr;</a></td>
+              </tr>
+              <tr>
+                <td><span class="pill-poly pill-teal">PETG</span> <strong>Glycol Polyester</strong></td>
+                <td><strong style="color: var(--siemens-teal);">50 MPa</strong></td>
+                <td>75°C (0.45 MPa)</td>
+                <td>2.1 GPa</td>
+                <td>20.0%</td>
+                <td>Chemical endurance, water-tight printing</td>
+                <td><a href="material.html?mat=petg" style="color: var(--siemens-teal); font-weight: 600;">Datasheet &rarr;</a></td>
+              </tr>
+              <tr>
+                <td><span class="pill-poly pill-orange">ABS</span> <strong>Terpolymer</strong></td>
+                <td><strong style="color: var(--siemens-teal);">42 MPa</strong></td>
+                <td>85°C (0.45 MPa)</td>
+                <td>2.3 GPa</td>
+                <td>10.0%</td>
+                <td>High impact toughness, machinable</td>
+                <td><a href="material.html?mat=abs" style="color: var(--siemens-teal); font-weight: 600;">Datasheet &rarr;</a></td>
+              </tr>
+              <tr>
+                <td><span class="pill-poly pill-orange">ASA</span> <strong>UV Exterior</strong></td>
+                <td><strong style="color: var(--siemens-teal);">44 MPa</strong></td>
+                <td>90°C (0.45 MPa)</td>
+                <td>2.4 GPa</td>
+                <td>9.0%</td>
+                <td>Permanent UV stability, zero outdoor yellowing</td>
+                <td><a href="material.html?mat=asa" style="color: var(--siemens-teal); font-weight: 600;">Datasheet &rarr;</a></td>
+              </tr>
+              <tr>
+                <td><span class="pill-poly pill-teal">PLA</span> <strong>Precision Polymer</strong></td>
+                <td><strong style="color: var(--siemens-teal);">55 MPa</strong></td>
+                <td>55°C (0.45 MPa)</td>
+                <td>3.6 GPa</td>
+                <td>6.0%</td>
+                <td>Sharp geometric detail, rapid iteration</td>
+                <td><a href="material.html?mat=pla" style="color: var(--siemens-teal); font-weight: 600;">Datasheet &rarr;</a></td>
+              </tr>
+              <tr>
+                <td><span class="pill-poly pill-purple">TPU</span> <strong>Elastomer 95A</strong></td>
+                <td><strong style="color: var(--siemens-teal);">35 MPa</strong></td>
+                <td>80°C (Max Service)</td>
+                <td>0.15 GPa</td>
+                <td>450.0%</td>
+                <td>High elasticity, tear resistance, damping</td>
+                <td><a href="material.html?mat=tpu" style="color: var(--siemens-teal); font-weight: 600;">Datasheet &rarr;</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         9. 4-STEP INDUSTRIAL PIPELINE
+         ========================================================================== -->
+    <section class="pipeline-section" id="process">
+      <div class="container">
+        <div class="siemens-section-intro">
+          <div class="hero-eyebrow" style="color: var(--siemens-teal); margin-bottom: 8px;">// 04 • EXECUTION PROTOCOL</div>
+          <h2 class="siemens-section-title">Engineering-Grade Prototyping Workflow</h2>
+          <p class="siemens-section-sub">Every step is calibrated for physical repeatability and dimensional integrity.</p>
+        </div>
+
+        <div class="pipeline-grid">
+          <div class="pipeline-step-card">
+            <div class="pipeline-num">01</div>
+            <h3 class="pipeline-title">CAD Validation &amp; Slicing</h3>
+            <p class="pipeline-desc">
+              Direct ingestion of .STEP, .STL, or .OBJ files. Parametric geometry is analyzed for wall thickness, anisotropic layer orientation, and thermal shrinkage allowance.
+            </p>
+          </div>
+
+          <div class="pipeline-step-card">
+            <div class="pipeline-num">02</div>
+            <h3 class="pipeline-title">Filament Dehydration</h3>
+            <p class="pipeline-desc">
+              Hygroscopic polymers (PA-CF, PPA-CF, PETG) undergo active moisture dehydration before extrusion to guarantee zero steam micro-voids and maximum tensile strength.
+            </p>
+          </div>
+
+          <div class="pipeline-step-card">
+            <div class="pipeline-num">03</div>
+            <h3 class="pipeline-title">Enclosed Thermal Printing</h3>
+            <p class="pipeline-desc">
+              Parts are fabricated using hardened nozzles (0.4mm &amp; 0.6mm) inside temperature-stabilized chambers to eliminate residual thermal stress and corner warping.
+            </p>
+          </div>
+
+          <div class="pipeline-step-card">
+            <div class="pipeline-num">04</div>
+            <h3 class="pipeline-title">Inspection &amp; Heat-Set Inserts</h3>
+            <p class="pipeline-desc">
+              Calipers and bore gauges verify key dimensions. If required, heat-set brass threaded inserts (M2–M6) and post-print annealing cycles are completed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         10. FULL-WIDTH INDUSTRIAL CTA BANNER
+         ========================================================================== -->
+    <section class="siemens-fullwidth-cta">
+      <div class="container cta-container-narrow">
+        <h2 class="cta-headline">Ready to validate your mechanical design?</h2>
+        <p class="cta-desc">
+          Submit your CAD file for comprehensive slicing parameter review and immediate material quotation.
+        </p>
+        <div class="cta-btn-group">
+          <a href="quote.html" class="btn-siemens-mint" style="font-size: 14.5px; padding: 13px 28px;">
+            <span>REQUEST A PROJECT QUOTE</span>
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </a>
+          <a href="#materials" class="btn-hero-outline" style="font-size: 14px; padding: 12px 24px;">
+            <span>BROWSE ALL MATERIALS</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         11. CONTACT SECTION
+         ========================================================================== -->
+    <section class="siemens-showcase-section" id="contact" style="background: var(--bg-page);">
+      <div class="container">
+        <div class="siemens-section-intro">
+          <div class="hero-eyebrow" style="color: var(--siemens-teal); margin-bottom: 8px;">// 05 • CONNECT</div>
+          <h2 class="siemens-section-title">Direct Engineering Inquiries</h2>
+          <p class="siemens-section-sub">Speak directly with our prototyping engineers regarding mechanical constraints, material compatibility, and production runs.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+          <div style="background: var(--bg-surface-alt); border: 1px solid var(--border-color); border-radius: var(--radius-xs); padding: 32px;">
+            <h3 style="font-family: var(--font-heading); font-size: 18px; margin-bottom: 12px;">FusionLabs3D Facility</h3>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Jaipur, Rajasthan, India</p>
+            <div style="font-size: 13.5px; display: flex; flex-direction: column; gap: 10px;">
+              <div><strong>Email:</strong> <a href="mailto:solutions.fusionlabs3d@gmail.com" style="color: var(--siemens-teal);">solutions.fusionlabs3d@gmail.com</a></div>
+              <div><strong>Instagram:</strong> <a href="https://www.instagram.com/fusionlabs3d.india/" target="_blank" rel="noopener noreferrer" style="color: var(--siemens-teal);">@fusionlabs3d.india</a></div>
+              <div><strong>CAD Ingestion:</strong> Direct RFQ Portal (.STEP, .STL, .3MF, .OBJ)</div>
+            </div>
+            <a href="quote.html" class="btn-siemens-mint" style="margin-top: 24px;">OPEN RFQ PORTAL &rarr;</a>
+          </div>
+
+          <div style="background: var(--bg-surface-alt); border: 1px solid var(--border-color); border-radius: var(--radius-xs); padding: 32px;">
+            <h3 style="font-family: var(--font-heading); font-size: 18px; margin-bottom: 12px;">Quality &amp; Calibration Baseline</h3>
+            <p style="color: var(--text-muted); font-size: 13.5px; line-height: 1.6; margin-bottom: 16px;">
+              No unverified turnaround claims or theoretical tolerance guarantees. Every part is manufactured to physical geometry, functional load requirements, and documented polymer specs.
+            </p>
+            <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-light); line-height: 1.6;">
+              <div>• Active moisture dehydration prior to extrusion</div>
+              <div>• Hardened nozzles up to 0.6mm for fiber composite flow</div>
+              <div>• Thermal chamber temperature regulation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       12. SIEMENS CORPORATE FOOTER
+       ========================================================================== -->
+  <footer class="siemens-footer">
+    <div class="container">
+      <div class="siemens-footer-grid">
+        <div style="display: flex; flex-direction: column; align-items: flex-start;">
+          <a href="index.html" class="footer-brand-logo" style="display: inline-block; align-self: flex-start; margin-bottom: 14px;">
+            <img src="assets/logo/logo-full.png" alt="FusionLabs3D" class="footer-logo-img" style="height: 32px; width: auto; max-width: 180px; object-fit: contain; display: block;">
+          </a>
+          <p class="footer-brand-desc">
+            Precision additive manufacturing and engineering-grade prototyping. Calibrated industrial thermoplastics and continuous fiber composites.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--siemens-mint);">Jaipur, Rajasthan, India</div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Materials</div>
+          <ul class="footer-nav-list">
+            <li><a href="material.html?mat=pa-cf">PA-CF Carbon Fiber</a></li>
+            <li><a href="material.html?mat=ppa-cf">PPA-CF High-Temp</a></li>
+            <li><a href="material.html?mat=pa-gf">PA-GF Glass Fiber</a></li>
+            <li><a href="material.html?mat=petg">PETG Functional</a></li>
+            <li><a href="material.html?mat=abs">ABS Engineering</a></li>
+            <li><a href="material.html?mat=asa">ASA Weatherproof</a></li>
+            <li><a href="material.html?mat=pla">PLA Precision</a></li>
+            <li><a href="material.html?mat=tpu">TPU 95A Elastomer</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Solutions</div>
+          <ul class="footer-nav-list">
+            <li><a href="#solutions">Aerospace &amp; UAVs</a></li>
+            <li><a href="#solutions">Robotics &amp; Automation</a></li>
+            <li><a href="#solutions">Automotive Ducts</a></li>
+            <li><a href="#solutions">Industrial Enclosures</a></li>
+            <li><a href="#solutions">Tooling &amp; Jigs</a></li>
+            <li><a href="#matrix">Specifications Matrix</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Client Services</div>
+          <ul class="footer-nav-list">
+            <li><a href="quote.html">Request a Project Quote</a></li>
+            <li><a href="material.html?mat=pa-cf">Technical Datasheets</a></li>
+            <li><a href="#process">Process &amp; Quality</a></li>
+            <li><a href="admin.html">Internal Management</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-strip">
+        <div>&copy; 2026 FusionLabs3D. All rights reserved. Engineering 3D Prototyping • Jaipur, India.</div>
+        <div>Supported CAD: .STEP, .STL, .3MF, .OBJ • Zero Unverified Claims</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=2.1"></script>
+</body>
+</html>

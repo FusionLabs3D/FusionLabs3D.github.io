@@ -1,0 +1,10 @@
+# ==============================================================================
+# FusionLabs3D — Robots Configuration
+# Current URL: https://fusionlabs3d.github.io/
+# (Update Sitemap URL when transitioning to https://fusionlabs3d.com/)
+# ==============================================================================
+
+User-agent: *
+Allow: /
+
+Sitemap: https://fusionlabs3d.github.io/sitemap.xml

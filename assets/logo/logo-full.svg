@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 68" width="100%" height="100%">
+  <!-- Icon Mark -->
+  <g transform="translate(2, 2) scale(0.56)">
+    <!-- Isometric Cube Outline -->
+    <path d="M 50,5 
+             L 88,27 A 8,8 0 0 1 92,34 
+             L 92,78 A 8,8 0 0 1 88,85 
+             L 50,107 A 8,8 0 0 1 42,107 
+             L 12,85 A 8,8 0 0 1 8,78 
+             L 8,34 A 8,8 0 0 1 12,27 
+             L 50,5 Z" 
+          fill="none" stroke="#FF5000" stroke-width="11" stroke-linejoin="round"/>
+    <!-- Integrated F geometry inside -->
+    <path d="M 33,40 L 33,78 M 33,40 L 68,40 M 33,57 L 58,57" 
+          stroke="#FF5000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- Typography matching exact brand logo -->
+  <text x="70" y="30" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="27" font-weight="700" fill="#FF5000" letter-spacing="-0.5">Fusion</text>
+  <text x="70" y="58" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="27" font-weight="700" fill="#FF5000" letter-spacing="-0.5">Labs3D</text>
+</svg>

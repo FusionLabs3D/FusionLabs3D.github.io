@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Anyone in the world can read your website configuration and filaments
+    match /site_config/{document} {
+      allow read: if true;
+      // Only YOU logged in with your official business email can write/publish changes
+      allow write: if request.auth != null && request.auth.token.email == "solutions.fusionlabs3d@gmail.com";
+    }
+
+    // Public RFQ inquiries from /quote.html
+    match /inquiries/{inquiryId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null && request.auth.token.email == "solutions.fusionlabs3d@gmail.com";
+    }
+  }
+}

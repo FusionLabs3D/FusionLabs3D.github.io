@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- Zero-flicker Dark/Light Theme Initialization -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('fusionlabs3d_theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Request for Quotation (RFQ) | FusionLabs3D Prototyping</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Request a Quote | FusionLabs3D Engineering 3D Prototyping">
+  <meta name="description" content="Submit your STEP, STL, or 3MF CAD model for rapid engineering review, DFM assessment, and itemized quotation from FusionLabs3D in Jaipur, India.">
+  <meta name="keywords" content="FusionLabs3D quote, 3D printing RFQ, CAD slicing quote, STEP file 3D print quote, STL 3D printing Jaipur, engineering prototyping quote India">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://fusionlabs3d.github.io/quote.html">
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="assets/logo/favicon-64.png">
+  <meta name="theme-color" content="#FF5000">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fusionlabs3d.github.io/quote.html">
+  <meta property="og:title" content="Request a Quote | FusionLabs3D Engineering Prototyping">
+  <meta property="og:description" content="Submit your STEP or STL model for prompt DFM validation, material advice, and itemized quotation.">
+  <meta property="og:image" content="https://fusionlabs3d.github.io/assets/images/og-preview.png">
+
+  <!-- Google Fonts: Space Grotesk, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css?v=2.1">
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+
+  <!-- Web3Forms: zero-backend email delivery (get free key at web3forms.com) -->
+  <script>
+    // PASTE YOUR WEB3FORMS ACCESS KEY HERE (get it free at https://web3forms.com)
+    const WEB3FORMS_KEY = "bbe39c1a-07a7-45e5-8abe-f34f6a945d54";
+  </script>
+</head>
+<body class="page-quote">
+
+  <!-- Top Announcement Bar -->
+  <div class="top-spec-bar">
+    <div class="container top-spec-inner">
+      <span class="spec-label"><span class="status-dot"></span> NOW ACCEPTING CAD FILES</span>
+      <span class="spec-detail">Supported: STL, STEP, STP, OBJ, 3MF &bull; Direct DFM Review &bull; Jaipur, India</span>
+      <a href="#rfqForm" class="spec-link">Scroll to Form &darr;</a>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="FusionLabs3D Home">
+        <img src="assets/logo/logo-full.png" alt="FusionLabs3D Logo" class="logo-image" width="180" height="38">
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html#services" class="nav-link">Capabilities</a></li>
+          <li><a href="index.html#gallery" class="nav-link">Showcase</a></li>
+          <li><a href="index.html#materials" class="nav-link">Materials</a></li>
+          <li><a href="index.html#workflow" class="nav-link">Process</a></li>
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle dark and light mode" title="Switch Theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <a href="index.html" class="btn btn-secondary nav-quote-btn">
+          <span>&larr; Back to Overview</span>
+        </a>
+
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open Navigation Menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop"></div>
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="mobile-drawer-header">
+      <img src="assets/logo/logo-full.png" alt="FusionLabs3D" class="drawer-logo" width="150">
+      <button class="drawer-close-btn" id="mobileDrawerClose" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link">Home Overview</a></li>
+      <li><a href="index.html#services" class="mobile-nav-link">Capabilities</a></li>
+      <li><a href="index.html#gallery" class="mobile-nav-link">Showcase</a></li>
+      <li><a href="index.html#materials" class="mobile-nav-link">Materials</a></li>
+      <li><a href="index.html#workflow" class="mobile-nav-link">Process</a></li>
+      <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
+      <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+    </ul>
+    <div class="mobile-drawer-footer">
+      <button class="theme-toggle-btn mobile-theme-btn" id="mobileThemeToggle">
+        <span>Switch Theme</span>
+      </button>
+    </div>
+  </div>
+
+  <main>
+    <!-- RFQ HERO BANNER -->
+    <section class="rfq-hero-section">
+      <div class="container">
+        <div class="rfq-hero-content">
+          <span class="section-tag">ENGINEERING INTAKE // RFQ PORTAL</span>
+          <h1 class="rfq-hero-title">REQUEST A PROJECT QUOTATION</h1>
+          <p class="rfq-hero-subtitle">
+            Share your CAD model link (Google Drive, WeTransfer, Dropbox, OneDrive, or Onshape) and specify functional requirements. We inspect your geometry, recommend optimal layer orientation, and deliver an itemized engineering quote.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RFQ MAIN FORM & SIDEBAR SECTION -->
+    <section class="rfq-form-section" id="rfqForm">
+      <div class="container">
+        <div class="rfq-layout-grid">
+
+          <!-- LEFT COLUMN: RFQ FORM -->
+          <div class="rfq-form-card">
+            <div class="rfq-card-header">
+              <div class="rfq-card-badge">PROJECT SPECIFICATION SHEET</div>
+              <h2 class="rfq-card-title">Part Parameters &amp; CAD Model Link</h2>
+              <p class="rfq-card-desc">All CAD files are held in strict technical confidence and used solely for manufacturing evaluation.</p>
+            </div>
+
+            <form id="engineeringRfqForm" onsubmit="handleRfqSubmit(event)" novalidate>
+
+              <!-- 1. Contact Information -->
+              <div class="rfq-fieldset">
+                <span class="rfq-legend">01 // CONTACT DETAILS</span>
+                <div class="rfq-input-row">
+                  <div class="rfq-group">
+                    <label for="rfqName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="rfqName" name="name" required placeholder="e.g. Rahul Sharma" autocomplete="name">
+                    <span class="field-error-msg" id="nameError"></span>
+                  </div>
+                  <div class="rfq-group">
+                    <label for="rfqEmail">Work / Contact Email <span class="required">*</span></label>
+                    <input type="email" id="rfqEmail" name="email" required placeholder="e.g. rahul@company.com" autocomplete="email">
+                    <span class="field-error-msg" id="emailError"></span>
+                  </div>
+                </div>
+
+                <div class="rfq-input-row">
+                  <div class="rfq-group">
+                    <label for="rfqPhone">WhatsApp / Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="rfqPhone" name="phone" required placeholder="+91 98765 43210" autocomplete="tel">
+                    <span class="field-error-msg" id="phoneError"></span>
+                  </div>
+                  <div class="rfq-group">
+                    <label for="rfqCompany">Organization / Project Name <span class="optional">(Optional)</span></label>
+                    <input type="text" id="rfqCompany" name="company" placeholder="e.g. Robotics Lab / Drone Prototype">
+                  </div>
+                </div>
+
+                <!-- Structured Shipping & Delivery Address -->
+                <div class="rfq-group">
+                  <label for="rfqAddress1">Address Line 1 (Flat, House / Unit No., Building / Company) <span class="required">*</span></label>
+                  <input type="text" id="rfqAddress1" name="address_line1" required placeholder="e.g. Unit 402, Cyber Tower / Plot 45, Phase II" autocomplete="address-line1">
+                  <span class="field-error-msg" id="address1Error"></span>
+                </div>
+
+                <div class="rfq-group">
+                  <label for="rfqAddress2">Address Line 2 (Area, Street, Locality, Landmark) <span class="optional">(Optional)</span></label>
+                  <input type="text" id="rfqAddress2" name="address_line2" placeholder="e.g. Near Metro Pillar 128, Malviya Industrial Area" autocomplete="address-line2">
+                </div>
+
+                <div class="rfq-address-trio">
+                  <div class="rfq-group">
+                    <label for="rfqPincode">PIN Code <span class="required">*</span> <span id="pincodeStatus" class="pincode-status"></span></label>
+                    <input type="text" id="rfqPincode" name="pincode" required placeholder="e.g. 302001" maxlength="6" autocomplete="postal-code" oninput="handlePincodeLookup(this.value)">
+                    <span class="field-error-msg" id="pincodeError"></span>
+                  </div>
+                  <div class="rfq-group">
+                    <label for="rfqCity">City / District <span class="required">*</span></label>
+                    <input type="text" id="rfqCity" name="city" required placeholder="e.g. Jaipur" autocomplete="address-level2">
+                    <span class="field-error-msg" id="cityError"></span>
+                  </div>
+                  <div class="rfq-group">
+                    <label for="rfqState">State <span class="required">*</span></label>
+                    <input type="text" id="rfqState" name="state" required placeholder="e.g. Rajasthan" autocomplete="address-level1">
+                    <span class="field-error-msg" id="stateError"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. Project Scope & CAD Files -->
+              <div class="rfq-fieldset">
+                <span class="rfq-legend">02 // WHAT DO YOU NEED?</span>
+                
+                <div class="rfq-group">
+                  <label for="rfqProjectBrief">Project Brief / Part Description <span class="required">*</span></label>
+                  <textarea id="rfqProjectBrief" name="brief" rows="3" required placeholder="Briefly describe what this component does (e.g. 'Robotics chassis bracket to mount NEMA 17 motor with heat-set M3 brass inserts')."></textarea>
+                  <span class="field-error-msg" id="briefError"></span>
+                </div>
+
+                <!-- CAD Model / Project Link Tab -->
+                <div class="rfq-group">
+                  <label for="rfqCadLink">CAD Model / Project Files Link <span class="required">*</span> <span class="file-spec-hint">(Google Drive, WeTransfer, Dropbox, OneDrive, or Onshape)</span></label>
+                  <input type="url" id="rfqCadLink" name="cad_link" required placeholder="https://drive.google.com/... or https://wetransfer.com/..." autocomplete="off">
+                  <span class="field-error-msg" id="cadLinkError"></span>
+                  <div class="file-honesty-note">
+                    <svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor">
+                      <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 13a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-9a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 5zm0 6a.85.85 0 1 1 0-1.7.85.85 0 0 1 0 1.7z"/>
+                    </svg>
+                    <span>Please ensure link sharing is set to &ldquo;Anyone with the link can view/download&rdquo;. Supported file types: .STEP, .STP, .STL, .3MF, .OBJ, .ZIP</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. Engineering Specifications -->
+              <div class="rfq-fieldset">
+                <span class="rfq-legend">03 // ENGINEERING PARAMETERS</span>
+                
+                <div class="rfq-input-row">
+                  <div class="rfq-group">
+                    <label for="rfqMaterial">Material Preference <span class="required">*</span></label>
+                    <select id="rfqMaterial" name="material" required>
+                      <option value="" disabled selected>-- Select Polymer / Composite --</option>
+                      <option value="pa-cf">PA-CF (Carbon-Fiber Reinforced Nylon - Ultra Stiff)</option>
+                      <option value="pa-gf">PA-GF (Glass-Fiber Reinforced Nylon - Wear Resistant)</option>
+                      <option value="ppa-cf">PPA-CF (High-Performance Polyphthalamide Carbon Fiber - 215°C HDT)</option>
+                      <option value="petg">PETG (Durable Functional Polymer - Impact &amp; Chemical)</option>
+                      <option value="abs">ABS (Engineering Thermoplastic - High Impact Housing)</option>
+                      <option value="asa">ASA (Weather-Resistant Thermoplastic - UV Outdoor)</option>
+                      <option value="pla">PLA (Rapid Prototyping - Sharp Fit &amp; Dimensional Check)</option>
+                      <option value="tpu">TPU (Flexible Elastomer Shore 95A - Gaskets &amp; Dampers)</option>
+                      <option value="recommend">Not sure / Need material recommendation</option>
+                    </select>
+                    <span class="field-error-msg" id="materialError"></span>
+                  </div>
+
+                  <div class="rfq-group">
+                    <label for="rfqQuantity">Quantity (Units) <span class="required">*</span></label>
+                    <input type="number" id="rfqQuantity" name="quantity" min="1" max="10000" value="1" required>
+                    <span class="field-error-msg" id="quantityError"></span>
+                  </div>
+                </div>
+
+                <div class="rfq-group">
+                  <label for="rfqApplication">Application / Operating Environment</label>
+                  <input type="text" id="rfqApplication" name="application" placeholder="e.g. Drone arm, robotics joint, outdoor sensor, fluid enclosure">
+                </div>
+
+                <div class="rfq-group">
+                  <label for="rfqRequirements">Specific Load, Temperature or Assembly Needs <span class="optional">(Optional)</span></label>
+                  <input type="text" id="rfqRequirements" name="requirements" placeholder="e.g. Operating temp >70°C, heat-set M3 brass inserts required, bearing press-fit">
+                </div>
+
+                <div class="rfq-group">
+                  <label for="rfqNotes">Additional Notes <span class="optional">(Optional)</span></label>
+                  <textarea id="rfqNotes" name="notes" rows="2" placeholder="Any specific requirements, dispatch timeline, or project context."></textarea>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="rfq-submit-box">
+                <button type="submit" class="btn btn-primary btn-rfq-submit" id="rfqSubmitBtn">
+                  <span class="btn-text">SEND &rarr;</span>
+                </button>
+                <div class="submit-reassurance">
+                  <span>🔒 Direct engineering evaluation &bull; Non-disclosure guaranteed &bull; No obligation</span>
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- RIGHT COLUMN: ENGINEERING VALIDATION SIDEBAR -->
+          <aside class="rfq-sidebar">
+            
+            <div class="rfq-sidebar-card">
+              <div class="sidebar-card-header">
+                <span class="sidebar-tag">SPECIFICATION GUARANTEE</span>
+                <h3 class="sidebar-title">What Happens Next?</h3>
+              </div>
+              
+              <ul class="sidebar-timeline">
+                <li class="timeline-item">
+                  <span class="timeline-num">01</span>
+                  <div class="timeline-body">
+                    <strong>Direct CAD Evaluation</strong>
+                    <p>We inspect wall thicknesses, support requirements, and mechanical stress orientation.</p>
+                  </div>
+                </li>
+                <li class="timeline-item">
+                  <span class="timeline-num">02</span>
+                  <div class="timeline-body">
+                    <strong>Material &amp; Infill Guidance</strong>
+                    <p>We match your load and thermal limits with the right engineering thermoplastic or composite.</p>
+                  </div>
+                </li>
+                <li class="timeline-item">
+                  <span class="timeline-num">03</span>
+                  <div class="timeline-body">
+                    <strong>Itemized Quotation &amp; DFM Review</strong>
+                    <p>You receive exact unit pricing, estimated print hours, and prompt dispatch schedule.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="rfq-sidebar-card">
+              <div class="sidebar-card-header">
+                <span class="sidebar-tag">DIRECT CHANNELS</span>
+                <h3 class="sidebar-title">Alternative Submission</h3>
+              </div>
+              <p class="sidebar-text">
+                Prefer direct communication? You can also email your CAD model or send questions directly to our engineering desk:
+              </p>
+              
+              <div class="sidebar-channel-list">
+                <a href="mailto:solutions.fusionlabs3d@gmail.com" class="sidebar-channel-link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                  <span>solutions.fusionlabs3d@gmail.com</span>
+                </a>
+                <a href="https://www.instagram.com/fusionlabs3d.india/" target="_blank" rel="noopener noreferrer" class="sidebar-channel-link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                  <span>@fusionlabs3d.india</span>
+                </a>
+                <div class="sidebar-location-badge">
+                  <span class="loc-dot"></span>
+                  <span>Jaipur, Rajasthan, India</span>
+                </div>
+              </div>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CONFIRMATION / ACTION MODAL -->
+  <!-- Simple Thank You Overlay -->
+  <div id="rfqModalOverlay" style="display:none; position:fixed; inset:0; background:rgba(7,11,20,0.92); z-index:9999; align-items:center; justify-content:center; flex-direction:column; gap:20px; text-align:center; padding:24px;">
+    <div style="font-size:52px; line-height:1;">✅</div>
+    <h2 style="color:#fff; font-family:'Space Grotesk',sans-serif; font-size:clamp(22px,4vw,34px); font-weight:700; margin:0;">Thank you!</h2>
+    <p style="color:#CAD7E6; font-size:16px; margin:0; max-width:420px; line-height:1.6;">We've received your inquiry and will connect with you shortly.</p>
+    <p style="color:var(--fl-saffron,#FF8A00); font-size:13px; margin:0;">Redirecting you back to home...</p>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <a href="index.html" class="footer-brand-logo" style="display: inline-block; align-self: flex-start; margin-bottom: 14px;">
+          <img src="assets/logo/logo-full.png" alt="FusionLabs3D" class="footer-logo-img" style="height: 32px; width: auto; max-width: 180px; object-fit: contain; display: block;">
+        </a>
+        <p class="footer-positioning">Engineering-Grade 3D Prototyping</p>
+        <p class="footer-bio">
+          Providing functional additive manufacturing, DFM assessment, and custom prototyping in Jaipur, Rajasthan, India.
+        </p>
+      </div>
+
+      <div class="footer-links-col">
+        <span class="footer-col-title">NAVIGATION</span>
+        <ul class="footer-links">
+          <li><a href="index.html#services" class="footer-link">Capabilities</a></li>
+          <li><a href="index.html#gallery" class="footer-link">Showcase</a></li>
+          <li><a href="index.html#materials" class="footer-link">Materials</a></li>
+          <li><a href="index.html#workflow" class="footer-link">Process</a></li>
+          <li><a href="index.html#about" class="footer-link">About Facility</a></li>
+          <li><a href="quote.html" class="footer-link">RFQ Portal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <span class="footer-col-title">COMMUNICATION</span>
+        <ul class="footer-links">
+          <li><a href="mailto:solutions.fusionlabs3d@gmail.com" class="footer-link">Email Desk</a></li>
+          <li><a href="https://www.instagram.com/fusionlabs3d.india/" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a></li>
+          <li><span class="footer-location-text">Jaipur, Rajasthan, India</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p class="copyright">&copy; 2026 FusionLabs3D. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Inline Script for Quote Page Interactions & Pre-Selection -->
+  <script>
+    let submittedRfqData = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Check URL parameters for pre-selected material
+      const params = new URLSearchParams(window.location.search);
+      const matParam = params.get('material') || params.get('mat');
+      if (matParam) {
+        const select = document.getElementById('rfqMaterial');
+        if (select) {
+          const opt = Array.from(select.options).find(o => o.value.toLowerCase() === matParam.toLowerCase());
+          if (opt) {
+            opt.selected = true;
+          }
+        }
+      }
+
+      // 2. Theme switchers
+      const themeToggle = document.getElementById('themeToggle');
+      const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+      function toggleTheme() {
+        const cur = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('fusionlabs3d_theme', next); } catch(e) {}
+      }
+      if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+      if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+
+      // 3. Mobile drawer
+      const mobileNavToggle = document.getElementById('mobileNavToggle');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      const mobileDrawerClose = document.getElementById('mobileDrawerClose');
+      const mobileDrawerBackdrop = document.getElementById('mobileDrawerBackdrop');
+      function openDrawer() {
+        mobileDrawer.classList.add('open');
+        mobileDrawerBackdrop.classList.add('open');
+      }
+      function closeDrawer() {
+        mobileDrawer.classList.remove('open');
+        mobileDrawerBackdrop.classList.remove('open');
+      }
+      if (mobileNavToggle) mobileNavToggle.addEventListener('click', openDrawer);
+      if (mobileDrawerClose) mobileDrawerClose.addEventListener('click', closeDrawer);
+      if (mobileDrawerBackdrop) mobileDrawerBackdrop.addEventListener('click', closeDrawer);
+    });
+
+    // PIN Code auto-fill lookup via India Post API
+    let pincodeTimer = null;
+    async function handlePincodeLookup(val) {
+      const pin = (val || '').replace(/\D/g, '').trim();
+      const statusEl = document.getElementById('pincodeStatus');
+      const cityEl   = document.getElementById('rfqCity');
+      const stateEl  = document.getElementById('rfqState');
+
+      if (pin.length !== 6) {
+        if (statusEl) statusEl.innerHTML = '';
+        return;
+      }
+
+      clearTimeout(pincodeTimer);
+      pincodeTimer = setTimeout(async () => {
+        try {
+          if (statusEl) {
+            statusEl.innerHTML = '<span style="color: var(--fl-saffron, #FF8A00); font-size: 0.72rem;">Detecting...</span>';
+          }
+          const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+          if (!res.ok) throw new Error('PIN lookup failed');
+          const data = await res.json();
+          if (data && data[0] && data[0].Status === 'Success' && data[0].PostOffice && data[0].PostOffice.length > 0) {
+            const po = data[0].PostOffice[0];
+            const detectedCity = po.District || po.Block || po.Name;
+            const detectedState = po.State;
+            if (cityEl) cityEl.value = detectedCity;
+            if (stateEl) stateEl.value = detectedState;
+            if (statusEl) {
+              statusEl.innerHTML = '<span style="color: #10B981; font-size: 0.72rem; font-weight: 600;">✓ Auto-filled</span>';
+            }
+            // Clear validation errors if present
+            const cErr = document.getElementById('cityError');
+            const sErr = document.getElementById('stateError');
+            const pErr = document.getElementById('pincodeError');
+            if (cErr) cErr.textContent = '';
+            if (sErr) sErr.textContent = '';
+            if (pErr) pErr.textContent = '';
+          } else {
+            if (statusEl) statusEl.innerHTML = '<span style="color: var(--text-muted); font-size: 0.72rem;">Enter City/State</span>';
+          }
+        } catch (e) {
+          if (statusEl) statusEl.innerHTML = '';
+        }
+      }, 200);
+    }
+
+    async function handleRfqSubmit(e) {
+      e.preventDefault();
+
+      const name     = document.getElementById('rfqName').value.trim();
+      const email    = document.getElementById('rfqEmail').value.trim();
+      const phone    = document.getElementById('rfqPhone').value.trim();
+      const company  = document.getElementById('rfqCompany').value.trim();
+      const address1 = document.getElementById('rfqAddress1').value.trim();
+      const address2 = document.getElementById('rfqAddress2').value.trim();
+      const pincode  = document.getElementById('rfqPincode').value.trim();
+      const city     = document.getElementById('rfqCity').value.trim();
+      const state    = document.getElementById('rfqState').value.trim();
+      const brief    = document.getElementById('rfqProjectBrief').value.trim();
+      let cadLink    = document.getElementById('rfqCadLink').value.trim();
+      const material = document.getElementById('rfqMaterial').value;
+      const quantity = document.getElementById('rfqQuantity').value;
+      const application  = document.getElementById('rfqApplication').value.trim();
+      const requirements = document.getElementById('rfqRequirements').value.trim();
+      const notes        = document.getElementById('rfqNotes').value.trim();
+
+      // Validation
+      let isValid = true;
+      if (!name)   { document.getElementById('nameError').textContent  = 'Please provide your full name.'; isValid = false; }
+      else           document.getElementById('nameError').textContent  = '';
+      if (!email || !email.includes('@')) { document.getElementById('emailError').textContent = 'Valid email is required.'; isValid = false; }
+      else           document.getElementById('emailError').textContent = '';
+      if (!phone)  { document.getElementById('phoneError').textContent = 'Phone number is required.'; isValid = false; }
+      else           document.getElementById('phoneError').textContent = '';
+      if (!address1) { document.getElementById('address1Error').textContent = 'Address Line 1 is required.'; isValid = false; }
+      else             document.getElementById('address1Error').textContent = '';
+      if (!pincode)  { document.getElementById('pincodeError').textContent = 'PIN code is required.'; isValid = false; }
+      else             document.getElementById('pincodeError').textContent = '';
+      if (!city)     { document.getElementById('cityError').textContent = 'City is required.'; isValid = false; }
+      else             document.getElementById('cityError').textContent = '';
+      if (!state)    { document.getElementById('stateError').textContent = 'State is required.'; isValid = false; }
+      else             document.getElementById('stateError').textContent = '';
+      if (!brief)  { document.getElementById('briefError').textContent = 'Please briefly describe your part.'; isValid = false; }
+      else           document.getElementById('briefError').textContent = '';
+      if (!cadLink) {
+        document.getElementById('cadLinkError').textContent = 'Please provide a link to your CAD model or project files.';
+        isValid = false;
+      } else {
+        // Ensure link starts with http:// or https:// so it is clickable and accessible in emails
+        if (!/^https?:\/\//i.test(cadLink)) {
+          cadLink = 'https://' + cadLink;
+        }
+        document.getElementById('cadLinkError').textContent = '';
+      }
+      if (!material) { document.getElementById('materialError').textContent = 'Please select a material.'; isValid = false; }
+      else             document.getElementById('materialError').textContent = '';
+      if (!isValid) return;
+
+      // Show loading state
+      const submitBtn = document.getElementById('rfqSubmitBtn');
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.btn-text').textContent = 'Sending...';
+
+      const rfqId = 'FL3D-' + Math.floor(1000 + Math.random() * 9000);
+
+      // 1. Send email via Web3Forms (JSON — reliable on free plan)
+      try {
+        if (typeof WEB3FORMS_KEY !== 'undefined' && WEB3FORMS_KEY !== 'YOUR_WEB3FORMS_KEY') {
+          const fullAddress = [
+            address1,
+            address2 ? address2 : null,
+            city + ', ' + state + ' - ' + pincode
+          ].filter(Boolean).join('\n            ');
+
+          const emailBody = [
+            '--- NEW RFQ INQUIRY ---',
+            'RFQ ID   : ' + rfqId,
+            'Name     : ' + name,
+            'Email    : ' + email,
+            'Phone    : ' + phone,
+            'Company  : ' + (company || 'N/A'),
+            '',
+            '--- DELIVERY DESTINATION ---',
+            'Address  : ' + fullAddress,
+            'City     : ' + city,
+            'State    : ' + state,
+            'PIN Code : ' + pincode,
+            '',
+            '--- SPECIFICATIONS ---',
+            'Material : ' + material.toUpperCase(),
+            'Quantity : ' + quantity,
+            'Application : ' + (application || 'N/A'),
+            'Conditions  : ' + (requirements || 'Standard'),
+            '',
+            'CAD Model Link (Direct Access):',
+            cadLink,
+            '',
+            'Part Description:',
+            brief,
+            '',
+            'Additional Notes:',
+            (notes || 'None'),
+            '',
+            '--- Reply directly to this email to contact the customer ---',
+          ].join('\n');
+
+          await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              access_key: WEB3FORMS_KEY,
+              subject: '[RFQ ' + rfqId + '] ' + name + ' — ' + material.toUpperCase(),
+              from_name: 'FusionLabs3D RFQ Portal',
+              replyto: email,
+              message: emailBody
+            })
+          });
+        }
+      } catch (err) {
+        console.warn('Web3Forms email error:', err);
+      }
+
+      // 2. Also save to Firestore as backup record
+      try {
+        if (typeof firebaseDb !== 'undefined' && firebaseDb) {
+          await firebaseDb.collection('inquiries').doc(rfqId).set({
+            rfqId, createdAt: new Date().toISOString(),
+            name, email, phone, company,
+            address1, address2, pincode, city, state,
+            brief, cadLink, material, quantity,
+            application, requirements, notes
+          });
+        }
+      } catch (err) {
+        console.warn('Firestore backup skipped:', err);
+      }
+
+      // Show thank-you overlay then go home
+      document.getElementById('rfqModalOverlay').style.display = 'flex';
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

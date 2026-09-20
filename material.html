@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- Zero-flicker Dark/Light Theme Initialization -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('fusionlabs3d_theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Material Datasheet | FusionLabs3D Engineering Materials</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Material Datasheet | FusionLabs3D Engineering Materials">
+  <meta name="description" content="Technical datasheets, mechanical properties, thermal thresholds, and applications for engineering 3D printing filaments: PLA, PETG, TPU, ABS, ASA, PA-CF, PA-GF, PPA-CF.">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://fusionlabs3d.github.io/material.html">
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="assets/logo/favicon-64.png">
+  <meta name="theme-color" content="#EA580C">
+
+  <!-- Google Fonts: Space Grotesk, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="material-page-body">
+
+  <!-- Top Announcement Bar (Siemens Style) -->
+  <div class="top-spec-bar">
+    <div class="container top-spec-inner">
+      <span class="spec-label"><span class="status-dot"></span> TECHNICAL DATASHEET PORTAL</span>
+      <span class="spec-detail">Supported Formats: STEP, STL, 3MF &bull; Direct DFM Review &bull; Jaipur, India</span>
+      <a href="quote.html" class="spec-link">Request a Project Quote &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header (Siemens Style) -->
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="FusionLabs3D Homepage">
+        <img src="assets/logo/logo-full.png" alt="FusionLabs3D Logo" class="brand-img">
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html#gallery" class="nav-link">Showcase</a></li>
+          <li><a href="index.html#materials" class="nav-link active">Materials</a></li>
+          <li><a href="index.html#services" class="nav-link">Capabilities</a></li>
+          <li><a href="index.html#workflow" class="nav-link">Process</a></li>
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Dark / Light Mode Toggle -->
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Dark / Light Theme" title="Toggle Dark / Light Theme">
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+
+        <a href="quote.html" class="btn btn-primary nav-quote-btn">
+          <span>GET A QUOTE</span>
+          <svg class="btn-arrow" viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="mobile-drawer-inner">
+      <div class="mobile-drawer-header">
+        <span class="mobile-drawer-title">NAVIGATION</span>
+        <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Close navigation menu">&times;</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home Overview</a></li>
+        <li><a href="index.html#materials" class="mobile-nav-link">Materials Catalog</a></li>
+        <li><a href="index.html#services" class="mobile-nav-link">Capabilities</a></li>
+        <li><a href="index.html#gallery" class="mobile-nav-link">Showcase</a></li>
+        <li><a href="index.html#workflow" class="mobile-nav-link">Process</a></li>
+        <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="quote.html" class="btn btn-primary btn-block">
+          <span>GET A QUOTE</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop" tabindex="-1"></div>
+
+  <main id="main-content" class="material-datasheet-page">
+
+    <!-- Breadcrumbs (Siemens/Autodesk style) -->
+    <div class="datasheet-breadcrumb-bar">
+      <div class="container">
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+          <a href="index.html" class="crumb-link">Home</a>
+          <span class="crumb-separator">/</span>
+          <a href="index.html#materials" class="crumb-link">Materials</a>
+          <span class="crumb-separator">/</span>
+          <span class="crumb-current" id="crumbMatName">PA-CF</span>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Specification Hero Banner -->
+    <section class="datasheet-hero">
+      <div class="container">
+        <div class="datasheet-hero-grid">
+          <div class="datasheet-hero-info">
+            <div class="datasheet-meta-strip">
+              <span class="datasheet-class-badge" id="matClassification">STRUCTURAL COMPOSITE</span>
+              <span class="datasheet-code-badge" id="matCode">PA6 + CHOPPED CF</span>
+              <span class="datasheet-category-badge" id="matCategory">Carbon &amp; Composites</span>
+            </div>
+            <h1 class="datasheet-title" id="matTitle">PA-CF</h1>
+            <p class="datasheet-subtitle" id="matFullName">Carbon-Fiber Reinforced Polyamide (PA6-CF)</p>
+            <p class="datasheet-lead" id="matSummary">
+              Polyamide 6 matrix reinforced with high-modulus chopped carbon fibers. Delivers exceptional mechanical stiffness, high strength-to-weight ratio, and minimal thermal warpage.
+            </p>
+          </div>
+
+          <div class="datasheet-hero-metrics">
+            <div class="spec-kpi-card">
+              <span class="kpi-label">TENSILE STRENGTH</span>
+              <span class="kpi-value" id="matTensile">105 MPa</span>
+              <span class="kpi-sub">ISO 527 Standard</span>
+            </div>
+            <div class="spec-kpi-card">
+              <span class="kpi-label">HEAT DEFLECTION (HDT)</span>
+              <span class="kpi-value" id="matHDT">150°C</span>
+              <span class="kpi-sub">@ 0.45 MPa Load</span>
+            </div>
+            <div class="spec-kpi-card">
+              <span class="kpi-label">FLEXURAL MODULUS</span>
+              <span class="kpi-value" id="matFlexural">7.2 GPa</span>
+              <span class="kpi-sub">ISO 178 Standard</span>
+            </div>
+            <div class="spec-kpi-card">
+              <span class="kpi-label">MATERIAL DENSITY</span>
+              <span class="kpi-value" id="matDensity">1.18 g/cm³</span>
+              <span class="kpi-sub">ISO 1183 Standard</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Two-Column Technical Detail Section -->
+    <section class="datasheet-content-section">
+      <div class="container">
+        <div class="datasheet-layout-grid">
+
+          <!-- Left Column: Visual & Action Card -->
+          <div class="datasheet-sidebar-col">
+            <!-- Part Photo Card -->
+            <div class="datasheet-media-card">
+              <div class="media-frame">
+                <img src="assets/images/parts/pa6cf-bracket.jpg" alt="Engineering component in PA-CF" class="datasheet-main-img" id="matImage">
+                <div class="media-tag-overlay" id="matOverlayTag">CALIBRATED SAMPLE</div>
+              </div>
+              <div class="media-caption">
+                <span class="media-caption-title" id="matCaptionTitle">Engineering Prototyping Sample</span>
+                <span class="media-caption-desc">Manufactured in-house at Jaipur facility with optimized layer bonding.</span>
+              </div>
+            </div>
+
+            <!-- Mechanical Suitability Indicators -->
+            <div class="datasheet-suitability-card">
+              <h3 class="suitability-title">MECHANICAL RATING</h3>
+              <div class="suitability-row">
+                <span class="suitability-label">Stiffness &amp; Rigidity</span>
+                <div class="suitability-track"><div class="suitability-bar" id="barStiffness" style="width: 95%;"></div></div>
+              </div>
+              <div class="suitability-row">
+                <span class="suitability-label">Thermal Endurance</span>
+                <div class="suitability-track"><div class="suitability-bar" id="barThermal" style="width: 85%;"></div></div>
+              </div>
+              <div class="suitability-row">
+                <span class="suitability-label">Impact Toughness</span>
+                <div class="suitability-track"><div class="suitability-bar" id="barImpact" style="width: 70%;"></div></div>
+              </div>
+              <div class="suitability-row">
+                <span class="suitability-label">Dimensional Stability</span>
+                <div class="suitability-track"><div class="suitability-bar" id="barStability" style="width: 95%;"></div></div>
+              </div>
+            </div>
+
+            <!-- Prominent Direct Quote / Order Box (Amazon-style Conversion) -->
+            <div class="datasheet-rfq-action-card">
+              <div class="rfq-action-badge">INSTANT CAD SIZING</div>
+              <h3 class="rfq-action-title">Manufacture in <span id="rfqMatTarget">PA-CF</span></h3>
+              <p class="rfq-action-desc">
+                Submit your CAD file (STEP, STL, or 3MF) for immediate slicing orientation, infill calculation, and an itemized engineering quote.
+              </p>
+              <a href="quote.html?material=pa-cf" class="btn btn-primary btn-block rfq-action-btn" id="matQuoteBtn">
+                <span>REQUEST A QUOTE WITH THIS MATERIAL &rarr;</span>
+              </a>
+              <div class="rfq-action-guarantees">
+                <span class="action-guarantee-item">&check; Direct Engineering DFM Review</span>
+                <span class="action-guarantee-item">&check; Express Courier Across India</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Full Technical Datasheet -->
+          <div class="datasheet-main-col">
+
+            <!-- Section 1: Mechanical Properties Table -->
+            <div class="datasheet-block">
+              <div class="block-header">
+                <span class="block-icon">⚙️</span>
+                <h2 class="block-title">Mechanical &amp; Physical Specifications</h2>
+              </div>
+              <div class="table-responsive">
+                <table class="specs-table">
+                  <thead>
+                    <tr>
+                      <th>Property Metric</th>
+                      <th>Tested Value</th>
+                      <th>Test Method</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Tensile Strength</strong></td>
+                      <td id="tableTensile">105 MPa</td>
+                      <td class="text-mono">ISO 527</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Flexural Modulus</strong></td>
+                      <td id="tableFlexural">7.2 GPa</td>
+                      <td class="text-mono">ISO 178</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Heat Deflection Temperature (HDT)</strong></td>
+                      <td id="tableHDT">150°C (0.45 MPa)</td>
+                      <td class="text-mono">ISO 75</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Impact Resistance</strong></td>
+                      <td id="tableImpact">12 kJ/m²</td>
+                      <td class="text-mono">ISO 179 / Charpy</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Density</strong></td>
+                      <td id="tableDensity">1.18 g/cm³</td>
+                      <td class="text-mono">ISO 1183</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Elongation at Break</strong></td>
+                      <td id="tableElongation">4.5%</td>
+                      <td class="text-mono">ISO 527</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Section 2: Chemical & Environmental Compatibility -->
+            <div class="datasheet-block">
+              <div class="block-header">
+                <span class="block-icon">🧪</span>
+                <h2 class="block-title">Chemical &amp; Environmental Profile</h2>
+              </div>
+              <p class="block-text" id="matChemical">
+                High resistance to engine oils, gasoline, lubricants, and organic industrial solvents.
+              </p>
+              <div class="chemical-matrix-grid">
+                <div class="chem-card">
+                  <span class="chem-label">Hydrocarbons &amp; Fuels</span>
+                  <span class="chem-status chem-status-high" id="chemHydro">High Resistance</span>
+                </div>
+                <div class="chem-card">
+                  <span class="chem-label">UV Exposure &amp; Sunlight</span>
+                  <span class="chem-status chem-status-med" id="chemUV">Moderate-High</span>
+                </div>
+                <div class="chem-card">
+                  <span class="chem-label">Moisture Uptake</span>
+                  <span class="chem-status chem-status-low" id="chemMoisture">Calibrated Conditioning</span>
+                </div>
+                <div class="chem-card">
+                  <span class="chem-label">Lubricants &amp; Greases</span>
+                  <span class="chem-status chem-status-high" id="chemGrease">Impervious</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Recommended Applications -->
+            <div class="datasheet-block">
+              <div class="block-header">
+                <span class="block-icon">🎯</span>
+                <h2 class="block-title">Recommended Applications</h2>
+              </div>
+              <p class="block-text" id="matUseCases">
+                Robotics chassis, structural drone components, motor brackets, aluminum replacement parts, high-stiffness tooling fixtures.
+              </p>
+              <div class="applications-tag-cloud" id="matTagsCloud">
+                <span class="app-tag">Drone Airframes</span>
+                <span class="app-tag">Robotics Arms</span>
+                <span class="app-tag">Motor Mount Brackets</span>
+                <span class="app-tag">Aluminum Replacement</span>
+              </div>
+            </div>
+
+            <!-- Section 4: Slicing & Engineering Guidelines -->
+            <div class="datasheet-block">
+              <div class="block-header">
+                <span class="block-icon">📐</span>
+                <h2 class="block-title">Manufacturing &amp; Slicing Parameters</h2>
+              </div>
+              <div class="guidelines-grid">
+                <div class="guide-item">
+                  <span class="guide-label">Calibrated Layer Height</span>
+                  <span class="guide-val" id="guideLayer">0.16 - 0.24 mm</span>
+                </div>
+                <div class="guide-item">
+                  <span class="guide-label">Perimeter Wall Count</span>
+                  <span class="guide-val" id="guideWalls">Recommended 4+ perimeter loops</span>
+                </div>
+                <div class="guide-item">
+                  <span class="guide-label">Infill Geometry</span>
+                  <span class="guide-val" id="guideInfill">Gyroid or Cubic (30% - 100%)</span>
+                </div>
+                <div class="guide-item">
+                  <span class="guide-label">Hardware Integration</span>
+                  <span class="guide-val">Heat-set brass inserts (M2 - M8), bearing presses</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Material Switcher (Autodesk Style) -->
+    <section class="datasheet-switcher-section">
+      <div class="container">
+        <div class="switcher-header">
+          <span class="section-tag">EXPLORE CALIBRATED FILAMENTS</span>
+          <h2 class="switcher-title">Switch to Another Engineering Material</h2>
+          <p class="switcher-subtitle">Browse full mechanical datasheets across all 8 standard polymers and composites.</p>
+        </div>
+
+        <div class="material-switcher-grid" id="materialsSwitcher">
+          <!-- Populated dynamically by script -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SITE FOOTER (Siemens Style) -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <a href="index.html" class="footer-brand" style="display: inline-block; align-self: flex-start; margin-bottom: 14px;">
+          <img src="assets/logo/logo-full.png" alt="FusionLabs3D" class="footer-logo-img" style="height: 32px; width: auto; max-width: 180px; object-fit: contain; display: block;">
+        </a>
+        <p class="footer-positioning">Engineering-Grade Additive Manufacturing</p>
+        <p class="footer-location">Jaipur, Rajasthan, India</p>
+        <a href="mailto:solutions.fusionlabs3d@gmail.com" class="footer-email">solutions.fusionlabs3d@gmail.com</a>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 class="footer-heading">NAVIGATION</h4>
+        <ul class="footer-nav">
+          <li><a href="index.html">Home Overview</a></li>
+          <li><a href="index.html#materials">Materials Catalog</a></li>
+          <li><a href="index.html#services">Capabilities</a></li>
+          <li><a href="index.html#gallery">Showcase</a></li>
+          <li><a href="index.html#workflow">Workflow</a></li>
+          <li><a href="quote.html">Request Quote</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 class="footer-heading">CALIBRATED FILAMENTS</h4>
+        <ul class="footer-nav">
+          <li><a href="material.html?mat=pla">PLA (Rapid Iteration)</a></li>
+          <li><a href="material.html?mat=petg">PETG (Durable &amp; Chemical)</a></li>
+          <li><a href="material.html?mat=tpu">TPU (Shore 95A Flexible)</a></li>
+          <li><a href="material.html?mat=abs">ABS (High Impact)</a></li>
+          <li><a href="material.html?mat=asa">ASA (UV Weatherproof)</a></li>
+          <li><a href="material.html?mat=pa-cf">PA-CF (Carbon Composite)</a></li>
+          <li><a href="material.html?mat=pa-gf">PA-GF (Glass Composite)</a></li>
+          <li><a href="material.html?mat=ppa-cf">PPA-CF (215°C High-Temp)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 class="footer-heading">COMMUNICATION</h4>
+        <ul class="footer-nav">
+          <li><a href="quote.html" class="footer-quote-link">Submit RFQ &rarr;</a></li>
+          <li><a href="https://www.instagram.com/fusionlabs3d.india/" target="_blank" rel="noopener noreferrer">Instagram (@fusionlabs3d.india)</a></li>
+          <li><a href="mailto:solutions.fusionlabs3d@gmail.com">Direct Engineering Desk</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p class="copyright">&copy; 2026 FusionLabs3D. All rights reserved.</p>
+      <p class="host-notice">Precision Additive Manufacturing &bull; Jaipur, India</p>
+    </div>
+  </footer>
+
+  <!-- Material Datasheet Script -->
+  <script>
+    (function() {
+      // Theme Toggle Logic
+      const themeToggle = document.getElementById('themeToggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+          const current = document.documentElement.getAttribute('data-theme') || 'light';
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          try { localStorage.setItem('fusionlabs3d_theme', next); } catch (e) {}
+        });
+      }
+
+      // Mobile Menu Toggle
+      const mobileToggle = document.getElementById('mobileNavToggle');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      const mobileBackdrop = document.getElementById('mobileDrawerBackdrop');
+      const mobileClose = document.getElementById('mobileDrawerClose');
+
+      function openDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.add('open');
+        mobileDrawer.setAttribute('aria-hidden', 'false');
+        if (mobileBackdrop) mobileBackdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.remove('open');
+        mobileDrawer.setAttribute('aria-hidden', 'true');
+        if (mobileBackdrop) mobileBackdrop.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      if (mobileToggle) mobileToggle.addEventListener('click', openDrawer);
+      if (mobileClose) mobileClose.addEventListener('click', closeDrawer);
+      if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeDrawer);
+
+      // Load Material Data
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetMatId = (urlParams.get('mat') || 'pa-cf').toLowerCase();
+
+      fetch('data/materials.json')
+        .then(function(res) { return res.json(); })
+        .then(function(materials) {
+          if (!Array.isArray(materials) || materials.length === 0) return;
+
+          let selected = materials.find(function(m) { return m.id.toLowerCase() === targetMatId; });
+          if (!selected) {
+            selected = materials[0];
+          }
+
+          // Update Document Title
+          document.title = selected.name + ' Technical Datasheet | FusionLabs3D';
+
+          // Update Header & Hero Elements
+          const crumb = document.getElementById('crumbMatName');
+          if (crumb) crumb.textContent = selected.name;
+
+          const title = document.getElementById('matTitle');
+          if (title) title.textContent = selected.name;
+
+          const fullName = document.getElementById('matFullName');
+          if (fullName) fullName.textContent = selected.fullName || selected.name;
+
+          const classBadge = document.getElementById('matClassification');
+          if (classBadge) classBadge.textContent = selected.classification || 'ENGINEERING MATERIAL';
+
+          const codeBadge = document.getElementById('matCode');
+          if (codeBadge) codeBadge.textContent = selected.code || '';
+
+          const catBadge = document.getElementById('matCategory');
+          if (catBadge) catBadge.textContent = selected.category || '';
+
+          const summary = document.getElementById('matSummary');
+          if (summary) summary.textContent = selected.summary || '';
+
+          // Metrics
+          const matTensile = document.getElementById('matTensile');
+          if (matTensile) matTensile.textContent = selected.tensileStrength || 'N/A';
+
+          const matHDT = document.getElementById('matHDT');
+          if (matHDT) matHDT.textContent = selected.heatDeflection || 'N/A';
+
+          const matFlexural = document.getElementById('matFlexural');
+          if (matFlexural) matFlexural.textContent = selected.flexuralModulus || 'N/A';
+
+          const matDensity = document.getElementById('matDensity');
+          if (matDensity) matDensity.textContent = selected.density || 'N/A';
+
+          // Image & Caption
+          const img = document.getElementById('matImage');
+          if (img && selected.image) {
+            img.src = selected.image;
+            img.alt = selected.name + ' component sample';
+          }
+
+          const overlay = document.getElementById('matOverlayTag');
+          if (overlay) overlay.textContent = selected.name + ' PART';
+
+          // Action Box
+          const rfqTarget = document.getElementById('rfqMatTarget');
+          if (rfqTarget) rfqTarget.textContent = selected.name;
+
+          const quoteBtn = document.getElementById('matQuoteBtn');
+          if (quoteBtn) {
+            quoteBtn.href = 'quote.html?material=' + encodeURIComponent(selected.id);
+            quoteBtn.innerHTML = '<span>REQUEST A QUOTE WITH ' + selected.name + ' &rarr;</span>';
+          }
+
+          // Table Specs
+          const tTensile = document.getElementById('tableTensile');
+          if (tTensile) tTensile.textContent = selected.tensileStrength || 'N/A';
+
+          const tFlexural = document.getElementById('tableFlexural');
+          if (tFlexural) tFlexural.textContent = selected.flexuralModulus || 'N/A';
+
+          const tHDT = document.getElementById('tableHDT');
+          if (tHDT) tHDT.textContent = selected.heatDeflection || 'N/A';
+
+          const tImpact = document.getElementById('tableImpact');
+          if (tImpact) tImpact.textContent = selected.impactStrength || 'N/A';
+
+          const tDensity = document.getElementById('tableDensity');
+          if (tDensity) tDensity.textContent = selected.density || 'N/A';
+
+          const tElongation = document.getElementById('tableElongation');
+          if (tElongation) tElongation.textContent = selected.elongation || 'N/A';
+
+          // Chemical
+          const chem = document.getElementById('matChemical');
+          if (chem && selected.chemical) chem.textContent = selected.chemical;
+
+          // Applications
+          const uses = document.getElementById('matUseCases');
+          if (uses && selected.use_cases) uses.textContent = selected.use_cases;
+
+          const cloud = document.getElementById('matTagsCloud');
+          if (cloud && selected.tags) {
+            cloud.innerHTML = '';
+            selected.tags.forEach(function(tag) {
+              const span = document.createElement('span');
+              span.className = 'app-tag';
+              span.textContent = tag;
+              cloud.appendChild(span);
+            });
+          }
+
+          // Slicing
+          const guideLayer = document.getElementById('guideLayer');
+          if (guideLayer && selected.slicing) guideLayer.textContent = selected.slicing;
+
+          // Suitability Bars calculation based on properties
+          const barStiffness = document.getElementById('barStiffness');
+          const barThermal = document.getElementById('barThermal');
+          const barImpact = document.getElementById('barImpact');
+          const barStability = document.getElementById('barStability');
+
+          if (selected.id === 'pa-cf' || selected.id === 'ppa-cf') {
+            if (barStiffness) barStiffness.style.width = selected.id === 'ppa-cf' ? '100%' : '95%';
+            if (barThermal) barThermal.style.width = selected.id === 'ppa-cf' ? '100%' : '85%';
+            if (barImpact) barImpact.style.width = '70%';
+            if (barStability) barStability.style.width = '95%';
+          } else if (selected.id === 'pa-gf') {
+            if (barStiffness) barStiffness.style.width = '85%';
+            if (barThermal) barThermal.style.width = '75%';
+            if (barImpact) barImpact.style.width = '80%';
+            if (barStability) barStability.style.width = '90%';
+          } else if (selected.id === 'tpu') {
+            if (barStiffness) barStiffness.style.width = '20%';
+            if (barThermal) barThermal.style.width = '55%';
+            if (barImpact) barImpact.style.width = '100%';
+            if (barStability) barStability.style.width = '60%';
+          } else if (selected.id === 'abs' || selected.id === 'asa') {
+            if (barStiffness) barStiffness.style.width = '70%';
+            if (barThermal) barThermal.style.width = '65%';
+            if (barImpact) barImpact.style.width = '85%';
+            if (barStability) barStability.style.width = '80%';
+          } else if (selected.id === 'petg') {
+            if (barStiffness) barStiffness.style.width = '65%';
+            if (barThermal) barThermal.style.width = '60%';
+            if (barImpact) barImpact.style.width = '75%';
+            if (barStability) barStability.style.width = '85%';
+          } else { // pla
+            if (barStiffness) barStiffness.style.width = '75%';
+            if (barThermal) barThermal.style.width = '40%';
+            if (barImpact) barImpact.style.width = '50%';
+            if (barStability) barStability.style.width = '90%';
+          }
+
+          // Populate Material Switcher Grid
+          const switcherGrid = document.getElementById('materialsSwitcher');
+          if (switcherGrid) {
+            switcherGrid.innerHTML = '';
+            materials.forEach(function(m) {
+              const isCurrent = m.id.toLowerCase() === selected.id.toLowerCase();
+              const card = document.createElement('a');
+              card.href = 'material.html?mat=' + encodeURIComponent(m.id);
+              card.className = 'switcher-card' + (isCurrent ? ' active' : '');
+              card.innerHTML = `
+                <div class="switcher-badge" style="background:${m.accentColor || '#EA580C'}22; color:${m.accentColor || '#EA580C'}; border-color:${m.accentColor || '#EA580C'}44;">
+                  ${m.classification || 'POLYMER'}
+                </div>
+                <h4 class="switcher-name">${m.name}</h4>
+                <p class="switcher-cat">${m.category || ''}</p>
+                <div class="switcher-kpi-row">
+                  <span>${m.tensileStrength || ''}</span>
+                  <span>${m.heatDeflection || ''}</span>
+                </div>
+              `;
+              switcherGrid.appendChild(card);
+            });
+          }
+
+        })
+        .catch(function(err) {
+          console.error('Failed to load materials data:', err);
+        });
+    })();
+  </script>
+</body>
+</html>

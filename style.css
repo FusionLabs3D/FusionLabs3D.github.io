@@ -1,0 +1,5301 @@
+/* ==========================================================================
+   FUSIONLABS3D — SIEMENS & AUTODESK ENTERPRISE DESIGN SYSTEM
+   Directly modeled on Siemens Digital Industries & Autodesk Fusion Ecosystem.
+   ========================================================================== */
+
+/* --- CSS Variables & Design Tokens --- */
+:root {
+  /* Siemens Corporate Palette */
+  --siemens-navy: #000028;
+  --siemens-navy-deep: #00081E;
+  --siemens-navy-card: #000E2F;
+  --siemens-teal: #00646E;
+  --siemens-mint: #00BE88;
+  --siemens-mint-soft: #D1F2E8;
+  --siemens-mint-text: #005F4B;
+  --siemens-cyan: #00E5A3;
+
+  /* Autodesk Product Palette */
+  --autodesk-orange: #EA580C;
+  --autodesk-orange-dark: #C2410C;
+  --autodesk-amber: #D97706;
+  --autodesk-blue: #0284C7;
+  --autodesk-purple: #7C3AED;
+  --autodesk-black: #000000;
+  --autodesk-card-bg: #FFFFFF;
+
+  /* Neutrals & Surfaces */
+  --bg-page: #FFFFFF;
+  --bg-surface-alt: #F4F6F8;
+  --bg-surface-cool: #EFF2F5;
+  --border-color: #E2E8F0;
+  --border-dark: #243044;
+  --border-light: #ECEFF1;
+
+  /* Typography Colors */
+  --text-main: #0F172A;
+  --text-muted: #556987;
+  --text-light: #7E8B9B;
+  --text-white: #FFFFFF;
+
+  /* Fonts */
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
+
+  /* Layout */
+  --container-max: 1440px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
+
+  /* Transitions */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s var(--ease-expo);
+  --transition-normal: 0.4s var(--ease-expo);
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  --bg-page: #060911;
+  --bg-surface-alt: #0D1322;
+  --bg-surface-cool: #111827;
+  --autodesk-card-bg: #0D1322;
+  --border-color: #1E293B;
+  --border-light: #162032;
+  --text-main: #F1F5F9;
+  --text-muted: #94A3B8;
+  --text-light: #64748B;
+}
+
+/* Reset & Global */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ==========================================================================
+   1. SIEMENS HEADER & TOP UTILITY BAR (Screenshots 2, 3, 5)
+   ========================================================================== */
+.siemens-top-strip {
+  background-color: var(--siemens-navy-deep);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  color: #BAC7D5;
+  padding: 8px 0;
+}
+
+.siemens-top-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-left-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.top-info-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.top-dot-green {
+  width: 6px;
+  height: 6px;
+  background: var(--siemens-mint);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.top-right-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.top-right-link {
+  color: #BAC7D5;
+  transition: color var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.top-right-link:hover {
+  color: #FFFFFF;
+}
+
+.header-divider-v {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Siemens Main Corporate Navbar */
+.siemens-header {
+  background-color: var(--siemens-navy);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.siemens-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 74px;
+}
+
+.siemens-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.siemens-brand-text {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+}
+
+.siemens-brand-sub {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--siemens-mint);
+  letter-spacing: 0.06em;
+  padding-left: 12px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .siemens-brand-sub { display: block; }
+}
+
+.siemens-nav-links {
+  display: none;
+  align-items: center;
+  list-style: none;
+  gap: 28px;
+}
+
+@media (min-width: 960px) {
+  .siemens-nav-links { display: flex; }
+}
+
+.siemens-nav-item a {
+  color: #D1D9E2;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+  position: relative;
+  padding: 6px 0;
+}
+
+.siemens-nav-item a:hover,
+.siemens-nav-item a.active {
+  color: #FFFFFF;
+}
+
+.siemens-nav-item a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--siemens-mint);
+}
+
+.siemens-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.theme-toggle-siemens {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #BAC7D5;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle-siemens:hover {
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+}
+
+.theme-icon-moon { display: none; }
+[data-theme="dark"] .theme-icon-sun { display: none; }
+[data-theme="dark"] .theme-icon-moon { display: block; }
+
+.btn-siemens-mint {
+  background: var(--siemens-mint);
+  color: var(--siemens-navy);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-siemens-mint:hover {
+  background: var(--siemens-cyan);
+  transform: translateY(-1px);
+}
+
+.mobile-menu-btn {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+}
+
+@media (min-width: 960px) {
+  .mobile-menu-btn { display: none; }
+}
+
+.mobile-bar {
+  width: 22px;
+  height: 2px;
+  background: #FFFFFF;
+}
+
+/* Siemens Mobile Navigation Drawer */
+.siemens-mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  max-width: 85vw;
+  height: 100vh;
+  background: var(--siemens-navy-deep);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6);
+  transform: translateX(105%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.siemens-mobile-drawer.open {
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobile-drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.mobile-drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobile-drawer-brand img {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+}
+
+.mobile-drawer-close {
+  background: transparent;
+  border: none;
+  color: #CAD7E6;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-drawer-close:hover {
+  color: #FFFFFF;
+}
+
+.mobile-drawer-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px;
+  gap: 16px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.mobile-nav-link {
+  color: #D1D9E2;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: color var(--transition-fast);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+  color: var(--fl-saffron);
+}
+
+.mobile-drawer-footer {
+  padding: 20px 24px 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobile-drawer-quote {
+  width: 100%;
+  justify-content: center;
+  font-size: 13px;
+  padding: 12px 18px;
+}
+
+/* ==========================================================================
+   2. SIEMENS HERO BANNER & INFINITY CAD AURA (Screenshots 3 & 5)
+   ========================================================================== */
+.siemens-hero-section {
+  background: 
+    radial-gradient(ellipse 65% 50% at 75% 40%, rgba(0, 190, 136, 0.12) 0%, transparent 70%),
+    linear-gradient(180deg, var(--siemens-navy) 0%, #000B24 100%);
+  color: #FFFFFF;
+  padding: 70px 0 80px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.siemens-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--siemens-mint);
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-headline {
+  font-family: var(--font-heading);
+  font-size: clamp(34px, 4.4vw, 54px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #C1CFDF;
+  max-width: 580px;
+  margin-bottom: 34px;
+}
+
+.hero-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.btn-hero-outline {
+  background: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.btn-hero-outline:hover {
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.hero-proof-strip {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  flex-wrap: wrap;
+}
+
+.proof-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-metric {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--siemens-mint);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #BAC7D5;
+}
+
+/* CAD Frame with Infinity Glow Aura */
+.cad-hero-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.siemens-infinity-bg {
+  position: absolute;
+  width: 130%;
+  height: 130%;
+  top: -15%;
+  left: -15%;
+  pointer-events: none;
+  opacity: 0.35;
+  background: radial-gradient(circle, rgba(0, 190, 136, 0.25) 0%, rgba(0, 100, 110, 0.15) 45%, transparent 70%);
+  filter: blur(20px);
+}
+
+.siemens-cad-card {
+  background: rgba(0, 14, 47, 0.85);
+  border: 1px solid rgba(0, 190, 136, 0.35);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 190, 136, 0.15);
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 2;
+}
+
+.cad-card-header {
+  background: rgba(0, 8, 30, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.cad-window-title {
+  color: #BAC7D5;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cad-angle-btn-group {
+  display: flex;
+  gap: 4px;
+}
+
+.cad-angle-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #BAC7D5;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cad-angle-btn.active,
+.cad-angle-btn:hover {
+  background: var(--siemens-mint);
+  color: var(--siemens-navy);
+  border-color: var(--siemens-mint);
+}
+
+.cad-card-viewport {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: 
+    radial-gradient(circle, rgba(0, 100, 110, 0.15) 0%, transparent 80%),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 20px 20px, 20px 20px;
+  min-height: 280px;
+}
+
+.cad-drone-img {
+  width: 90%;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+  transition: transform 0.6s var(--ease-expo);
+  will-change: transform;
+}
+
+.cad-card-footer {
+  background: rgba(0, 8, 30, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: #7E8B9B;
+}
+
+.cad-status-live {
+  color: var(--siemens-mint);
+}
+
+/* Siemens White News/Facility Ticker (Screenshot 5) */
+.siemens-ticker-bar {
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 0;
+  color: var(--text-main);
+}
+
+[data-theme="dark"] .siemens-ticker-bar {
+  background: #0B101D;
+  border-bottom-color: #1E293B;
+  color: #F1F5F9;
+}
+
+.siemens-ticker-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ticker-lead-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ticker-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-xs);
+  object-fit: cover;
+}
+
+.ticker-heading {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+[data-theme="dark"] .ticker-heading { color: #FFFFFF; }
+
+.ticker-sub {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.btn-ticker-outline {
+  border: 1px solid var(--text-main);
+  background: transparent;
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .btn-ticker-outline {
+  border-color: #BAC7D5;
+  color: #BAC7D5;
+}
+
+.btn-ticker-outline:hover {
+  background: var(--text-main);
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   3. SIEMENS "UPGRADE REALITY" 3-COLUMN SHOWCASE (Screenshot 2)
+   ========================================================================== */
+.siemens-upgrade-section {
+  padding: 80px 0;
+  background-color: var(--bg-page);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.siemens-section-intro {
+  margin-bottom: 48px;
+  max-width: 760px;
+}
+
+.siemens-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(30px, 3.8vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+  color: var(--text-main);
+}
+
+.siemens-section-sub {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.upgrade-reality-grid {
+  display: grid;
+  grid-template-columns: 280px 1.2fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* Column 1: Vertical Tabs */
+.vertical-tab-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-left: 2px solid var(--border-color);
+}
+
+.v-tab-btn {
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 14px 18px;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-left: 3px solid transparent;
+  margin-left: -2px;
+}
+
+.v-tab-btn:hover {
+  color: var(--text-main);
+  background: var(--bg-surface-alt);
+}
+
+.v-tab-btn.active {
+  background: var(--siemens-mint-soft);
+  color: var(--siemens-mint-text);
+  border-left-color: var(--siemens-mint);
+  font-weight: 700;
+}
+
+[data-theme="dark"] .v-tab-btn.active {
+  background: rgba(0, 190, 136, 0.15);
+  color: var(--siemens-mint);
+  border-left-color: var(--siemens-mint);
+}
+
+/* Column 2: Middle Customer Story Card */
+.middle-story-card {
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .middle-story-card {
+  background: #0E1422;
+  border-color: #1E293B;
+}
+
+.story-media-frame {
+  height: 240px;
+  overflow: hidden;
+}
+
+.story-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-expo);
+}
+
+.middle-story-card:hover .story-media-img {
+  transform: scale(1.04);
+}
+
+.story-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.story-category-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--siemens-teal);
+  margin-bottom: 8px;
+}
+
+.story-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.story-desc {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.story-link {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--siemens-teal);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap var(--transition-fast);
+}
+
+.story-link:hover {
+  gap: 10px;
+  color: var(--siemens-mint-text);
+}
+
+/* Column 3: Stacked Feature Cards */
+.stacked-cards-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stacked-navy-card {
+  background: var(--siemens-navy-card);
+  color: #FFFFFF;
+  padding: 28px 24px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  flex: 1;
+}
+
+.stacked-navy-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--siemens-mint);
+  margin-bottom: 8px;
+}
+
+.stacked-navy-title {
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.35;
+}
+
+.stacked-navy-desc {
+  font-size: 13px;
+  color: #BAC7D5;
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+
+.stacked-navy-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--siemens-mint);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stacked-light-card {
+  background: var(--bg-surface-cool);
+  border: 1px solid var(--border-color);
+  padding: 24px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+[data-theme="dark"] .stacked-light-card {
+  background: #0E1422;
+  border-color: #1E293B;
+}
+
+.stacked-light-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.stacked-light-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.stacked-light-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.stacked-light-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   4. AUTODESK "ALL PRODUCTS" 4-COLUMN CARD GRID (Screenshot 1)
+   ========================================================================== */
+.autodesk-products-section {
+  padding: 80px 0;
+  background-color: var(--bg-page);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.autodesk-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+}
+
+.autodesk-title {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.autodesk-view-all {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.autodesk-view-all:hover {
+  text-decoration: underline;
+}
+
+/* Sort / Filter Pills */
+.autodesk-pills-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.pills-label {
+  font-size: 12px;
+  color: var(--text-light);
+  font-family: var(--font-mono);
+}
+
+.pills-group {
+  display: inline-flex;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 3px;
+  background: var(--bg-surface-alt);
+}
+
+[data-theme="dark"] .pills-group {
+  background: #0E1422;
+  border-color: #1E293B;
+}
+
+.autodesk-pill-btn {
+  border: none;
+  background: transparent;
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.autodesk-pill-btn.active {
+  background: #FFFFFF;
+  color: var(--text-main);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .autodesk-pill-btn.active {
+  background: #1C2638;
+  color: #FFFFFF;
+}
+
+/* 4-Column Product Cards Grid */
+.autodesk-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.autodesk-card {
+  background: var(--autodesk-card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-fast);
+}
+
+.autodesk-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: #CBD5E1;
+}
+
+[data-theme="dark"] .autodesk-card:hover {
+  border-color: #334155;
+}
+
+/* Autodesk Special Offer Top Banner */
+.autodesk-top-banner {
+  background: var(--autodesk-orange);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  text-transform: uppercase;
+}
+
+.autodesk-top-banner-teal {
+  background: var(--siemens-teal);
+}
+
+.autodesk-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.autodesk-card-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.autodesk-logo-square {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.sq-orange { background: var(--autodesk-orange); }
+.sq-teal { background: var(--siemens-teal); }
+.sq-emerald { background: #047857; }
+.sq-blue { background: var(--autodesk-blue); }
+.sq-purple { background: var(--autodesk-purple); }
+
+.autodesk-card-name {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.25;
+}
+
+.autodesk-card-desc {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 14px;
+  min-height: 56px;
+}
+
+.autodesk-platform-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-light);
+}
+
+.autodesk-price-row {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+  margin-bottom: 12px;
+}
+
+.autodesk-price-val {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.autodesk-price-sub {
+  font-size: 11.5px;
+  color: var(--text-light);
+}
+
+.autodesk-select-box {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-size: 12.5px;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+
+[data-theme="dark"] .autodesk-select-box {
+  background: #060911;
+  border-color: #1E293B;
+  color: #F1F5F9;
+}
+
+/* The Solid Black Add to Cart / Quote Button */
+.btn-autodesk-black {
+  width: 100%;
+  background: var(--autodesk-black);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 11px 0;
+  border-radius: var(--radius-xs);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 8px;
+  transition: background var(--transition-fast);
+  display: block;
+}
+
+.btn-autodesk-black:hover {
+  background: #262626;
+}
+
+[data-theme="dark"] .btn-autodesk-black {
+  background: #FFFFFF;
+  color: #000000;
+}
+
+[data-theme="dark"] .btn-autodesk-black:hover {
+  background: #E2E8F0;
+}
+
+/* The Outlined Product Details Button */
+.btn-autodesk-outline {
+  width: 100%;
+  background: transparent;
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 0;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--text-main);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+  display: block;
+}
+
+[data-theme="dark"] .btn-autodesk-outline {
+  border-color: #BAC7D5;
+  color: #BAC7D5;
+}
+
+.btn-autodesk-outline:hover {
+  background: var(--bg-surface-alt);
+}
+
+/* ==========================================================================
+   5. SIEMENS 3-CARD SHOWCASE ("Go to marketplace" style - Screenshot 4)
+   ========================================================================== */
+.siemens-showcase-section {
+  padding: 80px 0;
+  background-color: var(--bg-surface-alt);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.showcase-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.showcase-title-box {
+  max-width: 680px;
+}
+
+.showcase-sub {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.btn-marketplace-outline {
+  border: 1px solid var(--text-main);
+  background: transparent;
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+[data-theme="dark"] .btn-marketplace-outline {
+  border-color: #BAC7D5;
+  color: #BAC7D5;
+}
+
+.btn-marketplace-outline:hover {
+  background: var(--text-main);
+  color: #FFFFFF;
+}
+
+.siemens-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.siemens-proto-card {
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.siemens-proto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+[data-theme="dark"] .siemens-proto-card {
+  background: #0E1422;
+  border-color: #1E293B;
+}
+
+.proto-img-wrap {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.proto-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.frosted-pill-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(0, 8, 30, 0.7);
+  backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.proto-card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.proto-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.proto-desc {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.proto-find-link {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--siemens-teal);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.proto-find-link:hover {
+  gap: 10px;
+}
+
+/* ==========================================================================
+   6. COMPARATIVE SPECIFICATION MATRIX & WORKFLOW
+   ========================================================================== */
+.siemens-matrix-section {
+  padding: 80px 0;
+  background-color: var(--bg-page);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.matrix-overflow-wrap {
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  overflow-x: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .matrix-overflow-wrap {
+  background: #0D1322;
+  border-color: #1E293B;
+}
+
+.siemens-specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 860px;
+}
+
+.siemens-specs-table th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+  padding: 14px 18px;
+  background: var(--bg-surface-cool);
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+}
+
+[data-theme="dark"] .siemens-specs-table th {
+  background: #111827;
+  border-color: #1E293B;
+}
+
+.siemens-specs-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 13.5px;
+  color: var(--text-main);
+  vertical-align: middle;
+}
+
+[data-theme="dark"] .siemens-specs-table td {
+  border-bottom-color: #162032;
+}
+
+.siemens-specs-table tr:hover td {
+  background: var(--bg-surface-alt);
+}
+
+.pill-poly {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.pill-teal { background: rgba(0, 100, 110, 0.1); color: var(--siemens-teal); }
+.pill-emerald { background: rgba(4, 120, 87, 0.1); color: #047857; }
+.pill-blue { background: rgba(2, 132, 199, 0.1); color: var(--autodesk-blue); }
+.pill-orange { background: rgba(234, 88, 12, 0.1); color: var(--autodesk-orange); }
+.pill-purple { background: rgba(124, 58, 237, 0.1); color: var(--autodesk-purple); }
+
+/* 4-Step Pipeline */
+.pipeline-section {
+  padding: 80px 0;
+  background-color: var(--bg-surface-cool);
+  border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .pipeline-section {
+  background-color: #0A0F1A;
+  border-color: #1E293B;
+}
+
+.pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 36px;
+}
+
+.pipeline-step-card {
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  padding: 24px;
+}
+
+[data-theme="dark"] .pipeline-step-card {
+  background: #0E1422;
+  border-color: #1E293B;
+}
+
+.pipeline-num {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--siemens-mint);
+  margin-bottom: 10px;
+}
+
+.pipeline-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.pipeline-desc {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   7. FULL-WIDTH INDUSTRIAL CTA BANNER & CORPORATE FOOTER
+   ========================================================================== */
+.siemens-fullwidth-cta {
+  background: linear-gradient(135deg, var(--siemens-navy-deep) 0%, #003B46 60%, #001A24 100%);
+  color: #FFFFFF;
+  padding: 80px 0;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cta-container-narrow {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.cta-headline {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.cta-desc {
+  font-size: 16px;
+  color: #C1CFDF;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.cta-btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Siemens Corporate Footer */
+.siemens-footer {
+  background-color: #000411;
+  color: #BAC7D5;
+  padding: 70px 0 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+}
+
+.siemens-footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.footer-brand-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.footer-brand-desc {
+  color: #7E8B9B;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.footer-col-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+  margin-bottom: 18px;
+}
+
+.footer-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-nav-list a {
+  color: #94A3B8;
+  transition: color var(--transition-fast);
+}
+
+.footer-nav-list a:hover {
+  color: #FFFFFF;
+}
+
+.footer-bottom-strip {
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  color: #64748B;
+  font-size: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   8. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1080px) {
+  .autodesk-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .upgrade-reality-grid {
+    grid-template-columns: 1fr;
+  }
+  .vertical-tab-list {
+    flex-direction: row;
+    overflow-x: auto;
+    border-left: none;
+    border-bottom: 2px solid var(--border-color);
+  }
+  .v-tab-btn {
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    margin-left: 0;
+    margin-bottom: -2px;
+    white-space: nowrap;
+  }
+  .v-tab-btn.active {
+    border-left-color: transparent;
+    border-bottom-color: var(--siemens-mint);
+  }
+  .siemens-cards-row,
+  .pipeline-grid,
+  .siemens-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .siemens-hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .autodesk-cards-grid,
+  .siemens-cards-row,
+  .pipeline-grid,
+  .siemens-footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ==========================================================================
+   MATERIAL DATASHEET INWARD PAGE STYLES (material.html)
+   Clean corporate Siemens/Autodesk technical datasheet layout
+   ========================================================================== */
+
+.datasheet-breadcrumb-bar {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 14px 0;
+  font-size: 0.82rem;
+}
+
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+}
+
+.crumb-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.crumb-link:hover {
+  color: var(--color-cyan);
+}
+
+.crumb-separator {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.crumb-current {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Datasheet Hero */
+.datasheet-hero {
+  background: var(--color-navy);
+  color: #FFFFFF;
+  padding: 60px 0 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.datasheet-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(0, 230, 195, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.datasheet-hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.datasheet-meta-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.datasheet-class-badge {
+  background: var(--color-cyan);
+  color: #000028;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.datasheet-code-badge {
+  background: rgba(255, 255, 255, 0.1);
+  color: #E2E8F0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.datasheet-category-badge {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.datasheet-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+  color: #FFFFFF;
+}
+
+.datasheet-subtitle {
+  font-size: 1.2rem;
+  color: #94A3B8;
+  margin: 0 0 16px;
+  font-weight: 500;
+}
+
+.datasheet-lead {
+  font-size: 0.95rem;
+  color: #CBD5E1;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 580px;
+}
+
+.datasheet-hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.spec-kpi-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #94A3B8;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.kpi-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.kpi-sub {
+  font-size: 0.72rem;
+  color: #64748B;
+  margin-top: 4px;
+}
+
+/* Main Two-Column Layout */
+.datasheet-content-section {
+  padding: 60px 0 80px;
+  background: var(--bg-base);
+}
+
+.datasheet-layout-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.datasheet-sidebar-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 90px;
+}
+
+.datasheet-media-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.media-frame {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  background: #000B2B;
+}
+
+.datasheet-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-tag-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0, 0, 40, 0.75);
+  backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.media-caption {
+  padding: 16px;
+}
+
+.media-caption-title {
+  display: block;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.media-caption-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.datasheet-suitability-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.suitability-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  margin: 0 0 16px;
+}
+
+.suitability-row {
+  margin-bottom: 12px;
+}
+
+.suitability-row:last-child {
+  margin-bottom: 0;
+}
+
+.suitability-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.suitability-track {
+  width: 100%;
+  height: 6px;
+  background: var(--border-subtle);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.suitability-bar {
+  height: 100%;
+  background: var(--color-cyan);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+/* Prominent RFQ Action Card (Amazon style conversion) */
+.datasheet-rfq-action-card {
+  background: var(--color-navy);
+  color: #FFFFFF;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0, 230, 195, 0.2);
+}
+
+.rfq-action-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--color-cyan);
+  background: rgba(0, 230, 195, 0.12);
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+}
+
+.rfq-action-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 8px;
+}
+
+.rfq-action-desc {
+  font-size: 0.82rem;
+  color: #CBD5E1;
+  line-height: 1.5;
+  margin: 0 0 18px;
+}
+
+.rfq-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: var(--color-cyan);
+  color: #000028;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 14px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.rfq-action-btn:hover {
+  background: #00B89C;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 230, 195, 0.35);
+}
+
+.rfq-action-guarantees {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.action-guarantee-item {
+  font-size: 0.75rem;
+  color: #94A3B8;
+}
+
+/* Right Column: Technical Tables */
+.datasheet-main-col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.datasheet-block-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+}
+
+.datasheet-block-header {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.datasheet-block-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.datasheet-table-wrapper {
+  overflow-x: auto;
+}
+
+.datasheet-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.datasheet-table th {
+  background: var(--bg-base);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid var(--border-subtle);
+}
+
+.datasheet-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.datasheet-table tr:hover td {
+  background: rgba(0, 230, 195, 0.02);
+}
+
+.prop-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.prop-std {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.prop-val {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.app-tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.app-tag {
+  background: var(--bg-base);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+}
+
+.guidelines-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.guideline-box {
+  background: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.guideline-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.guideline-val {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Material Switcher Grid at Page Bottom */
+.materials-switcher-section {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  padding: 60px 0 80px;
+}
+
+.materials-switcher-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.switcher-card {
+  background: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 16px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.switcher-card:hover,
+.switcher-card.active {
+  border-color: var(--color-cyan);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.switcher-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  align-self: flex-start;
+  margin-bottom: 8px;
+  border: 1px solid;
+}
+
+.switcher-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+}
+
+.switcher-cat {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+
+.switcher-kpi-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 8px;
+  margin-top: auto;
+}
+
+
+/* ==========================================================================
+   REQUEST FOR QUOTATION (RFQ) PAGE STYLES (quote.html)
+   Clean corporate Siemens/Autodesk CAD RFQ portal
+   ========================================================================== */
+
+.page-quote {
+  background: var(--bg-base);
+}
+
+.rfq-hero-section {
+  background: var(--color-navy);
+  color: #FFFFFF;
+  padding: 50px 0 45px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rfq-hero-content {
+  max-width: 780px;
+}
+
+.rfq-hero-title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.15;
+  margin: 8px 0 12px;
+  letter-spacing: -0.02em;
+}
+
+.rfq-hero-subtitle {
+  font-size: 1rem;
+  color: #CBD5E1;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.rfq-form-section {
+  padding: 50px 0 80px;
+}
+
+.rfq-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 40px;
+  align-items: start;
+}
+
+.rfq-form-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 36px;
+  box-shadow: var(--shadow-sm);
+}
+
+.rfq-card-header {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 18px;
+  margin-bottom: 28px;
+}
+
+.rfq-card-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-cyan);
+  background: rgba(0, 230, 195, 0.1);
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+
+.rfq-card-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.rfq-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.rfq-fieldset {
+  margin-bottom: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.rfq-fieldset:last-of-type {
+  border-bottom: none;
+  margin-bottom: 16px;
+  padding-bottom: 0;
+}
+
+.rfq-legend {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+}
+
+.rfq-input-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.rfq-address-trio {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 680px) {
+  .rfq-address-trio {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pincode-status {
+  font-weight: 600;
+  margin-left: 6px;
+  font-size: 0.75rem;
+}
+
+.rfq-input-row:last-child {
+  margin-bottom: 0;
+}
+
+.rfq-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.rfq-group:last-child {
+  margin-bottom: 0;
+}
+
+.rfq-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.rfq-group label .required {
+  color: #EF4444;
+}
+
+.rfq-group label .optional {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.rfq-group input[type="text"],
+.rfq-group input[type="email"],
+.rfq-group input[type="tel"],
+.rfq-group input[type="number"],
+.rfq-group input[type="url"],
+.rfq-group select,
+.rfq-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  font-family: var(--font-base);
+  background: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-primary);
+  transition: all 0.15s ease;
+}
+
+.rfq-group input:focus,
+.rfq-group select:focus,
+.rfq-group textarea:focus {
+  outline: none;
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 230, 195, 0.15);
+  background: var(--bg-surface);
+}
+
+.file-drop-zone {
+  border: 2px dashed var(--border-subtle);
+  border-radius: 6px;
+  padding: 30px 20px;
+  text-align: center;
+  background: var(--bg-base);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.file-drop-zone:hover,
+.file-drop-zone.dragover {
+  border-color: var(--color-cyan);
+  background: rgba(0, 230, 195, 0.03);
+}
+
+.drop-zone-icon {
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.drop-zone-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.drop-primary-txt {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.btn-browse-file {
+  background: none;
+  border: none;
+  color: var(--color-cyan);
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.drop-secondary-txt {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.file-selected-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-top: 10px;
+}
+
+.file-badge-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.file-badge-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-badge-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.file-badge-size {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.file-badge-remove {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.file-honesty-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+.file-honesty-note svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.field-error-msg {
+  font-size: 0.72rem;
+  color: #EF4444;
+  margin-top: 4px;
+  display: none;
+}
+
+.field-error-msg.visible {
+  display: block;
+}
+
+/* RFQ Sidebar */
+.rfq-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 90px;
+}
+
+.rfq-trust-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.rfq-trust-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rfq-trust-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rfq-trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.rfq-trust-item strong {
+  color: var(--text-primary);
+  display: block;
+}
+
+.rfq-trust-icon {
+  color: var(--color-cyan);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.btn-submit-rfq {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: var(--color-cyan);
+  color: #000028;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 14px 24px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 20px;
+}
+
+.btn-submit-rfq:hover {
+  background: #00B89C;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 230, 195, 0.35);
+}
+
+/* Responsive adjustments for material.html and quote.html */
+@media (max-width: 991px) {
+  .datasheet-hero-grid,
+  .datasheet-layout-grid,
+  .rfq-layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .datasheet-sidebar-col,
+  .rfq-sidebar {
+    position: static;
+  }
+
+  .materials-switcher-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .datasheet-hero-metrics,
+  .rfq-input-row,
+  .guidelines-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .materials-switcher-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .datasheet-title {
+    font-size: 2.2rem;
+  }
+}
+
+
+/* Core Global Button Aliases for quote.html, material.html, admin.html */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-base);
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 12px 22px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  line-height: 1.2;
+}
+
+.btn-primary {
+  background: var(--color-cyan);
+  color: #000028;
+  border-color: var(--color-cyan);
+}
+
+.btn-primary:hover {
+  background: #00B89C;
+  border-color: #00B89C;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 230, 195, 0.35);
+  color: #000028;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+}
+
+.btn-secondary:hover {
+  background: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+
+/* ==========================================================================
+   SHARED ENTERPRISE HEADER & FOOTER (material.html, quote.html, admin.html)
+   ========================================================================== */
+
+/* Top Announcement Bar */
+.top-spec-bar {
+  background: var(--siemens-navy-deep);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: #BAC7D5;
+  padding: 8px 0;
+}
+
+.top-spec-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spec-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--siemens-mint);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.spec-detail {
+  color: #BAC7D5;
+}
+
+.spec-link {
+  color: var(--siemens-mint);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.spec-link:hover {
+  color: #FFFFFF;
+}
+
+/* Site Header */
+.site-header {
+  background: var(--siemens-navy);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+}
+
+.brand-img,
+.logo-image {
+  height: 32px;
+  width: auto;
+}
+
+.desktop-nav {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .desktop-nav {
+    display: block;
+  }
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: #D1D9E2;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  padding: 6px 0;
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #FFFFFF;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--siemens-mint);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #BAC7D5;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+}
+
+.nav-quote-btn {
+  background: var(--siemens-mint);
+  color: var(--siemens-navy);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.nav-quote-btn:hover {
+  background: var(--siemens-cyan);
+  transform: translateY(-1px);
+  color: var(--siemens-navy);
+}
+
+.mobile-nav-toggle {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+}
+
+@media (min-width: 960px) {
+  .mobile-nav-toggle {
+    display: none;
+  }
+}
+
+.hamburger-bar {
+  width: 22px;
+  height: 2px;
+  background: #FFFFFF;
+  display: block;
+}
+
+/* Site Footer */
+.site-footer {
+  background-color: #000411;
+  color: #BAC7D5;
+  padding: 70px 0 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-grid,
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.footer-logo-img,
+.footer-logo {
+  height: 32px;
+  width: auto;
+  margin-bottom: 14px;
+}
+
+.footer-positioning,
+.footer-brand-desc,
+.footer-mission {
+  color: #7E8B9B;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.footer-location {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--siemens-mint);
+  margin-bottom: 10px;
+}
+
+.footer-email {
+  color: var(--siemens-teal);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.footer-email:hover {
+  color: #FFFFFF;
+}
+
+.footer-heading {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+  margin-bottom: 18px;
+}
+
+.footer-nav,
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-nav a,
+.footer-links a {
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-nav a:hover,
+.footer-links a:hover {
+  color: #FFFFFF;
+}
+
+.footer-bottom {
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  color: #64748B;
+  font-size: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .footer-grid,
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid,
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ==========================================================================
+   COMPREHENSIVE STYLES FOR material.html & quote.html
+   Precision Siemens & Autodesk Corporate Design System
+   ========================================================================== */
+
+/* Section Tag Helper */
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--siemens-teal);
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+[data-theme="dark"] .section-tag {
+  color: var(--siemens-mint);
+}
+
+/* Material Datasheet Page Structure */
+.material-page-body {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+}
+
+.material-datasheet-page {
+  padding-bottom: 80px;
+}
+
+.datasheet-block {
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  padding: 28px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .datasheet-block {
+  background: #0E1422;
+  border-color: #1E293B;
+}
+
+.block-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.block-icon {
+  color: var(--siemens-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme="dark"] .block-icon {
+  color: var(--siemens-mint);
+}
+
+.block-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.block-text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* Chemical Matrix Grid */
+.chemical-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.chem-card {
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+[data-theme="dark"] .chem-card {
+  background: #060911;
+  border-color: #1E293B;
+}
+
+.chem-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.chem-status {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 2px;
+  align-self: flex-start;
+}
+
+.chem-status-high {
+  background: rgba(0, 190, 136, 0.15);
+  color: #005F4B;
+}
+
+[data-theme="dark"] .chem-status-high {
+  color: var(--siemens-mint);
+}
+
+.chem-status-med {
+  background: rgba(217, 119, 6, 0.15);
+  color: #B45309;
+}
+
+.chem-status-low {
+  background: rgba(239, 68, 68, 0.15);
+  color: #DC2626;
+}
+
+/* Applications Tag Cloud */
+.applications-tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* Guidelines Item */
+.guide-item {
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+[data-theme="dark"] .guide-item {
+  background: #060911;
+  border-color: #1E293B;
+}
+
+.guide-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-light);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.guide-val {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-main);
+  display: block;
+}
+
+/* Responsive Table */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.specs-table th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-light);
+  background: var(--bg-surface-cool);
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .specs-table th {
+  background: #111827;
+  border-color: #1E293B;
+}
+
+.specs-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-main);
+}
+
+[data-theme="dark"] .specs-table td {
+  border-color: #162032;
+}
+
+/* Switcher Section */
+.datasheet-switcher-section {
+  padding: 60px 0 80px;
+  background-color: var(--bg-surface-alt);
+  border-top: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .datasheet-switcher-section {
+  background-color: #0A0F1A;
+  border-color: #1E293B;
+}
+
+.switcher-header {
+  margin-bottom: 28px;
+}
+
+.switcher-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.switcher-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.material-switcher-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 991px) {
+  .material-switcher-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .material-switcher-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Text Mono Utility */
+.text-mono {
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   QUOTE PAGE COMPONENTS (quote.html)
+   ========================================================================== */
+.btn-rfq-submit {
+  width: 100%;
+  background: var(--siemens-mint);
+  color: var(--siemens-navy);
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: var(--radius-xs);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+}
+
+.btn-rfq-submit:hover {
+  background: var(--siemens-cyan);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 190, 136, 0.35);
+}
+
+.rfq-submit-box {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.submit-reassurance {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 10px;
+}
+
+.rfq-sidebar-card {
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .rfq-sidebar-card {
+  background: #0E1422;
+  border-color: #1E293B;
+}
+
+.sidebar-card-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+
+.sidebar-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--siemens-teal);
+  text-transform: uppercase;
+}
+
+[data-theme="dark"] .sidebar-tag {
+  color: var(--siemens-mint);
+}
+
+.sidebar-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 4px;
+}
+
+.sidebar-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+
+.sidebar-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 14px;
+}
+
+.timeline-num {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--siemens-navy);
+  background: var(--siemens-mint);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.timeline-body strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.timeline-body p {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.sidebar-channel-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-channel-link {
+  color: var(--siemens-teal);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--transition-fast);
+}
+
+.sidebar-channel-link:hover {
+  color: var(--siemens-mint-text);
+  text-decoration: underline;
+}
+
+[data-theme="dark"] .sidebar-channel-link {
+  color: var(--siemens-mint);
+}
+
+.sidebar-location-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-light);
+  margin-top: 8px;
+}
+
+/* File Spec & Badge Details */
+.file-spec-hint {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--text-light);
+}
+
+.file-badge-icon {
+  font-size: 20px;
+}
+
+/* Modal Confirmation Dialog */
+.rfq-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 40, 0.7);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.rfq-modal-overlay.active {
+  display: flex;
+}
+
+.rfq-modal-card {
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  max-width: 520px;
+  width: 100%;
+  padding: 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.rfq-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.modal-status-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(0, 190, 136, 0.15);
+  color: #005F4B;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+[data-theme="dark"] .modal-status-badge {
+  color: var(--siemens-mint);
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.modal-subtitle {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.modal-summary-box {
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  padding: 16px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+[data-theme="dark"] .modal-summary-box {
+  background: #0E1422;
+  border-color: #1E293B;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.summary-row:last-child {
+  margin-bottom: 0;
+}
+
+.summary-row span:first-child {
+  color: var(--text-light);
+}
+
+.summary-row span:last-child {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.modal-instructions {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 24px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Mobile Drawer Styles */
+.mobile-drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 40, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-drawer-backdrop.active,
+.mobile-drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 280px;
+  max-width: 85vw;
+  background: var(--siemens-navy);
+  color: #FFFFFF;
+  z-index: 1600;
+  transform: translateX(100%);
+  transition: transform 0.3s var(--ease-expo);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.mobile-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.drawer-logo {
+  height: 28px;
+  width: auto;
+}
+
+.drawer-close-btn,
+.mobile-drawer-close {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.mobile-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobile-nav-link {
+  color: #D1D9E2;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  display: block;
+  transition: color var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+  color: var(--siemens-mint);
+}
+
+.mobile-drawer-footer {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-theme-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Footer Additional Elements */
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-link {
+  color: #94A3B8;
+  text-decoration: none;
+  font-size: 13px;
+  transition: color var(--transition-fast);
+}
+
+.footer-link:hover {
+  color: #FFFFFF;
+}
+
+.footer-location-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--siemens-mint);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.loc-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--siemens-mint);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.footer-quote-link {
+  color: var(--siemens-mint);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-quote-link:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  font-size: 12px;
+  color: #64748B;
+}
+
+.host-notice {
+  font-size: 12px;
+  color: #64748B;
+}
+
+/* Final minor icon and wrapper helpers */
+.btn-arrow {
+  display: inline-block;
+  margin-left: 6px;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover .btn-arrow,
+.nav-quote-btn:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+.btn-text {
+  display: inline-block;
+}
+
+.datasheet-hero-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-bio {
+  color: #7E8B9B;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.mobile-drawer-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mobile-drawer-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--siemens-mint);
+  letter-spacing: 0.08em;
+}
+
+.sun-icon,
+.moon-icon {
+  display: block;
+}
+
+[data-theme="dark"] .sun-icon {
+  display: none;
+}
+
+[data-theme="dark"] .moon-icon {
+  display: block;
+}
+
+:root:not([data-theme="dark"]) .moon-icon {
+  display: none;
+}
+
+:root:not([data-theme="dark"]) .sun-icon {
+  display: block;
+}
+
+.rfq-modal-body {
+  margin-top: 14px;
+}
+
+
+/* ==========================================================================
+   SURGICAL THEME SYMMETRY & LOGO DEFORMATION FIXES
+   Directly resolves:
+   1. Deformed FusionLabs3D footer logo (flattens/stretches)
+   2. White text on white background in Light Mode datasheet hero
+   3. Invisible text in "INSTANT CAD SIZING" RFQ action card in Light Mode
+   4. Dark-on-dark badges and table headers in Dark Mode
+   ========================================================================== */
+
+/* --- 1. CORE CSS VARIABLES HARMONIZATION --- */
+:root {
+  /* Aliases for universal compatibility across all templates */
+  --color-navy: #000028;
+  --color-cyan: #00BE88;
+  --color-mint: #00BE88;
+  --bg-surface: #FFFFFF;
+  --bg-base: #FFFFFF;
+  --border-subtle: #E2E8F0;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --font-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+[data-theme="dark"] {
+  --color-navy: #000028;
+  --color-cyan: #00E5A3;
+  --color-mint: #00E5A3;
+  --bg-surface: #0E1422;
+  --bg-base: #060911;
+  --border-subtle: #1E293B;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+}
+
+/* --- 2. PERMANENT LOGO DEFORMATION FIX (Screenshot 1) --- */
+.brand-logo,
+.footer-brand-logo,
+.siemens-brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  align-self: flex-start !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+
+.brand-img,
+.logo-image,
+.footer-logo,
+.footer-logo-img,
+.drawer-logo {
+  height: 32px !important;
+  max-height: 32px !important;
+  width: auto !important;
+  max-width: 180px !important;
+  object-fit: contain !important;
+  align-self: flex-start !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+}
+
+.footer-brand-col,
+.footer-brand {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+/* --- 3. DATASHEET HERO DUAL-THEME CONTRAST (Screenshots 3 & 4) --- */
+/* Light Mode Datasheet Hero */
+:root:not([data-theme="dark"]) .datasheet-hero {
+  background: #F8FAFC !important;
+  color: #0F172A !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+}
+
+:root:not([data-theme="dark"]) .datasheet-hero::after {
+  background: radial-gradient(circle at top right, rgba(0, 190, 136, 0.08) 0%, transparent 60%) !important;
+}
+
+:root:not([data-theme="dark"]) .datasheet-class-badge {
+  background: #D1F2E8 !important;
+  color: #005F4B !important;
+  border: 1px solid #00BE88 !important;
+}
+
+:root:not([data-theme="dark"]) .datasheet-code-badge {
+  background: #FFFFFF !important;
+  color: #334155 !important;
+  border: 1px solid #CBD5E1 !important;
+}
+
+:root:not([data-theme="dark"]) .datasheet-category-badge {
+  color: #64748B !important;
+  font-weight: 600 !important;
+}
+
+:root:not([data-theme="dark"]) .datasheet-title {
+  color: #0F172A !important;
+}
+
+:root:not([data-theme="dark"]) .datasheet-subtitle {
+  color: #475569 !important;
+}
+
+:root:not([data-theme="dark"]) .datasheet-lead {
+  color: #334155 !important;
+}
+
+:root:not([data-theme="dark"]) .spec-kpi-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+:root:not([data-theme="dark"]) .kpi-label {
+  color: #64748B !important;
+  font-weight: 700 !important;
+}
+
+:root:not([data-theme="dark"]) .kpi-value {
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+:root:not([data-theme="dark"]) .kpi-sub {
+  color: #64748B !important;
+}
+
+/* Dark Mode Datasheet Hero */
+[data-theme="dark"] .datasheet-hero {
+  background: #00081E !important;
+  color: #FFFFFF !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .datasheet-hero::after {
+  background: radial-gradient(circle at top right, rgba(0, 230, 195, 0.15) 0%, transparent 65%) !important;
+}
+
+[data-theme="dark"] .datasheet-class-badge {
+  background: var(--siemens-mint) !important;
+  color: #000028 !important;
+  font-weight: 700 !important;
+  border: 1px solid var(--siemens-mint) !important;
+}
+
+[data-theme="dark"] .datasheet-code-badge {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #F1F5F9 !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+[data-theme="dark"] .datasheet-category-badge {
+  color: #BAC7D5 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="dark"] .datasheet-title {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .datasheet-subtitle {
+  color: #BAC7D5 !important;
+}
+
+[data-theme="dark"] .datasheet-lead {
+  color: #CBD5E1 !important;
+}
+
+[data-theme="dark"] .spec-kpi-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: none !important;
+}
+
+[data-theme="dark"] .kpi-label {
+  color: #94A3B8 !important;
+}
+
+[data-theme="dark"] .kpi-value {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .kpi-sub {
+  color: #7E8B9B !important;
+}
+
+/* --- 4. DATASHEET SIDEBAR RFQ ACTION CARD (Screenshot 2) --- */
+/* Standout Deep Navy Card in BOTH Light and Dark themes for maximum contrast */
+.datasheet-rfq-action-card {
+  background: #000E2F !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(0, 190, 136, 0.3) !important;
+  border-radius: var(--radius-xs) !important;
+  padding: 24px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 40, 0.15) !important;
+}
+
+.datasheet-rfq-action-card .rfq-action-badge {
+  background: rgba(0, 190, 136, 0.18) !important;
+  color: var(--siemens-cyan) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 4px 10px !important;
+  border-radius: 3px !important;
+  display: inline-block !important;
+  margin-bottom: 12px !important;
+  letter-spacing: 0.06em !important;
+}
+
+.datasheet-rfq-action-card .rfq-action-title {
+  color: #FFFFFF !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 8px 0 !important;
+}
+
+.datasheet-rfq-action-card .rfq-action-desc {
+  color: #CBD5E1 !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  margin-bottom: 18px !important;
+}
+
+.datasheet-rfq-action-card .rfq-action-btn {
+  background: var(--siemens-mint) !important;
+  color: var(--siemens-navy) !important;
+  font-family: var(--font-heading) !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  padding: 12px 18px !important;
+  border-radius: var(--radius-xs) !important;
+  border: none !important;
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 16px rgba(0, 190, 136, 0.35) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.datasheet-rfq-action-card .rfq-action-btn:hover {
+  background: var(--siemens-cyan) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(0, 190, 136, 0.5) !important;
+  color: var(--siemens-navy) !important;
+}
+
+.datasheet-rfq-action-card .action-guarantee-item {
+  color: #BAC7D5 !important;
+  font-size: 12px !important;
+}
+
+/* Mechanical Rating Box Contrast */
+.datasheet-suitability-card {
+  background: var(--bg-surface-alt) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-xs) !important;
+  padding: 20px !important;
+}
+
+[data-theme="dark"] .datasheet-suitability-card {
+  background: #0E1422 !important;
+  border-color: #1E293B !important;
+}
+
+.suitability-title {
+  color: var(--text-muted) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  margin-bottom: 14px !important;
+}
+
+.suitability-label {
+  color: var(--text-main) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  margin-bottom: 4px !important;
+}
+
+.suitability-track {
+  background: var(--border-color) !important;
+  height: 6px !important;
+  border-radius: 3px !important;
+  overflow: hidden !important;
+}
+
+[data-theme="dark"] .suitability-track {
+  background: #1E293B !important;
+}
+
+.suitability-bar {
+  background: var(--siemens-mint) !important;
+  height: 100% !important;
+  border-radius: 3px !important;
+}
+
+/* --- 5. TECHNICAL TABLES & SPECIFICATIONS BOXES CONTRAST --- */
+/* Table Header Contrast */
+.datasheet-table th,
+.specs-table th {
+  background: var(--bg-surface-cool) !important;
+  color: var(--text-muted) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+[data-theme="dark"] .datasheet-table th,
+[data-theme="dark"] .specs-table th {
+  background: #111827 !important;
+  color: #BAC7D5 !important;
+  border-bottom-color: #1E293B !important;
+}
+
+.datasheet-table td,
+.specs-table td {
+  padding: 14px 16px !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  color: var(--text-main) !important;
+  font-size: 13.5px !important;
+}
+
+[data-theme="dark"] .datasheet-table td,
+[data-theme="dark"] .specs-table td {
+  border-bottom-color: #162032 !important;
+  color: #F1F5F9 !important;
+}
+
+.prop-name {
+  font-weight: 600 !important;
+  color: var(--text-main) !important;
+}
+
+.prop-std {
+  font-family: var(--font-mono) !important;
+  font-size: 11.5px !important;
+  color: var(--text-muted) !important;
+}
+
+.prop-val {
+  font-weight: 700 !important;
+  color: var(--text-main) !important;
+}
+
+/* Slicing Parameters & Guidelines Boxes */
+.guideline-box,
+.guide-item {
+  background: var(--bg-page) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-xs) !important;
+  padding: 16px !important;
+}
+
+[data-theme="dark"] .guideline-box,
+[data-theme="dark"] .guide-item {
+  background: #060911 !important;
+  border-color: #1E293B !important;
+}
+
+.guideline-label,
+.guide-label {
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: var(--text-muted) !important;
+  margin-bottom: 4px !important;
+  display: block !important;
+}
+
+.guideline-val,
+.guide-val {
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  color: var(--text-main) !important;
+  display: block !important;
+}
+
+/* Applications Tags Contrast */
+.app-tag,
+.case-tag {
+  background: var(--bg-surface-alt) !important;
+  color: var(--text-main) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 5px 12px !important;
+  border-radius: var(--radius-xs) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+[data-theme="dark"] .app-tag,
+[data-theme="dark"] .case-tag {
+  background: #111827 !important;
+  color: #F1F5F9 !important;
+  border-color: #243044 !important;
+}
+
+
+
+
+/* ==========================================================================
+   SIEMENS MONUMENTAL CINEMATIC HERO & WHITE HIGHLIGHT TICKER (Reference 1:1)
+   ========================================================================== */
+
+/* 1. Cinematic Wide Navy Hero */
+.siemens-cinematic-hero {
+  position: relative;
+  background-color: var(--siemens-navy);
+  color: #FFFFFF;
+  padding: 55px 0 65px;
+  overflow: hidden;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+}
+
+[data-theme="dark"] .siemens-cinematic-hero {
+  background-color: #000414;
+}
+
+/* Background Infinity Möbius Loop & Part */
+.siemens-infinity-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.siemens-infinity-svg {
+  position: absolute;
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(520px, 62vw, 880px);
+  height: auto;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 45px rgba(0, 190, 136, 0.2));
+  transition: opacity 0.4s ease;
+}
+
+/* Aerodynamic Product Specimen along the lower right */
+.hero-aerodynamic-part-wrap {
+  position: absolute;
+  right: 4%;
+  bottom: 0;
+  width: clamp(340px, 42vw, 560px);
+  height: clamp(180px, 24vw, 300px);
+  overflow: hidden;
+  border-radius: 4px 4px 0 0;
+}
+
+.hero-aerodynamic-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.72;
+  filter: contrast(1.15) brightness(0.85);
+  mask-image: linear-gradient(to right, transparent 0%, black 28%, black 90%, transparent 100%),
+              linear-gradient(to top, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 28%, black 90%, transparent 100%),
+                      linear-gradient(to top, black 60%, transparent 100%);
+}
+
+.hero-part-gradient-mask {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 40, 0.1) 0%, rgba(0, 0, 40, 0.85) 100%);
+  pointer-events: none;
+}
+
+/* Content Layout */
+.hero-content-relative {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* Home Icon Breadcrumb */
+.hero-breadcrumb-home {
+  color: #A0B2C6;
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.8;
+  transition: color var(--transition-fast);
+}
+
+.hero-breadcrumb-home:hover {
+  color: #FFFFFF;
+}
+
+/* Unified Single-Swap Hero Carousel (Synchronized Lockstep Slide) */
+.hero-unified-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-unified-track {
+  display: flex;
+  width: 300%;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.hero-unified-slide {
+  position: relative;
+  width: 33.333333%;
+  flex-shrink: 0;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  opacity: 0.35;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.hero-unified-slide.active {
+  opacity: 1;
+}
+
+/* Full-bleed visual on the right spanning edge-to-edge from top to bottom */
+.hero-slide-bg-visual {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 56%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-slide-full-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  /* Smooth horizontal middle blend: dissolves into text area with NO sharp vertical line and NO oval vignette */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 12%, rgba(0,0,0,0.8) 35%, black 55%, black 100%);
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 12%, rgba(0,0,0,0.8) 35%, black 55%, black 100%);
+}
+
+.hero-slide-middle-blend {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  background: linear-gradient(to right, #070B14 0%, rgba(7, 11, 20, 0.7) 40%, transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Left Content Container */
+.hero-slide-container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  padding-top: 65px;
+  padding-bottom: 85px;
+}
+
+.hero-slide-content {
+  max-width: 580px;
+}
+
+.hero-breadcrumb-home {
+  color: #A0B2C6;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.8;
+  transition: color var(--transition-fast);
+}
+
+.hero-breadcrumb-home:hover {
+  color: #FFFFFF;
+}
+
+/* Fix text overlap: natural in-flow block margins with NO fixed height squishing */
+.hero-cinematic-title {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 3.8vw, 48px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+  margin-bottom: 18px;
+  overflow-wrap: break-word;
+}
+
+.hero-cinematic-desc {
+  font-family: var(--font-body);
+  font-size: clamp(14.5px, 1.25vw, 16.5px);
+  line-height: 1.62;
+  color: #CAD7E6;
+  margin-bottom: 30px;
+  max-width: 540px;
+}
+
+.hero-cinematic-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Stationary Controls Bar positioned inside container at bottom left */
+.hero-carousel-wrapper {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hero-carousel-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  pointer-events: auto;
+}
+
+.btn-siemens-hero-solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--siemens-mint);
+  color: #000028;
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 13px 28px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 16px rgba(0, 190, 136, 0.3);
+}
+
+.btn-siemens-hero-solid:hover {
+  background-color: #00DB9D;
+  color: #000028;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 190, 136, 0.45);
+}
+
+.hero-link-secondary {
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--transition-fast);
+}
+
+.hero-link-secondary:hover {
+  color: var(--siemens-mint);
+}
+
+/* Carousel Navigation Controls (Screenshot 1:1) */
+.hero-carousel-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.hero-carousel-arrow {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hero-carousel-arrow:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #FFFFFF;
+}
+
+.hero-carousel-center-ctrls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 8, 30, 0.6);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.hero-carousel-pause {
+  background: transparent;
+  border: none;
+  color: #BAC7D5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px;
+  transition: color var(--transition-fast);
+}
+
+.hero-carousel-pause:hover {
+  color: #FFFFFF;
+}
+
+.hero-carousel-indicators {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-ind-pill {
+  width: 28px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: var(--siemens-mint);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-ind-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.35);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-ind-dot:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* 2. Pristine White Highlight Ticker Bar (Matching Reference) */
+.siemens-white-highlight-bar {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 0;
+  color: #0F172A;
+}
+
+[data-theme="dark"] .siemens-white-highlight-bar {
+  background-color: #090E1A;
+  border-bottom-color: #1E293B;
+  color: #F1F5F9;
+}
+
+.highlight-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.highlight-lead-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 760px;
+}
+
+.highlight-lead-thumb {
+  width: 52px;
+  height: 38px;
+  border-radius: 2px;
+  object-fit: cover;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-lead-title {
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+[data-theme="dark"] .highlight-lead-title {
+  color: #FFFFFF;
+}
+
+.highlight-lead-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.btn-highlight-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #000000;
+  border: 1.5px solid #000000;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 20px;
+  border-radius: 1px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+[data-theme="dark"] .btn-highlight-box {
+  color: #F1F5F9;
+  border-color: #F1F5F9;
+}
+
+.btn-highlight-box:hover {
+  background: #000000;
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .btn-highlight-box:hover {
+  background: #FFFFFF;
+  color: #000000;
+}
+
+@media (max-width: 900px) {
+  .siemens-infinity-svg {
+    right: -25%;
+    width: 120vw;
+    opacity: 0.5;
+  }
+  .hero-aerodynamic-part-wrap {
+    display: none;
+  }
+}
+
+.highlight-lead-text { display: flex; flex-direction: column; }
+
+
+/* ==========================================================================
+   FUSIONLABS3D — CINEMATIC ENGINEERING STUDIO DESIGN SYSTEM
+   Palette: Deep Charcoal Carbon + FusionLabs3D Signature Orange (#FF6600)
+   ========================================================================== */
+
+:root {
+  --fl-orange: #FF6600;
+  --fl-orange-hover: #FF771A;
+  --fl-orange-dark: #CC5200;
+  --fl-orange-glow: rgba(255, 102, 0, 0.25);
+  --fl-orange-subtle: rgba(255, 102, 0, 0.12);
+  --bg-studio-dark: #07090E;
+  --bg-studio-surface: #0C1018;
+  --bg-studio-card: #101522;
+  --studio-border: rgba(255, 255, 255, 0.08);
+  --studio-border-hover: rgba(255, 102, 0, 0.4);
+}
+
+/* 1. Studio Hero Section */
+.studio-hero-section {
+  position: relative;
+  background-color: var(--bg-studio-dark);
+  color: #FFFFFF;
+  padding: 65px 0 85px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--studio-border);
+}
+
+.studio-hero-ambient-glow {
+  position: absolute;
+  top: -20%;
+  right: 15%;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(255, 102, 0, 0.12) 0%, rgba(2, 132, 199, 0.05) 45%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.studio-hero-grid {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Narrative Left Column */
+.studio-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 102, 0, 0.08);
+  border: 1px solid rgba(255, 102, 0, 0.28);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.studio-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--fl-orange);
+  box-shadow: 0 0 8px var(--fl-orange);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.studio-chip-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #FFA366;
+}
+
+.studio-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(34px, 4.4vw, 54px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+}
+
+.studio-hero-sub {
+  font-size: 16.5px;
+  line-height: 1.62;
+  color: #CAD5E2;
+  max-width: 580px;
+  margin-bottom: 34px;
+}
+
+.studio-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 42px;
+  flex-wrap: wrap;
+}
+
+.btn-studio-orange {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--fl-orange);
+  color: #000000;
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 700;
+  padding: 13px 26px;
+  border-radius: 2px;
+  text-decoration: none;
+  box-shadow: 0 4px 18px var(--fl-orange-glow);
+  transition: all var(--transition-fast);
+}
+
+.btn-studio-orange:hover {
+  background: var(--fl-orange-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(255, 102, 0, 0.45);
+}
+
+.btn-studio-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-studio-ghost:hover {
+  border-color: var(--fl-orange);
+  color: var(--fl-orange);
+  background: rgba(255, 102, 0, 0.05);
+}
+
+/* Studio Workflow Pipeline Strip */
+.studio-pipeline-strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 24px;
+  border-top: 1px solid var(--studio-border);
+  flex-wrap: wrap;
+}
+
+.pipe-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pipe-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--fl-orange);
+  background: rgba(255, 102, 0, 0.1);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.pipe-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.pipe-title {
+  font-family: var(--font-heading);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #F1F5F9;
+}
+
+.pipe-sub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #8C9EAF;
+}
+
+.pipe-arrow {
+  color: #475569;
+  font-size: 14px;
+}
+
+/* 2. Translucent 3D Printer Chamber Visual */
+.studio-chamber-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.translucent-chamber-card {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(12, 16, 26, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 102, 0, 0.3);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 102, 0, 0.08);
+  transition: transform 0.4s var(--ease-expo), border-color 0.3s ease;
+}
+
+.translucent-chamber-card:hover {
+  border-color: rgba(255, 102, 0, 0.55);
+  transform: translateY(-4px);
+}
+
+.chamber-glass-header {
+  background: rgba(8, 11, 19, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 11px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chamber-glass-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.glass-live-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00E5A3;
+  box-shadow: 0 0 8px #00E5A3;
+}
+
+.glass-chamber-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: #C1CFDF;
+  letter-spacing: 0.04em;
+}
+
+.chamber-badge-orange {
+  background: rgba(255, 102, 0, 0.15);
+  color: #FFA366;
+  border: 1px solid rgba(255, 102, 0, 0.35);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+
+.chamber-svg-container {
+  padding: 18px 20px 10px;
+  background: radial-gradient(circle at 60% 40%, rgba(255, 102, 0, 0.06) 0%, rgba(4, 7, 14, 0.95) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chamber-slicing-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+}
+
+.chamber-glass-footer {
+  background: rgba(8, 11, 19, 0.92);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 9px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: #8C9EAF;
+}
+
+.glass-metric-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.glass-metric-label {
+  color: var(--text-muted);
+}
+
+.glass-metric-val {
+  color: #F1F5F9;
+  font-weight: 600;
+}
+
+.glass-metric-sep {
+  color: #334155;
+}
+
+/* 3. Studio Highlight Ticker Bar */
+.studio-ticker-strip {
+  background: var(--bg-studio-surface);
+  border-bottom: 1px solid var(--studio-border);
+  padding: 16px 0;
+  color: #FFFFFF;
+}
+
+[data-theme="light"] .studio-ticker-strip {
+  background: #F1F5F9;
+  border-bottom-color: var(--border-color);
+  color: #0F172A;
+}
+
+.studio-ticker-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ticker-left-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ticker-thumb-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid var(--studio-border);
+}
+
+.ticker-text-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.ticker-tag-orange {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--fl-orange);
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.ticker-main-headline {
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+[data-theme="light"] .ticker-main-headline {
+  color: #0F172A;
+}
+
+.ticker-sub-text {
+  font-size: 12.5px;
+  color: #94A3B8;
+}
+
+.btn-ticker-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 20px;
+  border-radius: 2px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+[data-theme="light"] .btn-ticker-action {
+  color: #0F172A;
+  border-color: #0F172A;
+}
+
+.btn-ticker-action:hover {
+  background: var(--fl-orange);
+  border-color: var(--fl-orange);
+  color: #000000;
+}
+
+/* 4. Product Thumbnails on Autodesk Material Cards */
+.autodesk-card-thumb-wrap {
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+  background: #090E17;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+}
+
+.autodesk-card-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-expo);
+}
+
+.autodesk-card:hover .autodesk-card-thumb {
+  transform: scale(1.05);
+}
+
+/* 5. Button Enhancements with Signature Orange Focus */
+.btn-siemens-mint {
+  background-color: var(--fl-orange) !important;
+  color: #000000 !important;
+  box-shadow: 0 4px 16px var(--fl-orange-glow) !important;
+}
+
+.btn-siemens-mint:hover {
+  background-color: var(--fl-orange-hover) !important;
+  box-shadow: 0 6px 22px rgba(255, 102, 0, 0.4) !important;
+}
+
+.v-tab-btn.active {
+  border-left-color: var(--fl-orange) !important;
+  background: rgba(255, 102, 0, 0.1) !important;
+  color: var(--fl-orange) !important;
+}
+
+[data-theme="light"] .v-tab-btn.active {
+  background: rgba(255, 102, 0, 0.08) !important;
+  color: var(--fl-orange-dark) !important;
+}
+
+.autodesk-pill-btn.active {
+  background: var(--fl-orange) !important;
+  color: #000000 !important;
+}
+
+@media (max-width: 900px) {
+  .studio-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+.studio-hero-narrative { display: flex; flex-direction: column; }
+
+
+/* ==========================================================================
+   FUSIONLABS3D — CINEMATIC SAFFRON GRADIENT HERO & MERGED 3D PRINTER MACRO
+   ========================================================================== */
+
+:root {
+  --bg-gradient-dark: linear-gradient(145deg, #070B14 0%, #0E1626 50%, #151F33 100%);
+  --fl-saffron: #FF8A00;
+  --fl-saffron-warm: #FFA726;
+  --fl-saffron-deep: #E66000;
+  --fl-saffron-gradient: linear-gradient(135deg, #FF8A00 0%, #E66000 100%);
+  --fl-saffron-glow: rgba(255, 138, 0, 0.25);
+  --fl-saffron-subtle: rgba(255, 138, 0, 0.12);
+}
+
+/* 1. Cinematic Saffron Hero Banner (Edge-to-Edge Visual Integration) */
+.cinema-saffron-hero {
+  position: relative;
+  background: var(--bg-gradient-dark);
+  color: #FFFFFF;
+  padding: 0;
+  overflow: hidden;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 138, 0, 0.15);
+}
+
+.hero-saffron-ambient-glow {
+  position: absolute;
+  top: 10%;
+  right: 25%;
+  width: 600px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 138, 0, 0.18) 0%, rgba(2, 132, 199, 0.06) 50%, transparent 75%);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 4. Primary Solid Saffron CTA Button */
+.btn-saffron-solid {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--fl-saffron-gradient);
+  color: #070B14;
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 13px 28px;
+  border-radius: 2px;
+  text-decoration: none;
+  box-shadow: 0 4px 18px var(--fl-saffron-glow);
+  transition: all var(--transition-fast);
+}
+
+.btn-saffron-solid:hover {
+  background: linear-gradient(135deg, #FFA026 0%, #F56F00 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(255, 138, 0, 0.42);
+}
+
+/* 5. Refined Saffron Active States & Borders */
+.hero-ind-pill {
+  background-color: var(--fl-saffron) !important;
+  box-shadow: 0 0 10px var(--fl-saffron-glow) !important;
+}
+
+.btn-highlight-box:hover {
+  border-color: var(--fl-saffron) !important;
+  color: var(--fl-saffron) !important;
+  background: rgba(255, 138, 0, 0.08) !important;
+}
+
+[data-theme="dark"] .btn-highlight-box:hover {
+  border-color: var(--fl-saffron) !important;
+  color: var(--fl-saffron) !important;
+  background: rgba(255, 138, 0, 0.12) !important;
+}
+
+.v-tab-btn.active {
+  border-left-color: var(--fl-saffron) !important;
+  background: rgba(255, 138, 0, 0.12) !important;
+  color: var(--fl-saffron) !important;
+}
+
+.autodesk-pill-btn.active {
+  background: var(--fl-saffron-gradient) !important;
+  color: #070B14 !important;
+  font-weight: 700 !important;
+}
+
+@media (max-width: 900px) {
+  .cinema-saffron-hero {
+    min-height: 520px;
+  }
+  .hero-unified-slide {
+    min-height: 520px;
+  }
+  .hero-slide-bg-visual {
+    width: 100%;
+    opacity: 0.28;
+  }
+  .hero-slide-full-img {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.92) 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.92) 55%, transparent 100%);
+  }
+  .hero-slide-container {
+    padding-top: 36px;
+    padding-bottom: 75px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .hero-cinematic-title {
+    font-size: clamp(23px, 6vw, 34px);
+    line-height: 1.22;
+  }
+  .hero-cinematic-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .siemens-top-strip {
+    display: none;
+  }
+  .btn-siemens-mint {
+    display: none;
+  }
+  .hero-carousel-wrapper {
+    bottom: 16px;
+  }
+  .hero-carousel-bar {
+    gap: 12px;
+  }
+  .hero-carousel-arrow,
+  .hero-carousel-pause {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-cinematic-cta-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .hero-cinematic-cta-group .btn-saffron-solid {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+}

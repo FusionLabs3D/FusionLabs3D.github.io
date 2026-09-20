@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FusionLabs3D — Materials Management Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #FF5000;
+      --primary-hover: #E04600;
+      --bg: #F8F9FA;
+      --surface: #FFFFFF;
+      --border: #E5E7EB;
+      --text: #111827;
+      --muted: #4B5563;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text); padding: 32px 16px; line-height: 1.5; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .title-box { display: flex; align-items: center; gap: 14px; }
+    .logo-badge { width: 36px; height: 36px; }
+    h1 { font-family: var(--font-heading); font-size: 22px; font-weight: 700; }
+    .subtitle { font-size: 13px; color: var(--muted); font-family: var(--font-mono); }
+    .actions-top { display: flex; gap: 12px; }
+    .btn { font-family: var(--font-heading); font-weight: 600; font-size: 13px; padding: 8px 16px; border-radius: 4px; cursor: pointer; border: 1px solid var(--border); transition: all 0.15s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-secondary { background: #fff; color: var(--text); }
+    .btn-secondary:hover { background: #F3F4F6; }
+    .btn-danger { background: #EF4444; color: #fff; border-color: #EF4444; }
+    
+    .dashboard-grid { display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .card-title { font-family: var(--font-heading); font-size: 16px; font-weight: 700; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    
+    .material-item { border: 1px solid var(--border); border-radius: 4px; padding: 14px; margin-bottom: 12px; background: #fff; transition: border-color 0.15s; }
+    .material-item:hover { border-color: var(--primary); }
+    .material-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .mat-title { font-family: var(--font-heading); font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .mat-status-badge { font-family: var(--font-mono); font-size: 10px; padding: 2px 6px; border-radius: 3px; font-weight: 600; }
+    .status-in-stock { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
+    .status-on-demand { background: #FFFBEB; color: #D97706; border: 1px solid #FDE68A; }
+    .mat-cat { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+    .mat-desc { font-size: 13px; color: var(--text); margin-bottom: 10px; }
+    .mat-controls { display: flex; gap: 8px; border-top: 1px dashed var(--border); padding-top: 8px; }
+
+    /* Form */
+    .form-group { margin-bottom: 12px; }
+    label { display: block; font-size: 11px; font-family: var(--font-mono); color: var(--muted); margin-bottom: 4px; text-transform: uppercase; }
+    input[type="text"], textarea, select { width: 100%; padding: 8px 10px; font-size: 13px; border: 1px solid var(--border); border-radius: 4px; font-family: var(--font-body); }
+    input[type="text"]:focus, textarea:focus, select:focus { outline: 2px solid var(--primary); }
+    textarea { resize: vertical; height: 60px; }
+    .checkbox-group { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+    
+    .notice-box { background: #EFF6FF; border: 1px solid #BFDBFE; color: #1E40AF; padding: 12px; border-radius: 4px; font-size: 12px; margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="title-box">
+        <img src="assets/logo/logo-mark.svg" alt="FusionLabs3D" class="logo-badge">
+        <div>
+          <h1>Materials &amp; Filament Manager</h1>
+          <p class="subtitle">FUSIONLABS3D // LOCAL CONTROL PANEL</p>
+        </div>
+      </div>
+      <div class="actions-top">
+        <a href="index.html" class="btn btn-secondary" target="_blank">&larr; View Website</a>
+        <button id="exportBtn" class="btn btn-primary">&darr; Export &amp; Download JSON</button>
+      </div>
+    </header>
+
+    <div class="notice-box">
+      <strong>How to update your live website:</strong> 
+      Edit or add materials below, click <strong>"Export &amp; Download JSON"</strong>, and save the downloaded file to your <code>data/materials.json</code> folder. Then commit &amp; push to GitHub!
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Materials List -->
+      <div class="card">
+        <h2 class="card-title">Configured Materials (<span id="matCount">0</span>)</h2>
+        <div id="materialsList">Loading materials...</div>
+      </div>
+
+      <!-- Add/Edit Form -->
+      <div class="card">
+        <h2 class="card-title" id="formTitle">Add New Filament / Material</h2>
+        <form id="materialForm">
+          <div class="form-group">
+            <label for="matName">Material Name (e.g. PLA, PETG, PC)</label>
+            <input type="text" id="matName" required placeholder="e.g. PETG">
+          </div>
+          <div class="form-group">
+            <label for="matClass">Classification Tag</label>
+            <input type="text" id="matClass" required placeholder="e.g. COPOLYESTER">
+          </div>
+          <div class="form-group">
+            <label for="matCode">Standard Code</label>
+            <input type="text" id="matCode" required placeholder="e.g. ISO 1043: PETG">
+          </div>
+          <div class="form-group">
+            <label for="matCategory">Category Name</label>
+            <input type="text" id="matCategory" required placeholder="e.g. Engineering Thermoplastic">
+          </div>
+          <div class="form-group">
+            <label for="matSummary">Practical Summary</label>
+            <textarea id="matSummary" required placeholder="Short technical summary of behavior..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="matCharacteristics">Key Characteristics</label>
+            <input type="text" id="matCharacteristics" required placeholder="e.g. Good chemical resistance, tough">
+          </div>
+          <div class="form-group">
+            <label for="matThermal">Thermal Resistance</label>
+            <input type="text" id="matThermal" required placeholder="e.g. Heat deflection up to ~75°C">
+          </div>
+          <div class="form-group">
+            <label for="matUseCases">Typical Use Cases</label>
+            <input type="text" id="matUseCases" required placeholder="e.g. Liquid containers, snap-fits, fixtures">
+          </div>
+          <div class="form-group">
+            <label for="matRequirements">Requirements Tags (comma separated)</label>
+            <input type="text" id="matRequirements" placeholder="strength, heat, uv, stiffness, impact, composites">
+          </div>
+          <div class="form-group">
+            <label for="matStatus">Stock Status</label>
+            <select id="matStatus">
+              <option value="In Stock">In Stock</option>
+              <option value="On Demand / Fast Source">On Demand / Fast Source</option>
+            </select>
+          </div>
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="matFeatured">
+            <label for="matFeatured" style="margin-bottom:0; cursor:pointer;">Highlight as Featured</label>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Save Material</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let materials = [];
+    let editIndex = -1;
+
+    async function loadMaterials() {
+      try {
+        const resp = await fetch('data/materials.json');
+        materials = await resp.json();
+      } catch (err) {
+        console.warn('Could not fetch data/materials.json, loading initial defaults', err);
+        materials = [
+          { "id": "abs", "name": "ABS", "classification": "THERMOPLASTIC", "code": "ISO 1043: ABS", "category": "Engineering Thermoplastic", "summary": "Standard engineering thermoplastic with balanced mechanical toughness and impact resistance.", "characteristics": "High impact, structural rigidity", "thermal": "Heat deflection up to ~85°C", "use_cases": "Housings, brackets", "requirements": ["strength", "impact", "accuracy"], "status": "In Stock" },
+          { "id": "asa", "name": "ASA", "classification": "UV-RESISTANT", "code": "ISO 1043: ASA", "category": "Weather-Resistant Thermoplastic", "summary": "Shares strength with ABS while offering exceptional UV stability and outdoor endurance.", "characteristics": "High UV stability, weather endurance", "thermal": "Heat deflection up to ~90°C", "use_cases": "Outdoor enclosures, drone parts", "requirements": ["uv", "heat", "impact"], "status": "In Stock" },
+          { "id": "pc", "name": "PC", "classification": "HIGH TEMPERATURE", "code": "ISO 1043: PC", "category": "High-Performance Polycarbonate", "summary": "Engineered for demanding functional applications requiring elevated temperature resistance.", "characteristics": "Superior impact, thermal stability", "thermal": "Heat deflection up to ~110°C+", "use_cases": "High-stress mounts, heat covers", "requirements": ["heat", "strength", "impact"], "status": "On Demand / Fast Source" },
+          { "id": "pa6-cf", "name": "PA6-CF", "classification": "STRUCTURAL COMPOSITE", "code": "PA6 + CHOPPED CF", "category": "Carbon-Fiber-Reinforced Nylon", "summary": "Polyamide 6 matrix reinforced with chopped carbon fibers for extreme stiffness.", "characteristics": "Extreme stiffness, high modulus, matte finish", "thermal": "High heat deflection under load", "use_cases": "Robotics chassis, structural mounts", "requirements": ["stiffness", "strength", "composites"], "status": "In Stock" },
+          { "id": "pa6-gf", "name": "PA6-GF", "classification": "GLASS REINFORCED", "code": "PA6 + CHOPPED GF", "category": "Glass-Fiber-Reinforced Nylon", "summary": "Polyamide 6 matrix reinforced with glass fibers for stiffness and wear resistance.", "characteristics": "Dimensional stability, abrasion resistance", "thermal": "Elevated thermal endurance", "use_cases": "Tooling fixtures, guide blocks", "requirements": ["stiffness", "accuracy", "composites"], "status": "On Demand / Fast Source" }
+        ];
+      }
+      renderList();
+    }
+
+    function renderList() {
+      const container = document.getElementById('materialsList');
+      document.getElementById('matCount').textContent = materials.length;
+      container.innerHTML = '';
+
+      materials.forEach((mat, idx) => {
+        const isStock = mat.status === 'In Stock';
+        const div = document.createElement('div');
+        div.className = 'material-item';
+        div.innerHTML = `
+          <div class="material-head">
+            <div class="mat-title">
+              ${mat.name}
+              <span class="mat-status-badge ${isStock ? 'status-in-stock' : 'status-on-demand'}">${mat.status || 'Available'}</span>
+            </div>
+            <span style="font-family:var(--font-mono); font-size:11px; color:#9CA3AF;">${mat.code || ''}</span>
+          </div>
+          <div class="mat-cat">${mat.category} &bull; ${mat.thermal}</div>
+          <div class="mat-desc">${mat.summary}</div>
+          <div class="mat-controls">
+            <button class="btn btn-secondary" onclick="toggleStock(${idx})">${isStock ? 'Mark On Demand' : 'Mark In Stock'}</button>
+            <button class="btn btn-secondary" onclick="editMat(${idx})">Edit</button>
+            <button class="btn btn-danger" onclick="deleteMat(${idx})">Remove</button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    window.toggleStock = function(idx) {
+      materials[idx].status = (materials[idx].status === 'In Stock') ? 'On Demand / Fast Source' : 'In Stock';
+      renderList();
+    };
+
+    window.deleteMat = function(idx) {
+      if (confirm(`Remove ${materials[idx].name}?`)) {
+        materials.splice(idx, 1);
+        renderList();
+      }
+    };
+
+    window.editMat = function(idx) {
+      editIndex = idx;
+      const m = materials[idx];
+      document.getElementById('formTitle').textContent = `Edit Material: ${m.name}`;
+      document.getElementById('matName').value = m.name;
+      document.getElementById('matClass').value = m.classification || '';
+      document.getElementById('matCode').value = m.code || '';
+      document.getElementById('matCategory').value = m.category || '';
+      document.getElementById('matSummary').value = m.summary || '';
+      document.getElementById('matCharacteristics').value = m.characteristics || '';
+      document.getElementById('matThermal').value = m.thermal || '';
+      document.getElementById('matUseCases').value = m.use_cases || '';
+      document.getElementById('matRequirements').value = (m.requirements || []).join(', ');
+      document.getElementById('matStatus').value = m.status || 'In Stock';
+      document.getElementById('matFeatured').checked = !!m.featured;
+    };
+
+    document.getElementById('materialForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const reqArray = document.getElementById('matRequirements').value.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+      const newMat = {
+        id: document.getElementById('matName').value.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+        name: document.getElementById('matName').value.trim(),
+        classification: document.getElementById('matClass').value.trim(),
+        code: document.getElementById('matCode').value.trim(),
+        category: document.getElementById('matCategory').value.trim(),
+        summary: document.getElementById('matSummary').value.trim(),
+        characteristics: document.getElementById('matCharacteristics').value.trim(),
+        thermal: document.getElementById('matThermal').value.trim(),
+        use_cases: document.getElementById('matUseCases').value.trim(),
+        requirements: reqArray,
+        status: document.getElementById('matStatus').value,
+        featured: document.getElementById('matFeatured').checked
+      };
+
+      if (editIndex >= 0) {
+        materials[editIndex] = newMat;
+        editIndex = -1;
+        document.getElementById('formTitle').textContent = 'Add New Filament / Material';
+      } else {
+        materials.push(newMat);
+      }
+
+      document.getElementById('materialForm').reset();
+      renderList();
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(materials, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "materials.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      alert('Downloaded materials.json! Place it inside your "data/" folder and push to GitHub.');
+    });
+
+    loadMaterials();
+  </script>
+</body>
+</html>
