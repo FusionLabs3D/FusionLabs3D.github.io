@@ -147,41 +147,41 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   const solutionsData = {
     aerospace: {
-      tag: "AEROSPACE & UAV",
-      title: "Lightweight, aerodynamic UAV airframes in PA-CF & PPA-CF.",
-      desc: "High-stiffness carbon fiber composites engineered to resist high torsional stresses and cyclic vibration while delivering significant weight savings over machined aluminum 6061.",
+      tag: "DRONES & UAV AIRFRAMES",
+      title: "High-strength, lightweight drone airframes & mounts in PA-CF.",
+      desc: "High-stiffness carbon fiber composites engineered to resist torsional stresses and vibration while delivering significant weight savings over machined aluminum.",
       image: "assets/images/parts/pa6cf-bracket.jpg",
-      linkText: "Submit CAD for UAV components",
+      linkText: "Submit CAD for Drone / UAV parts",
       linkUrl: "quote.html?material=pa-cf"
     },
     robotics: {
       tag: "ROBOTICS & AUTOMATION",
       title: "Low-friction end-effectors, guide blocks & structural arms.",
-      desc: "Wear-resistant PA-GF and PA-CF components with integrated heat-set brass threaded inserts. Withstands cyclic friction and delivers non-conductive electrical isolation.",
+      desc: "Wear-resistant PA-GF and PA-CF components with integrated heat-set brass threaded inserts. Withstands cyclic friction and delivers reliable structural rigidity.",
       image: "assets/images/parts/pa6gf-block.jpg",
       linkText: "Submit CAD for Robotics parts",
       linkUrl: "quote.html?material=pa-gf"
     },
     automotive: {
-      tag: "AUTOMOTIVE & MOTORSPORT",
-      title: "Under-hood fluid manifolds & brake cooling ducts in PPA-CF.",
-      desc: "Thermal endurance up to 215°C HDT with zero creep or warping. Impervious to hot engine oils, hydraulic brake fluids, coolants, and cyclic thermal vibration.",
+      tag: "MOTORSPORT & FORMULA SAE",
+      title: "Air intake runners, fluid reservoirs & brake cooling ducts in PPA-CF.",
+      desc: "Thermal endurance up to 215°C HDT with zero creep or warping. Built to withstand race environments, heat cycles, fuels, and engine bay temperatures.",
       image: "assets/images/parts/ppa-cf.jpg",
-      linkText: "Submit CAD for Automotive manifolds",
+      linkText: "Submit CAD for Motorsport parts",
       linkUrl: "quote.html?material=ppa-cf"
     },
     enclosures: {
-      tag: "INDUSTRIAL ENCLOSURES & IoT",
+      tag: "ELECTRONICS & IoT ENCLOSURES",
       title: "Weatherproof field housings & snap-fit electronics cases.",
-      desc: "UV-stable ASA for zero outdoor embrittlement and watertight PETG enclosures with integrated silicone gasket channels for field telemetry hardware.",
+      desc: "UV-stable ASA for outdoor field deployments and impact-resistant PETG housings with integrated gasket grooves for custom IoT hardware prototypes.",
       image: "assets/images/parts/asa-weatherproof.jpg",
       linkText: "Submit CAD for Enclosures",
       linkUrl: "quote.html?material=asa"
     },
     tooling: {
       tag: "RAPID TOOLING & FIXTURES",
-      title: "CNC alignment jigs, drilling guides & CMM holding fixtures.",
-      desc: "High-rigidity tooling blocks fabricated overnight to accelerate shop-floor assembly and quality inspection without tying up CNC machine capacity.",
+      title: "Assembly jigs, alignment guides & inspection holding fixtures.",
+      desc: "Rigid composite fixtures printed on-demand with tight dimensional repeatability to assist workshop assembly, drilling, and mechanical testing.",
       image: "assets/images/parts/pa6gf-fixture.jpg",
       linkText: "Submit CAD for Tooling & Jigs",
       linkUrl: "quote.html?material=pa-gf"

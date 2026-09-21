@@ -1,4 +1,4 @@
-# FusionLabs3D — Precision Additive Manufacturing Website
+# FusionLabs3D — Specialized In-House 3D Printing & Prototyping
 
 > **Engineering-Grade 3D Prototyping**  
 > Functional parts • Engineering prototypes • Real-world applications.
@@ -14,7 +14,7 @@ Official production repository for the **FusionLabs3D** website, built with a hi
 - **Instant RFQ Portal:** [https://fusionlabs3d.github.io/quote.html](https://fusionlabs3d.github.io/quote.html)
 - **Instagram:** [@fusionlabs3d.india](https://www.instagram.com/fusionlabs3d.india/)
 - **Direct Inquiries:** `solutions.fusionlabs3d@gmail.com`
-- **Facility Location:** Jaipur, Rajasthan, India
+- **Location:** Jaipur, Rajasthan, India
 
 ---
 
@@ -26,7 +26,7 @@ FusionLabs3D prints in 9 calibrated polymers and continuous/chopped fiber compos
 |---|---|---|---|
 | **PA-CF** | Structural Carbon Composite | 105 MPa Tensile, 150°C HDT, 7.2 GPa Modulus | Drone airframes, motor mounts, aluminum replacement |
 | **PAHT-CF** | High-Temp Carbon Composite | 115 MPa Tensile, 194°C HDT, 8.4 GPa Modulus | High-load brackets, tooling jigs, autoclave fixtures |
-| **PPA-CF** | Advanced Semi-Aromatic Composite | 145 MPa Tensile, 215°C HDT, 9.8 GPa Modulus | Under-hood intake manifolds, aerospace brackets |
+| **PPA-CF** | Advanced Semi-Aromatic Composite | 145 MPa Tensile, 215°C HDT, 9.8 GPa Modulus | Formula SAE intake runners, UAV motor mounts, high-temp fluid manifolds |
 | **PA-GF** | Glass-Fiber Reinforced Nylon | 85 MPa Tensile, 130°C HDT, 5.4 GPa Modulus | Wear plates, non-conductive electrical brackets |
 | **PETG** | Functional Polyester Glycol | 50 MPa Tensile, 75°C HDT, 20% Elongation | Chemical ducting, fluid tanks, durable enclosures |
 | **ABS** | High-Impact Terpolymer | 42 MPa Tensile, 85°C HDT, 10% Elongation | Mechanical brackets, gearboxes, snap-fit housings |

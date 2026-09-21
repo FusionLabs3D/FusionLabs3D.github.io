@@ -83,11 +83,11 @@
 
       <nav class="desktop-nav" aria-label="Main Navigation">
         <ul class="nav-list">
-          <li><a href="index.html#services" class="nav-link">Capabilities</a></li>
-          <li><a href="index.html#gallery" class="nav-link">Showcase</a></li>
+          <li><a href="index.html#solutions" class="nav-link">Capabilities</a></li>
+          <li><a href="index.html#showcase" class="nav-link">Showcase</a></li>
           <li><a href="index.html#materials" class="nav-link">Materials</a></li>
-          <li><a href="index.html#workflow" class="nav-link">Process</a></li>
-          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="index.html#process" class="nav-link">Process</a></li>
+          <li><a href="index.html#contact" class="nav-link">About Lab</a></li>
           <li><a href="index.html#contact" class="nav-link">Contact</a></li>
         </ul>
       </nav>
@@ -132,11 +132,11 @@
     </div>
     <ul class="mobile-nav-list">
       <li><a href="index.html" class="mobile-nav-link">Home Overview</a></li>
-      <li><a href="index.html#services" class="mobile-nav-link">Capabilities</a></li>
-      <li><a href="index.html#gallery" class="mobile-nav-link">Showcase</a></li>
+      <li><a href="index.html#solutions" class="mobile-nav-link">Capabilities</a></li>
+      <li><a href="index.html#showcase" class="mobile-nav-link">Showcase</a></li>
       <li><a href="index.html#materials" class="mobile-nav-link">Materials</a></li>
-      <li><a href="index.html#workflow" class="mobile-nav-link">Process</a></li>
-      <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
+      <li><a href="index.html#process" class="mobile-nav-link">Process</a></li>
+      <li><a href="index.html#contact" class="mobile-nav-link">About Lab</a></li>
       <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
     </ul>
     <div class="mobile-drawer-footer">
@@ -154,7 +154,7 @@
           <span class="section-tag">ENGINEERING INTAKE // RFQ PORTAL</span>
           <h1 class="rfq-hero-title">REQUEST A PROJECT QUOTATION</h1>
           <p class="rfq-hero-subtitle">
-            Share your CAD model link (Google Drive, WeTransfer, Dropbox, OneDrive, or Onshape) and specify functional requirements. We inspect your geometry, recommend optimal layer orientation, and deliver an itemized engineering quote.
+            Submit your CAD model link (.STEP, .STL, or .3MF) for your robotics mechanism, competition team build, or functional hardware prototype. We evaluate geometry, calculate material usage, and deliver an itemized quotation with direct engineering advice.
           </p>
         </div>
       </div>
@@ -199,8 +199,21 @@
                   </div>
                   <div class="rfq-group">
                     <label for="rfqCompany">Organization / Project Name <span class="optional">(Optional)</span></label>
-                    <input type="text" id="rfqCompany" name="company" placeholder="e.g. Robotics Lab / Drone Prototype">
+                    <input type="text" id="rfqCompany" name="company" placeholder="e.g. SAE BAJA Team / Robotics Lab / IoT Prototype">
                   </div>
+                </div>
+
+                <div class="rfq-group">
+                  <label for="rfqProjectType">Project Category <span class="required">*</span></label>
+                  <select id="rfqProjectType" name="project_type" required>
+                    <option value="" disabled selected>Select project category...</option>
+                    <option value="Collegiate Competition Team (Formula SAE / BAJA / Robocon / UAV)">Collegiate Competition Team (Formula SAE / BAJA / Robocon / UAV)</option>
+                    <option value="University Academic / Capstone Project">University Academic / Capstone Project</option>
+                    <option value="Early-Stage Hardware / IoT Prototype">Early-Stage Hardware / IoT Prototype</option>
+                    <option value="Robotics / Custom Functional Build">Robotics / Custom Functional Build</option>
+                    <option value="Other Engineering Prototype">Other Engineering Prototype</option>
+                  </select>
+                  <span class="field-error-msg" id="projectTypeError"></span>
                 </div>
 
                 <!-- Structured Shipping & Delivery Address -->
@@ -415,11 +428,11 @@
       <div class="footer-links-col">
         <span class="footer-col-title">NAVIGATION</span>
         <ul class="footer-links">
-          <li><a href="index.html#services" class="footer-link">Capabilities</a></li>
-          <li><a href="index.html#gallery" class="footer-link">Showcase</a></li>
+          <li><a href="index.html#solutions" class="footer-link">Capabilities</a></li>
+          <li><a href="index.html#showcase" class="footer-link">Showcase</a></li>
           <li><a href="index.html#materials" class="footer-link">Materials</a></li>
-          <li><a href="index.html#workflow" class="footer-link">Process</a></li>
-          <li><a href="index.html#about" class="footer-link">About Facility</a></li>
+          <li><a href="index.html#process" class="footer-link">Process</a></li>
+          <li><a href="index.html#contact" class="footer-link">About Lab</a></li>
           <li><a href="quote.html" class="footer-link">RFQ Portal</a></li>
         </ul>
       </div>
@@ -537,19 +550,20 @@
     async function handleRfqSubmit(e) {
       e.preventDefault();
 
-      const name     = document.getElementById('rfqName').value.trim();
-      const email    = document.getElementById('rfqEmail').value.trim();
-      const phone    = document.getElementById('rfqPhone').value.trim();
-      const company  = document.getElementById('rfqCompany').value.trim();
-      const address1 = document.getElementById('rfqAddress1').value.trim();
-      const address2 = document.getElementById('rfqAddress2').value.trim();
-      const pincode  = document.getElementById('rfqPincode').value.trim();
-      const city     = document.getElementById('rfqCity').value.trim();
-      const state    = document.getElementById('rfqState').value.trim();
-      const brief    = document.getElementById('rfqProjectBrief').value.trim();
-      let cadLink    = document.getElementById('rfqCadLink').value.trim();
-      const material = document.getElementById('rfqMaterial').value;
-      const quantity = document.getElementById('rfqQuantity').value;
+      const name        = document.getElementById('rfqName').value.trim();
+      const email       = document.getElementById('rfqEmail').value.trim();
+      const phone       = document.getElementById('rfqPhone').value.trim();
+      const company     = document.getElementById('rfqCompany').value.trim();
+      const projectType = document.getElementById('rfqProjectType').value;
+      const address1    = document.getElementById('rfqAddress1').value.trim();
+      const address2    = document.getElementById('rfqAddress2').value.trim();
+      const pincode     = document.getElementById('rfqPincode').value.trim();
+      const city        = document.getElementById('rfqCity').value.trim();
+      const state       = document.getElementById('rfqState').value.trim();
+      const brief       = document.getElementById('rfqProjectBrief').value.trim();
+      let cadLink       = document.getElementById('rfqCadLink').value.trim();
+      const material    = document.getElementById('rfqMaterial').value;
+      const quantity    = document.getElementById('rfqQuantity').value;
       const application  = document.getElementById('rfqApplication').value.trim();
       const requirements = document.getElementById('rfqRequirements').value.trim();
       const notes        = document.getElementById('rfqNotes').value.trim();
@@ -562,6 +576,8 @@
       else           document.getElementById('emailError').textContent = '';
       if (!phone)  { document.getElementById('phoneError').textContent = 'Phone number is required.'; isValid = false; }
       else           document.getElementById('phoneError').textContent = '';
+      if (!projectType) { document.getElementById('projectTypeError').textContent = 'Please select a project category.'; isValid = false; }
+      else              document.getElementById('projectTypeError').textContent = '';
       if (!address1) { document.getElementById('address1Error').textContent = 'Address Line 1 is required.'; isValid = false; }
       else             document.getElementById('address1Error').textContent = '';
       if (!pincode)  { document.getElementById('pincodeError').textContent = 'PIN code is required.'; isValid = false; }
@@ -604,23 +620,24 @@
 
           const emailBody = [
             '--- NEW RFQ INQUIRY ---',
-            'RFQ ID   : ' + rfqId,
-            'Name     : ' + name,
-            'Email    : ' + email,
-            'Phone    : ' + phone,
-            'Company  : ' + (company || 'N/A'),
+            'RFQ ID       : ' + rfqId,
+            'Name         : ' + name,
+            'Email        : ' + email,
+            'Phone        : ' + phone,
+            'Project/Team : ' + (company || 'N/A'),
+            'Category     : ' + (projectType || 'N/A'),
             '',
             '--- DELIVERY DESTINATION ---',
-            'Address  : ' + fullAddress,
-            'City     : ' + city,
-            'State    : ' + state,
-            'PIN Code : ' + pincode,
+            'Address      : ' + fullAddress,
+            'City         : ' + city,
+            'State        : ' + state,
+            'PIN Code     : ' + pincode,
             '',
             '--- SPECIFICATIONS ---',
-            'Material : ' + material.toUpperCase(),
-            'Quantity : ' + quantity,
-            'Application : ' + (application || 'N/A'),
-            'Conditions  : ' + (requirements || 'Standard'),
+            'Material     : ' + material.toUpperCase(),
+            'Quantity     : ' + quantity,
+            'Application  : ' + (application || 'N/A'),
+            'Conditions   : ' + (requirements || 'Standard'),
             '',
             'CAD Model Link (Direct Access):',
             cadLink,
@@ -655,7 +672,7 @@
         if (typeof firebaseDb !== 'undefined' && firebaseDb) {
           await firebaseDb.collection('inquiries').doc(rfqId).set({
             rfqId, createdAt: new Date().toISOString(),
-            name, email, phone, company,
+            name, email, phone, company, projectType,
             address1, address2, pincode, city, state,
             brief, cadLink, material, quantity,
             application, requirements, notes
