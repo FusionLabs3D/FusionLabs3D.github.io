@@ -12,8 +12,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const urlTheme = urlParams.get('theme');
         const savedTheme = urlTheme || localStorage.getItem('fusionlabs3d_theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        if (savedTheme === 'dark') {
           document.documentElement.setAttribute('data-theme', 'dark');
         } else {
           document.documentElement.setAttribute('data-theme', 'light');
@@ -838,6 +837,11 @@
           <p class="siemens-section-sub">Raw filament manufacturer technical datasheet metrics across our 10 calibrated engineering polymers and composites.</p>
         </div>
 
+        <div class="matrix-mobile-scroll-hint">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          <span>Swipe horizontally to view all parameters &rarr;</span>
+        </div>
+
         <div class="matrix-overflow-wrap">
           <table class="siemens-specs-table">
             <thead>
@@ -1032,8 +1036,8 @@
           <p class="siemens-section-sub">Speak directly with our team regarding mechanical constraints, material selection, and project builds.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
-          <div style="background: var(--bg-surface-alt); border: 1px solid var(--border-color); border-radius: var(--radius-xs); padding: 32px;">
+        <div class="contact-cards-grid">
+          <div class="contact-card">
             <h3 style="font-family: var(--font-heading); font-size: 18px; margin-bottom: 12px;">FusionLabs3D Prototyping Lab</h3>
             <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Specialized In-House 3D Printing • Jaipur, India</p>
             <div style="font-size: 13.5px; display: flex; flex-direction: column; gap: 10px;">
@@ -1044,7 +1048,7 @@
             <a href="quote.html" class="btn-siemens-mint" style="margin-top: 24px;">OPEN RFQ PORTAL &rarr;</a>
           </div>
 
-          <div style="background: var(--bg-surface-alt); border: 1px solid var(--border-color); border-radius: var(--radius-xs); padding: 32px;">
+          <div class="contact-card">
             <h3 style="font-family: var(--font-heading); font-size: 18px; margin-bottom: 12px;">Technical Execution &amp; Quality</h3>
             <p style="color: var(--text-muted); font-size: 13.5px; line-height: 1.6; margin-bottom: 16px;">
               FusionLabs3D specializes in in-house technical 3D printing, bridging the gap between fragile desktop prints and expensive corporate service bureaus. We focus on mechanical integrity, proper thermal conditioning, and dimensional accuracy for functional engineering builds.
@@ -1087,6 +1091,7 @@
             <li><a href="material.html?mat=petg">PETG Functional</a></li>
             <li><a href="material.html?mat=abs">ABS Engineering</a></li>
             <li><a href="material.html?mat=asa">ASA Weatherproof</a></li>
+            <li><a href="material.html?mat=pc">PC Polycarbonate</a></li>
             <li><a href="material.html?mat=pla">PLA Precision</a></li>
             <li><a href="material.html?mat=tpu">TPU 95A Elastomer</a></li>
           </ul>

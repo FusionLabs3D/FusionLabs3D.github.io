@@ -1432,6 +1432,22 @@ a {
   border-color: #1E293B;
 }
 
+.matrix-mobile-scroll-hint {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--siemens-teal);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="dark"] .matrix-mobile-scroll-hint {
+  color: var(--siemens-mint);
+}
+
 .siemens-specs-table {
   width: 100%;
   border-collapse: collapse;
@@ -1573,6 +1589,25 @@ a {
   justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
+}
+
+/* Contact Cards Grid */
+.contact-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.contact-card {
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  padding: 32px;
+}
+
+[data-theme="dark"] .contact-card {
+  background: #0E1422;
+  border-color: #1E293B;
 }
 
 /* Siemens Corporate Footer */
@@ -5268,12 +5303,21 @@ a {
 }
 
 @media (max-width: 768px) {
+  /* 1. Header & Utility */
   .siemens-top-strip {
     display: none;
   }
-  .btn-siemens-mint {
+  .siemens-header-actions .btn-siemens-mint {
     display: none;
   }
+  .siemens-nav-inner {
+    height: 62px;
+  }
+  .siemens-brand img {
+    height: 32px !important;
+  }
+
+  /* 2. Hero Section Mobile Rhythm */
   .hero-carousel-wrapper {
     bottom: 16px;
   }
@@ -5285,17 +5329,312 @@ a {
     width: 30px;
     height: 30px;
   }
+
+  /* 3. Section Cadence & Spacing (Airy, Open, Siemens White Spacing) */
+  section,
+  .autodesk-products-section,
+  .siemens-showcase-section,
+  .siemens-matrix-section,
+  .pipeline-section,
+  .siemens-upgrade-section {
+    padding: 48px 0 !important;
+  }
+
+  .siemens-section-intro {
+    margin-bottom: 24px;
+  }
+  .siemens-section-title {
+    font-size: clamp(22px, 5.5vw, 28px);
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .siemens-section-sub {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* 4. White Highlight Bar */
+  .siemens-white-highlight-bar {
+    padding: 14px 0;
+  }
+  .highlight-bar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .btn-highlight-box {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 18px;
+  }
+
+  /* 5. Section 01: Prototyping Capabilities (Horizontal Touch Tabs & Compact Cards) */
+  .vertical-tab-list {
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 8px;
+    border-left: none !important;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+  }
+  .vertical-tab-list::-webkit-scrollbar {
+    display: none;
+  }
+  .v-tab-btn {
+    white-space: nowrap;
+    padding: 8px 14px;
+    font-size: 13px;
+    border-left: none !important;
+    border-bottom: 2.5px solid transparent !important;
+    border-radius: var(--radius-xs);
+    flex-shrink: 0;
+  }
+  .v-tab-btn.active {
+    border-left-color: transparent !important;
+    border-bottom-color: var(--fl-saffron) !important;
+    background: rgba(255, 138, 0, 0.1) !important;
+  }
+  .story-media-frame {
+    height: 190px;
+  }
+  .story-content {
+    padding: 18px 16px;
+  }
+  .story-title {
+    font-size: 17px;
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .story-desc {
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .stacked-cards-col {
+    gap: 14px;
+  }
+  .stacked-navy-card,
+  .stacked-light-card {
+    padding: 20px 16px;
+  }
+  .stacked-navy-title,
+  .stacked-light-title {
+    font-size: 16px;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .stacked-navy-desc,
+  .stacked-light-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  /* 6. Section 02: Autodesk Materials Catalog (Clean Horizontal Swipe Pills & Proportional Cards) */
+  .autodesk-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .autodesk-title {
+    font-size: clamp(22px, 5.5vw, 28px);
+    line-height: 1.25;
+  }
+  .autodesk-pills-bar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 8px;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  .autodesk-pills-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .pills-label {
+    display: none;
+  }
+  .pills-group {
+    flex-shrink: 0;
+  }
+  .autodesk-pill-btn {
+    white-space: nowrap;
+    padding: 6px 14px;
+    font-size: 12.5px;
+  }
+  .autodesk-cards-grid {
+    gap: 16px;
+  }
+  .autodesk-card-body {
+    padding: 16px;
+  }
+  .autodesk-card-thumb-wrap {
+    height: 135px;
+  }
+  .autodesk-card-desc {
+    font-size: 13px;
+    line-height: 1.45;
+    margin-bottom: 12px;
+  }
+  .autodesk-platform-icons {
+    font-size: 11.5px;
+    margin-bottom: 10px;
+    padding: 6px 10px;
+  }
+  .autodesk-price-row {
+    margin-bottom: 12px;
+    padding-top: 10px;
+  }
+  .btn-autodesk-black,
+  .btn-autodesk-outline {
+    padding: 9px 0;
+    font-size: 12.5px;
+  }
+
+  /* 7. Section 03: Demonstrated Geometries / Showcase */
+  .showcase-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .siemens-cards-row {
+    gap: 16px;
+  }
+  .proto-img-wrap {
+    height: 180px;
+  }
+  .proto-card-content {
+    padding: 16px;
+  }
+  .proto-title {
+    font-size: 17px;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .proto-desc {
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  /* 8. Section 04: Matrix Table */
+  .matrix-overflow-wrap {
+    -webkit-overflow-scrolling: touch;
+  }
+  .matrix-mobile-scroll-hint {
+    display: flex;
+  }
+
+  /* 9. Section 05: Engineering Pipeline */
+  .pipeline-grid {
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .pipeline-step-card {
+    padding: 16px;
+  }
+  .pipeline-num {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+  .pipeline-title {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .pipeline-desc {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* 10. CTA Banner */
+  .siemens-fullwidth-cta {
+    padding: 48px 0 !important;
+  }
+  .cta-headline {
+    font-size: clamp(22px, 5.5vw, 28px);
+    margin-bottom: 12px;
+  }
+  .cta-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  /* 11. Contact Section */
+  .contact-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .contact-card {
+    padding: 20px;
+  }
+
+  /* 12. Footer (Clean 2-Column Organization) */
+  .siemens-footer {
+    padding: 48px 0 24px;
+  }
+  .siemens-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 20px;
+    margin-bottom: 32px;
+  }
+  .siemens-footer-grid > div:first-child {
+    grid-column: 1 / -1;
+    margin-bottom: 4px;
+  }
+  .footer-nav-list {
+    gap: 8px;
+  }
+  .footer-nav-list a {
+    font-size: 12.5px;
+  }
 }
 
 @media (max-width: 480px) {
+  /* Container breathing room on smaller screens */
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Hero CTAs */
   .hero-cinematic-cta-group {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    width: 100%;
   }
   .hero-cinematic-cta-group .btn-saffron-solid {
     width: 100%;
     justify-content: center;
     padding: 12px 20px;
+  }
+  .hero-cinematic-cta-group .hero-link-secondary {
+    padding-left: 2px;
+  }
+
+  /* Fullwidth CTA Buttons */
+  .cta-btn-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .cta-btn-group .btn-siemens-mint,
+  .cta-btn-group .btn-hero-outline {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Footer on very narrow phones */
+  .siemens-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 }
