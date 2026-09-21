@@ -427,6 +427,7 @@
           <li><a href="material.html?mat=tpu">TPU (Shore 95A Flexible)</a></li>
           <li><a href="material.html?mat=abs">ABS (High Impact)</a></li>
           <li><a href="material.html?mat=asa">ASA (UV Resistant)</a></li>
+          <li><a href="material.html?mat=pc">PC (Polycarbonate)</a></li>
           <li><a href="material.html?mat=pa-cf">PA-CF (Carbon Composite)</a></li>
           <li><a href="material.html?mat=paht-cf">PAHT-CF (194°C High-Temp)</a></li>
           <li><a href="material.html?mat=pa-gf">PA-GF (Glass Composite)</a></li>
@@ -625,6 +626,11 @@
             if (barThermal) barThermal.style.width = '55%';
             if (barImpact) barImpact.style.width = '100%';
             if (barStability) barStability.style.width = '60%';
+          } else if (selected.id === 'pc') {
+            if (barStiffness) barStiffness.style.width = '80%';
+            if (barThermal) barThermal.style.width = '78%';
+            if (barImpact) barImpact.style.width = '95%';
+            if (barStability) barStability.style.width = '85%';
           } else if (selected.id === 'abs' || selected.id === 'asa') {
             if (barStiffness) barStiffness.style.width = '70%';
             if (barThermal) barThermal.style.width = '65%';

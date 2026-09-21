@@ -135,6 +135,33 @@
     "featured": false
   },
   {
+    "id": "pc",
+    "name": "PC",
+    "fullName": "Polycarbonate",
+    "classification": "HIGH-IMPACT ENGINEERING THERMOPLASTIC",
+    "code": "ISO 1043: PC",
+    "category": "Engineering Thermoplastics",
+    "image": "assets/images/parts/pc-cover.jpg",
+    "summary": "High-temperature engineering thermoplastic delivering exceptional impact toughness, high tensile strength, and heat resistance up to 115°C for demanding functional prototypes.",
+    "tensileStrength": "65 MPa",
+    "flexuralModulus": "2.5 GPa",
+    "heatDeflection": "115°C (0.45 MPa)",
+    "impactStrength": "25 kJ/m²",
+    "density": "1.20 g/cm³",
+    "elongation": "8%",
+    "characteristics": "High impact resistance, 115°C thermal threshold, structural rigidity, dielectric insulation",
+    "thermal": "Continuous operating temperature up to 110°C, heat deflection up to 115°C (0.45 MPa)",
+    "use_cases": "High-impact drone guards, functional gears, structural mounting brackets, protective safety covers, heat-exposed electronic housings",
+    "chemical": "Resistant to mineral acids, neutral oils, and greases; sensitive to ketones, esters, and aromatic solvents",
+    "slicing": "0.16 - 0.24 mm layer height, 270-300°C extrusion, enclosed chamber calibrated, 4+ perimeter walls",
+    "accentColor": "#2563EB",
+    "tags": [
+      "High Impact",
+      "115°C Thermal Resistance"
+    ],
+    "featured": true
+  },
+  {
     "id": "pa-cf",
     "name": "PA-CF",
     "fullName": "Carbon-Fiber Reinforced Polyamide (PA6-CF)",

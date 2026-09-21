@@ -20,7 +20,7 @@ Official production repository for the **FusionLabs3D** website, built with a hi
 
 ## 🧪 Calibrated Engineering Materials
 
-FusionLabs3D prints in 9 calibrated polymers and continuous/chopped fiber composites:
+FusionLabs3D prints in 10 calibrated polymers and continuous/chopped fiber composites:
 
 | Material | Classification | Key Metrics | Primary Application |
 |---|---|---|---|
@@ -28,6 +28,7 @@ FusionLabs3D prints in 9 calibrated polymers and continuous/chopped fiber compos
 | **PAHT-CF** | High-Temp Carbon Composite | 115 MPa Tensile, 194°C HDT, 8.4 GPa Modulus | High-load brackets, tooling jigs, autoclave fixtures |
 | **PPA-CF** | Advanced Semi-Aromatic Composite | 145 MPa Tensile, 215°C HDT, 9.8 GPa Modulus | Formula SAE intake runners, UAV motor mounts, high-temp fluid manifolds |
 | **PA-GF** | Glass-Fiber Reinforced Nylon | 85 MPa Tensile, 130°C HDT, 5.4 GPa Modulus | Wear plates, non-conductive electrical brackets |
+| **PC** | High-Impact Thermoplastic | 65 MPa Tensile, 115°C HDT, 2.5 GPa Modulus | High-impact guards, functional gears, structural mounting brackets |
 | **PETG** | Functional Polyester Glycol | 50 MPa Tensile, 75°C HDT, 20% Elongation | Chemical ducting, fluid tanks, durable enclosures |
 | **ABS** | High-Impact Terpolymer | 42 MPa Tensile, 85°C HDT, 10% Elongation | Mechanical brackets, gearboxes, snap-fit housings |
 | **ASA** | UV & Weather Resistant | 44 MPa Tensile, 90°C HDT, 9% Elongation | Outdoor telemetry, marine sensor housings, solar mounts |
