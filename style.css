@@ -5701,15 +5701,15 @@ a {
   letter-spacing: 0.04em;
   padding: 2px 7px;
   border-radius: 3px;
-  background: rgba(245, 158, 11, 0.14);
-  color: #D97706;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: rgba(100, 116, 139, 0.12);
+  color: #475569;
+  border: 1px solid rgba(100, 116, 139, 0.28);
   vertical-align: middle;
 }
 [data-theme="dark"] .badge-coming-soon {
-  background: rgba(245, 158, 11, 0.2);
-  color: #FBBF24;
-  border-color: rgba(245, 158, 11, 0.4);
+  background: rgba(148, 163, 184, 0.15);
+  color: #94A3B8;
+  border-color: rgba(148, 163, 184, 0.3);
 }
 
 .badge-ready {
@@ -5739,9 +5739,14 @@ a {
 }
 
 .badge-status-coming-soon {
-  background: rgba(245, 158, 11, 0.15);
-  color: #F59E0B;
-  border: 1px solid rgba(245, 158, 11, 0.35);
+  background: rgba(100, 116, 139, 0.12);
+  color: #475569;
+  border: 1px solid rgba(100, 116, 139, 0.28);
+}
+[data-theme="dark"] .badge-status-coming-soon {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94A3B8;
+  border-color: rgba(148, 163, 184, 0.3);
 }
 
 .badge-status-ready {
@@ -5825,8 +5830,12 @@ a {
   color: #10B981;
 }
 .mat-pill-status.cs {
-  background: rgba(245, 158, 11, 0.15);
-  color: #F59E0B;
+  background: rgba(100, 116, 139, 0.12);
+  color: #64748B;
+}
+[data-theme="dark"] .mat-pill-status.cs {
+  background: rgba(148, 163, 184, 0.18);
+  color: #94A3B8;
 }
 .material-availability-notice {
   margin-top: 10px;
@@ -5847,14 +5856,14 @@ a {
   color: #A7F3D0;
 }
 .material-availability-notice.coming-soon {
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  color: #92400E;
+  background: rgba(100, 116, 139, 0.08);
+  border: 1px solid rgba(100, 116, 139, 0.25);
+  color: #475569;
 }
 [data-theme="dark"] .material-availability-notice.coming-soon {
-  background: rgba(245, 158, 11, 0.12);
-  border-color: rgba(245, 158, 11, 0.35);
-  color: #FDE68A;
+  background: rgba(148, 163, 184, 0.12);
+  border-color: rgba(148, 163, 184, 0.3);
+  color: #CBD5E1;
 }
 .mat-notice-tag-ready {
   color: #059669;
@@ -5864,10 +5873,10 @@ a {
   color: #34D399;
 }
 .mat-notice-tag-cs {
-  color: #D97706;
+  color: #475569;
   font-weight: 700;
 }
 [data-theme="dark"] .mat-notice-tag-cs {
-  color: #FBBF24;
+  color: #94A3B8;
 }
 

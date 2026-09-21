@@ -300,6 +300,12 @@
                     <div class="pills-status-group" style="margin-top: 10px;">
                       <span class="pills-group-label">⏳ COMING SOON:</span>
                       <div class="pills-flex">
+                        <button type="button" class="mat-pill-btn pill-cs" data-val="tpu" onclick="selectMaterialPill('tpu')">
+                          TPU <span class="mat-pill-status cs">Coming Soon</span>
+                        </button>
+                        <button type="button" class="mat-pill-btn pill-cs" data-val="pc" onclick="selectMaterialPill('pc')">
+                          PC <span class="mat-pill-status cs">Coming Soon</span>
+                        </button>
                         <button type="button" class="mat-pill-btn pill-cs" data-val="pa-cf" onclick="selectMaterialPill('pa-cf')">
                           PA-CF <span class="mat-pill-status cs">Coming Soon</span>
                         </button>
@@ -311,12 +317,6 @@
                         </button>
                         <button type="button" class="mat-pill-btn pill-cs" data-val="pa-gf" onclick="selectMaterialPill('pa-gf')">
                           PA-GF <span class="mat-pill-status cs">Coming Soon</span>
-                        </button>
-                        <button type="button" class="mat-pill-btn pill-cs" data-val="pc" onclick="selectMaterialPill('pc')">
-                          PC <span class="mat-pill-status cs">Coming Soon</span>
-                        </button>
-                        <button type="button" class="mat-pill-btn pill-cs" data-val="tpu" onclick="selectMaterialPill('tpu')">
-                          TPU <span class="mat-pill-status cs">Coming Soon</span>
                         </button>
                       </div>
                     </div>
@@ -332,12 +332,12 @@
                       <option value="asa">ASA — Ready to Print</option>
                     </optgroup>
                     <optgroup label="⏳ Coming Soon">
+                      <option value="tpu">TPU (Flexible) — Coming Soon</option>
+                      <option value="pc">PC (Polycarbonate) — Coming Soon</option>
                       <option value="pa-cf">PA-CF (Carbon Fiber Nylon) — Coming Soon</option>
                       <option value="paht-cf">PAHT-CF (High-Temp Carbon Fiber) — Coming Soon</option>
                       <option value="ppa-cf">PPA-CF (High-Performance Carbon Fiber) — Coming Soon</option>
                       <option value="pa-gf">PA-GF (Glass Fiber Nylon) — Coming Soon</option>
-                      <option value="pc">PC (Polycarbonate) — Coming Soon</option>
-                      <option value="tpu">TPU (Flexible) — Coming Soon</option>
                     </optgroup>
                     <option value="recommend">Not sure / Need material recommendation</option>
                   </select>
