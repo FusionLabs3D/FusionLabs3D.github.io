@@ -10,12 +10,12 @@
     "summary": "Standard polymer ideal for rapid dimensional validation, early-stage fit checks, and concept models with clean geometric detail.",
     "tensileStrength": "55 MPa",
     "flexuralModulus": "3.6 GPa",
-    "heatDeflection": "55°C (0.45 MPa)",
-    "impactStrength": "16 kJ/m²",
-    "density": "1.24 g/cm³",
+    "heatDeflection": "55\u00b0C (0.45 MPa)",
+    "impactStrength": "16 kJ/m\u00b2",
+    "density": "1.24 g/cm\u00b3",
     "elongation": "6%",
     "characteristics": "Clean geometric detail, low shrinkage, rigid mechanical profile, cost-effective rapid iteration",
-    "thermal": "Continuous operating temperature up to 50°C",
+    "thermal": "Continuous operating temperature up to 50\u00b0C",
     "use_cases": "Concept verification models, architectural prototypes, visual assembly fits, non-load jigs & fixtures",
     "chemical": "Moderate resistance to oils and greases; sensitive to high moisture, ketones, and heat",
     "slicing": "0.12 - 0.28 mm layer height, 15-100% infill, recommended 3+ perimeter walls",
@@ -24,7 +24,9 @@
       "Rapid Iteration",
       "Dimensional Precision"
     ],
-    "featured": false
+    "featured": false,
+    "status": "ready",
+    "statusLabel": "Ready to Print"
   },
   {
     "id": "petg",
@@ -37,12 +39,12 @@
     "summary": "Versatile engineering thermoplastic combining high interlayer cohesion with enhanced impact strength, chemical resistance, and low moisture absorption for functional parts.",
     "tensileStrength": "50 MPa",
     "flexuralModulus": "2.1 GPa",
-    "heatDeflection": "75°C (0.45 MPa)",
-    "impactStrength": "8.5 kJ/m²",
-    "density": "1.27 g/cm³",
+    "heatDeflection": "75\u00b0C (0.45 MPa)",
+    "impactStrength": "8.5 kJ/m\u00b2",
+    "density": "1.27 g/cm\u00b3",
     "elongation": "20%",
     "characteristics": "Superior layer adhesion, impact resilience, water-tight printing, high chemical endurance",
-    "thermal": "Continuous operating temperature up to 70°C",
+    "thermal": "Continuous operating temperature up to 70\u00b0C",
     "use_cases": "Electronic enclosures, fluid containment prototypes, mechanical brackets, snap-fit assemblies, chemical ducting",
     "chemical": "High resistance to water, dilute acids, alkalis, oils, and mechanical greases",
     "slicing": "0.16 - 0.28 mm layer height, 20-50% gyroid infill, recommended 4 perimeter walls",
@@ -51,7 +53,9 @@
       "Chemical Resistant",
       "Functional Toughness"
     ],
-    "featured": true
+    "featured": true,
+    "status": "ready",
+    "statusLabel": "Ready to Print"
   },
   {
     "id": "tpu",
@@ -64,12 +68,12 @@
     "summary": "High-durability thermoplastic elastomer with extreme tear resistance, elongation capacity, and vibration damping. Calibrated for functional gaskets and shock absorption.",
     "tensileStrength": "35 MPa",
     "flexuralModulus": "0.15 GPa",
-    "heatDeflection": "80°C (Max Service)",
+    "heatDeflection": "80\u00b0C (Max Service)",
     "impactStrength": "No Break",
-    "density": "1.21 g/cm³",
+    "density": "1.21 g/cm\u00b3",
     "elongation": "450%",
     "characteristics": "Shore 95A elasticity, extreme abrasion resistance, acoustic & vibration damping, tear strength",
-    "thermal": "Operational temperature range from -20°C to +80°C",
+    "thermal": "Operational temperature range from -20\u00b0C to +80\u00b0C",
     "use_cases": "Industrial sealing gaskets, vibration dampers, protective drone bumpers, flexible couplers, robot gripper pads",
     "chemical": "Exceptional resistance to hydrocarbon oils, greases, lubricants, and mild industrial solvents",
     "slicing": "0.16 - 0.24 mm layer height, 15-40% gyroid infill, direct-drive calibration at 30 mm/s",
@@ -78,7 +82,9 @@
       "Vibration Damping",
       "High Elasticity"
     ],
-    "featured": false
+    "featured": false,
+    "status": "coming_soon",
+    "statusLabel": "Coming Soon"
   },
   {
     "id": "abs",
@@ -88,15 +94,15 @@
     "code": "ISO 1043: ABS",
     "category": "Engineering Thermoplastics",
     "image": "assets/images/parts/abs-bracket.jpg",
-    "summary": "Standard engineering thermoplastic engineered for mechanical impact strength, thermal resilience up to 85°C, and structural machinability for functional prototypes.",
+    "summary": "Standard engineering thermoplastic engineered for mechanical impact strength, thermal resilience up to 85\u00b0C, and structural machinability for functional prototypes.",
     "tensileStrength": "42 MPa",
     "flexuralModulus": "2.3 GPa",
-    "heatDeflection": "85°C (0.45 MPa)",
-    "impactStrength": "22 kJ/m²",
-    "density": "1.05 g/cm³",
+    "heatDeflection": "85\u00b0C (0.45 MPa)",
+    "impactStrength": "22 kJ/m\u00b2",
+    "density": "1.05 g/cm\u00b3",
     "elongation": "10%",
     "characteristics": "High impact toughness, thermal endurance, rigid structure, vapor post-processable",
-    "thermal": "Continuous operating temperature up to 80°C",
+    "thermal": "Continuous operating temperature up to 80\u00b0C",
     "use_cases": "Functional gearboxes, competition robot chassis, mechanical brackets, snap-fit enclosures",
     "chemical": "Resistant to aqueous solutions, dilute acids, and alkalis; soluble in acetone and esters",
     "slicing": "0.16 - 0.24 mm layer height, heated enclosure calibrated, recommended 4 perimeter walls",
@@ -105,7 +111,9 @@
       "High Impact",
       "Thermal Endurance"
     ],
-    "featured": false
+    "featured": false,
+    "status": "ready",
+    "statusLabel": "Ready to Print"
   },
   {
     "id": "asa",
@@ -118,12 +126,12 @@
     "summary": "Matches the mechanical strength of ABS while offering high resistance to UV degradation and outdoor weathering for exterior field hardware.",
     "tensileStrength": "44 MPa",
     "flexuralModulus": "2.4 GPa",
-    "heatDeflection": "90°C (0.45 MPa)",
-    "impactStrength": "18 kJ/m²",
-    "density": "1.07 g/cm³",
+    "heatDeflection": "90\u00b0C (0.45 MPa)",
+    "impactStrength": "18 kJ/m\u00b2",
+    "density": "1.07 g/cm\u00b3",
     "elongation": "9%",
     "characteristics": "High UV stability, weather endurance, impact resistance comparable to ABS, matte surface finish",
-    "thermal": "Continuous operating temperature up to 85°C",
+    "thermal": "Continuous operating temperature up to 85\u00b0C",
     "use_cases": "Outdoor telemetry enclosures, exterior drone airframes, marine sensor housings, solar mount fixtures",
     "chemical": "Good resistance to UV exposure, environmental moisture, rain, oils, and dilute acids",
     "slicing": "0.16 - 0.24 mm layer height, heated enclosure calibrated, recommended 4 perimeter walls",
@@ -132,7 +140,9 @@
       "UV Resistant",
       "Outdoor Structural"
     ],
-    "featured": false
+    "featured": false,
+    "status": "ready",
+    "statusLabel": "Ready to Print"
   },
   {
     "id": "pc",
@@ -142,24 +152,26 @@
     "code": "ISO 1043: PC",
     "category": "Engineering Thermoplastics",
     "image": "assets/images/parts/pc-cover.jpg",
-    "summary": "High-temperature engineering thermoplastic delivering exceptional impact toughness, high tensile strength, and heat resistance up to 115°C for demanding functional prototypes.",
+    "summary": "High-temperature engineering thermoplastic delivering exceptional impact toughness, high tensile strength, and heat resistance up to 115\u00b0C for demanding functional prototypes.",
     "tensileStrength": "65 MPa",
     "flexuralModulus": "2.5 GPa",
-    "heatDeflection": "115°C (0.45 MPa)",
-    "impactStrength": "25 kJ/m²",
-    "density": "1.20 g/cm³",
+    "heatDeflection": "115\u00b0C (0.45 MPa)",
+    "impactStrength": "25 kJ/m\u00b2",
+    "density": "1.20 g/cm\u00b3",
     "elongation": "8%",
-    "characteristics": "High impact resistance, 115°C thermal threshold, structural rigidity, dielectric insulation",
-    "thermal": "Continuous operating temperature up to 110°C, heat deflection up to 115°C (0.45 MPa)",
+    "characteristics": "High impact resistance, 115\u00b0C thermal threshold, structural rigidity, dielectric insulation",
+    "thermal": "Continuous operating temperature up to 110\u00b0C, heat deflection up to 115\u00b0C (0.45 MPa)",
     "use_cases": "High-impact drone guards, functional gears, structural mounting brackets, protective safety covers, heat-exposed electronic housings",
     "chemical": "Resistant to mineral acids, neutral oils, and greases; sensitive to ketones, esters, and aromatic solvents",
-    "slicing": "0.16 - 0.24 mm layer height, 270-300°C extrusion, enclosed chamber calibrated, 4+ perimeter walls",
+    "slicing": "0.16 - 0.24 mm layer height, 270-300\u00b0C extrusion, enclosed chamber calibrated, 4+ perimeter walls",
     "accentColor": "#2563EB",
     "tags": [
       "High Impact",
-      "115°C Thermal Resistance"
+      "115\u00b0C Thermal Resistance"
     ],
-    "featured": true
+    "featured": true,
+    "status": "coming_soon",
+    "statusLabel": "Coming Soon"
   },
   {
     "id": "pa-cf",
@@ -172,12 +184,12 @@
     "summary": "Nylon (PA6) reinforced with 20% chopped carbon fibers. Delivers high mechanical stiffness, high strength-to-weight ratio, and thermal stability.",
     "tensileStrength": "105 MPa",
     "flexuralModulus": "7.2 GPa",
-    "heatDeflection": "150°C (0.45 MPa)",
-    "impactStrength": "12 kJ/m²",
-    "density": "1.18 g/cm³",
+    "heatDeflection": "150\u00b0C (0.45 MPa)",
+    "impactStrength": "12 kJ/m\u00b2",
+    "density": "1.18 g/cm\u00b3",
     "elongation": "4.5%",
     "characteristics": "Extreme structural stiffness, lightweight aluminum replacement, low thermal warpage, matte carbon finish",
-    "thermal": "Heat deflection up to 150°C under mechanical load",
+    "thermal": "Heat deflection up to 150\u00b0C under mechanical load",
     "use_cases": "High-speed drone airframes, robotics structural arms, motor mount brackets, functional racing components",
     "chemical": "High resistance to engine oils, gasoline, lubricants, and organic industrial solvents",
     "slicing": "0.16 - 0.24 mm layer height, hardened steel nozzle, 30-100% infill, recommended 4+ walls",
@@ -186,7 +198,9 @@
       "Ultra-High Stiffness",
       "Aluminum Alternative"
     ],
-    "featured": true
+    "featured": true,
+    "status": "coming_soon",
+    "statusLabel": "Coming Soon"
   },
   {
     "id": "pa-gf",
@@ -199,12 +213,12 @@
     "summary": "Nylon (PA6) reinforced with chopped glass fibers. Provides mechanical rigidity, electrical insulation, and resistance to friction, abrasion, and wear.",
     "tensileStrength": "85 MPa",
     "flexuralModulus": "5.4 GPa",
-    "heatDeflection": "130°C (0.45 MPa)",
-    "impactStrength": "14 kJ/m²",
-    "density": "1.25 g/cm³",
+    "heatDeflection": "130\u00b0C (0.45 MPa)",
+    "impactStrength": "14 kJ/m\u00b2",
+    "density": "1.25 g/cm\u00b3",
     "elongation": "6%",
     "characteristics": "High dimensional stability, dielectric insulation, abrasion resistance, mechanical rigidity",
-    "thermal": "Heat deflection up to 130°C under continuous load",
+    "thermal": "Heat deflection up to 130\u00b0C under continuous load",
     "use_cases": "Precision tooling fixtures, slide guide blocks, non-conductive electrical brackets, wear plates",
     "chemical": "Exceptional resistance to industrial chemicals, hydraulic fluids, grease, and hydrocarbons",
     "slicing": "0.16 - 0.24 mm layer height, hardened steel nozzle, recommended 4 perimeter walls",
@@ -213,7 +227,9 @@
       "Wear Resistant",
       "Dielectric Insulator"
     ],
-    "featured": false
+    "featured": false,
+    "status": "coming_soon",
+    "statusLabel": "Coming Soon"
   },
   {
     "id": "ppa-cf",
@@ -223,24 +239,26 @@
     "code": "PPA + HIGH-MODULUS CF",
     "category": "Carbon & Composites",
     "image": "assets/images/parts/ppa-cf.jpg",
-    "summary": "High-temperature PPA composite reinforced with chopped carbon fibers. Features thermal resistance up to 215°C HDT and high mechanical stiffness under thermal load.",
+    "summary": "High-temperature PPA composite reinforced with chopped carbon fibers. Features thermal resistance up to 215\u00b0C HDT and high mechanical stiffness under thermal load.",
     "tensileStrength": "145 MPa",
     "flexuralModulus": "9.8 GPa",
-    "heatDeflection": "215°C (0.45 MPa)",
-    "impactStrength": "15 kJ/m²",
-    "density": "1.28 g/cm³",
+    "heatDeflection": "215\u00b0C (0.45 MPa)",
+    "impactStrength": "15 kJ/m\u00b2",
+    "density": "1.28 g/cm\u00b3",
     "elongation": "3.2%",
-    "characteristics": "215°C thermal resistance, high flexural modulus (9.8 GPa), minimal moisture uptake, high chemical resistance",
-    "thermal": "High heat deflection up to 215°C for continuous high-temperature service",
+    "characteristics": "215\u00b0C thermal resistance, high flexural modulus (9.8 GPa), minimal moisture uptake, high chemical resistance",
+    "thermal": "High heat deflection up to 215\u00b0C for continuous high-temperature service",
     "use_cases": "Formula SAE engine air intakes, UAV motor mounts, high-temp fluid manifolds, aggressive chemical valves",
     "chemical": "Highly resistant to engine oils, radiator coolants, brake fluids, and strong organic solvents",
-    "slicing": "0.16 - 0.20 mm layer height, 300°C+ extrusion, heated chamber calibrated, 5+ walls",
+    "slicing": "0.16 - 0.20 mm layer height, 300\u00b0C+ extrusion, heated chamber calibrated, 5+ walls",
     "accentColor": "#047857",
     "tags": [
-      "215°C Thermal Deflection",
+      "215\u00b0C Thermal Deflection",
       "Extreme Performance"
     ],
-    "featured": true
+    "featured": true,
+    "status": "coming_soon",
+    "statusLabel": "Coming Soon"
   },
   {
     "id": "paht-cf",
@@ -250,23 +268,25 @@
     "code": "PAHT + HIGH-MODULUS CF",
     "category": "Carbon & Composites",
     "image": "assets/images/parts/paht-cf.jpg",
-    "summary": "High-temperature nylon reinforced with chopped carbon fibers. Features thermal resistance up to 194°C HDT, high Z-axis layer adhesion, and dimensional stability under load.",
+    "summary": "High-temperature nylon reinforced with chopped carbon fibers. Features thermal resistance up to 194\u00b0C HDT, high Z-axis layer adhesion, and dimensional stability under load.",
     "tensileStrength": "115 MPa",
     "flexuralModulus": "8.4 GPa",
-    "heatDeflection": "194°C (0.45 MPa)",
-    "impactStrength": "13.5 kJ/m²",
-    "density": "1.22 g/cm³",
+    "heatDeflection": "194\u00b0C (0.45 MPa)",
+    "impactStrength": "13.5 kJ/m\u00b2",
+    "density": "1.22 g/cm\u00b3",
     "elongation": "3.8%",
-    "characteristics": "194°C heat deflection, outstanding Z-axis layer strength, low moisture absorption vs standard nylon, high rigidity",
-    "thermal": "Continuous operating temperature up to 150°C, heat deflection up to 194°C under 0.45 MPa load",
+    "characteristics": "194\u00b0C heat deflection, outstanding Z-axis layer strength, low moisture absorption vs standard nylon, high rigidity",
+    "thermal": "Continuous operating temperature up to 150\u00b0C, heat deflection up to 194\u00b0C under 0.45 MPa load",
     "use_cases": "Formula SAE / competition brackets, high-load drone airframes, industrial tooling jigs, autoclave fixtures, functional mechanical gears",
     "chemical": "High resistance to motor oils, gasoline, coolants, hydrocarbons, and workshop cleaning solvents",
-    "slicing": "0.16 - 0.24 mm layer height, 280-300°C extrusion, hardened nozzle required, 4+ perimeter walls",
+    "slicing": "0.16 - 0.24 mm layer height, 280-300\u00b0C extrusion, hardened nozzle required, 4+ perimeter walls",
     "accentColor": "#0F766E",
     "tags": [
-      "194°C Thermal HDT",
+      "194\u00b0C Thermal HDT",
       "High-Temp Composite"
     ],
-    "featured": true
+    "featured": true,
+    "status": "coming_soon",
+    "statusLabel": "Coming Soon"
   }
 ]

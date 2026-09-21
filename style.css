@@ -5687,3 +5687,187 @@ a {
     gap: 24px;
   }
 }
+
+/* ==========================================================================
+   MATERIAL AVAILABILITY BADGES & QUOTE SELECTOR ENHANCEMENTS
+   ========================================================================== */
+.badge-coming-soon {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: rgba(245, 158, 11, 0.14);
+  color: #D97706;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  vertical-align: middle;
+}
+[data-theme="dark"] .badge-coming-soon {
+  background: rgba(245, 158, 11, 0.2);
+  color: #FBBF24;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.badge-ready {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  vertical-align: middle;
+}
+[data-theme="dark"] .badge-ready {
+  background: rgba(16, 185, 129, 0.18);
+  color: #34D399;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.autodesk-banner-coming-soon {
+  background: #475569 !important;
+  color: #F8FAFC !important;
+}
+
+.badge-status-coming-soon {
+  background: rgba(245, 158, 11, 0.15);
+  color: #F59E0B;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.badge-status-ready {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+/* Quick Material Selector Pills on Quote Page */
+.rfq-material-pills-wrap {
+  background: var(--bg-surface-elevated, rgba(13, 19, 34, 0.03));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+[data-theme="dark"] .rfq-material-pills-wrap {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.pills-status-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pills-group-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, #94A3B8);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pills-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.mat-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-page, #FFFFFF);
+  border: 1px solid var(--border-color, #E2E8F0);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-main, #1E293B);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+[data-theme="dark"] .mat-pill-btn {
+  background: #0B1120;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #E2E8F0;
+}
+.mat-pill-btn:hover {
+  border-color: var(--fl-saffron, #FF8A00);
+  transform: translateY(-1px);
+}
+.mat-pill-btn.active {
+  border-color: var(--fl-saffron, #FF8A00);
+  background: rgba(255, 138, 0, 0.08);
+  box-shadow: 0 0 0 1px var(--fl-saffron, #FF8A00);
+  font-weight: 700;
+}
+.mat-pill-status {
+  font-size: 9.5px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+.mat-pill-status.ready {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+}
+.mat-pill-status.cs {
+  background: rgba(245, 158, 11, 0.15);
+  color: #F59E0B;
+}
+.material-availability-notice {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  transition: all 0.2s ease;
+}
+.material-availability-notice.ready {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #065F46;
+}
+[data-theme="dark"] .material-availability-notice.ready {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #A7F3D0;
+}
+.material-availability-notice.coming-soon {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #92400E;
+}
+[data-theme="dark"] .material-availability-notice.coming-soon {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #FDE68A;
+}
+.mat-notice-tag-ready {
+  color: #059669;
+  font-weight: 700;
+}
+[data-theme="dark"] .mat-notice-tag-ready {
+  color: #34D399;
+}
+.mat-notice-tag-cs {
+  color: #D97706;
+  font-weight: 700;
+}
+[data-theme="dark"] .mat-notice-tag-cs {
+  color: #FBBF24;
+}
+

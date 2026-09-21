@@ -274,36 +274,87 @@
               <div class="rfq-fieldset">
                 <span class="rfq-legend">03 // ENGINEERING PARAMETERS</span>
                 
-                <div class="rfq-input-row">
-                  <div class="rfq-group">
-                    <label for="rfqMaterial">Material Preference <span class="required">*</span></label>
-                    <select id="rfqMaterial" name="material" required>
-                      <option value="" disabled selected>-- Select Polymer / Composite --</option>
-                      <option value="pa-cf">PA-CF (Carbon-Fiber Reinforced Nylon - Ultra Stiff)</option>
-                      <option value="paht-cf">PAHT-CF (High-Temperature Polyamide Carbon Fiber - 194°C HDT)</option>
-                      <option value="ppa-cf">PPA-CF (High-Performance Polyphthalamide Carbon Fiber - 215°C HDT)</option>
-                      <option value="pa-gf">PA-GF (Glass-Fiber Reinforced Nylon - Wear Resistant)</option>
-                      <option value="petg">PETG (Durable Functional Polymer - Impact &amp; Chemical)</option>
-                      <option value="abs">ABS (Engineering Thermoplastic - High Impact Housing)</option>
-                      <option value="asa">ASA (Weather-Resistant Thermoplastic - UV Outdoor)</option>
-                      <option value="pc">PC (Polycarbonate - High Impact &amp; 115°C Heat Resistance)</option>
-                      <option value="pla">PLA (Rapid Prototyping - Sharp Fit &amp; Dimensional Check)</option>
-                      <option value="tpu">TPU (Flexible Elastomer Shore 95A - Gaskets &amp; Dampers)</option>
-                      <option value="recommend">Not sure / Need material recommendation</option>
-                    </select>
-                    <span class="field-error-msg" id="materialError"></span>
+                <!-- Material Preference & Interactive Selector -->
+                <div class="rfq-group" style="margin-bottom: 20px;">
+                  <label for="rfqMaterial">Material Preference <span class="required">*</span></label>
+                  
+                  <!-- Quick Visual Material Selector Pills -->
+                  <div class="rfq-material-pills-wrap" id="rfqMaterialPills">
+                    <div class="pills-status-group">
+                      <span class="pills-group-label">🟢 READY TO PRINT (IN STOCK):</span>
+                      <div class="pills-flex">
+                        <button type="button" class="mat-pill-btn" data-val="pla" onclick="selectMaterialPill('pla')">
+                          PLA <span class="mat-pill-status ready">Ready</span>
+                        </button>
+                        <button type="button" class="mat-pill-btn" data-val="petg" onclick="selectMaterialPill('petg')">
+                          PETG <span class="mat-pill-status ready">Ready</span>
+                        </button>
+                        <button type="button" class="mat-pill-btn" data-val="abs" onclick="selectMaterialPill('abs')">
+                          ABS <span class="mat-pill-status ready">Ready</span>
+                        </button>
+                        <button type="button" class="mat-pill-btn" data-val="asa" onclick="selectMaterialPill('asa')">
+                          ASA <span class="mat-pill-status ready">Ready</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="pills-status-group" style="margin-top: 10px;">
+                      <span class="pills-group-label">⏳ COMING SOON:</span>
+                      <div class="pills-flex">
+                        <button type="button" class="mat-pill-btn pill-cs" data-val="pa-cf" onclick="selectMaterialPill('pa-cf')">
+                          PA-CF <span class="mat-pill-status cs">Coming Soon</span>
+                        </button>
+                        <button type="button" class="mat-pill-btn pill-cs" data-val="paht-cf" onclick="selectMaterialPill('paht-cf')">
+                          PAHT-CF <span class="mat-pill-status cs">Coming Soon</span>
+                        </button>
+                        <button type="button" class="mat-pill-btn pill-cs" data-val="ppa-cf" onclick="selectMaterialPill('ppa-cf')">
+                          PPA-CF <span class="mat-pill-status cs">Coming Soon</span>
+                        </button>
+                        <button type="button" class="mat-pill-btn pill-cs" data-val="pa-gf" onclick="selectMaterialPill('pa-gf')">
+                          PA-GF <span class="mat-pill-status cs">Coming Soon</span>
+                        </button>
+                        <button type="button" class="mat-pill-btn pill-cs" data-val="pc" onclick="selectMaterialPill('pc')">
+                          PC <span class="mat-pill-status cs">Coming Soon</span>
+                        </button>
+                        <button type="button" class="mat-pill-btn pill-cs" data-val="tpu" onclick="selectMaterialPill('tpu')">
+                          TPU <span class="mat-pill-status cs">Coming Soon</span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
 
+                  <!-- Dropdown Select -->
+                  <select id="rfqMaterial" name="material" required onchange="syncMaterialSelector(this.value)">
+                    <option value="" disabled selected>-- Select Material --</option>
+                    <optgroup label="✅ Ready to Print">
+                      <option value="pla">PLA — Ready to Print</option>
+                      <option value="petg">PETG — Ready to Print</option>
+                      <option value="abs">ABS — Ready to Print</option>
+                      <option value="asa">ASA — Ready to Print</option>
+                    </optgroup>
+                    <optgroup label="⏳ Coming Soon">
+                      <option value="pa-cf">PA-CF (Carbon Fiber Nylon) — Coming Soon</option>
+                      <option value="paht-cf">PAHT-CF (High-Temp Carbon Fiber) — Coming Soon</option>
+                      <option value="ppa-cf">PPA-CF (High-Performance Carbon Fiber) — Coming Soon</option>
+                      <option value="pa-gf">PA-GF (Glass Fiber Nylon) — Coming Soon</option>
+                      <option value="pc">PC (Polycarbonate) — Coming Soon</option>
+                      <option value="tpu">TPU (Flexible) — Coming Soon</option>
+                    </optgroup>
+                    <option value="recommend">Not sure / Need material recommendation</option>
+                  </select>
+                  <div id="materialAvailabilityNotice" class="material-availability-notice" style="display:none;"></div>
+                  <span class="field-error-msg" id="materialError"></span>
+                </div>
+
+                <div class="rfq-input-row">
                   <div class="rfq-group">
                     <label for="rfqQuantity">Quantity (Units) <span class="required">*</span></label>
                     <input type="number" id="rfqQuantity" name="quantity" min="1" max="10000" value="1" required>
                     <span class="field-error-msg" id="quantityError"></span>
                   </div>
-                </div>
-
-                <div class="rfq-group">
-                  <label for="rfqApplication">Application / Operating Environment</label>
-                  <input type="text" id="rfqApplication" name="application" placeholder="e.g. Drone arm, robotics joint, outdoor sensor, fluid enclosure">
+                  <div class="rfq-group">
+                    <label for="rfqApplication">Application / Operating Environment</label>
+                    <input type="text" id="rfqApplication" name="application" placeholder="e.g. Drone arm, robotics joint, outdoor sensor, fluid enclosure">
+                  </div>
                 </div>
 
                 <div class="rfq-group">
@@ -456,6 +507,56 @@
   <script>
     let submittedRfqData = null;
 
+    function selectMaterialPill(val) {
+      const select = document.getElementById('rfqMaterial');
+      if (select) {
+        select.value = val;
+        syncMaterialSelector(val);
+      }
+    }
+
+    function syncMaterialSelector(val) {
+      // Sync active state on pills
+      document.querySelectorAll('.mat-pill-btn').forEach(btn => {
+        if (btn.getAttribute('data-val') === val) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Clear material validation error if selected
+      const errEl = document.getElementById('materialError');
+      if (errEl && val) errEl.textContent = '';
+
+      // Show contextual availability notice
+      const notice = document.getElementById('materialAvailabilityNotice');
+      const comingSoonList = ['pa-cf', 'paht-cf', 'ppa-cf', 'pa-gf', 'pc', 'tpu'];
+      const readyList = ['pla', 'petg', 'abs', 'asa'];
+
+      if (notice) {
+        if (readyList.includes(val)) {
+          notice.className = 'material-availability-notice ready';
+          notice.style.display = 'block';
+          notice.innerHTML = '<span class="mat-notice-tag-ready">🟢 IN STOCK &amp; READY TO PRINT:</span> In stock and ready to print.';
+        } else if (comingSoonList.includes(val)) {
+          const names = {
+            'pa-cf': 'PA-CF (Carbon Fiber Nylon)',
+            'paht-cf': 'PAHT-CF (High-Temp Carbon Fiber)',
+            'ppa-cf': 'PPA-CF (High-Performance Carbon Fiber)',
+            'pa-gf': 'PA-GF (Glass Fiber Nylon)',
+            'pc': 'PC (Polycarbonate)',
+            'tpu': 'TPU (Flexible Elastomer)'
+          };
+          notice.className = 'material-availability-notice coming-soon';
+          notice.style.display = 'block';
+          notice.innerHTML = '<span class="mat-notice-tag-cs">⏳ COMING SOON:</span> ' + (names[val] || val.toUpperCase()) + ' is coming soon. You can still submit your files to request a quote.';
+        } else {
+          notice.style.display = 'none';
+        }
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       // 1. Check URL parameters for pre-selected material
       const params = new URLSearchParams(window.location.search);
@@ -466,6 +567,7 @@
           const opt = Array.from(select.options).find(o => o.value.toLowerCase() === matParam.toLowerCase());
           if (opt) {
             opt.selected = true;
+            selectMaterialPill(opt.value);
           }
         }
       }

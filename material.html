@@ -152,6 +152,7 @@
               <span class="datasheet-class-badge" id="matClassification">STRUCTURAL COMPOSITE</span>
               <span class="datasheet-code-badge" id="matCode">PA6 + CHOPPED CF</span>
               <span class="datasheet-category-badge" id="matCategory">Carbon &amp; Composites</span>
+              <span class="datasheet-status-badge" id="matStatusBadge">READY TO PRINT</span>
             </div>
             <h1 class="datasheet-title" id="matTitle">PA-CF</h1>
             <p class="datasheet-subtitle" id="matFullName">Carbon-Fiber Reinforced Polyamide (PA6-CF)</p>
@@ -423,14 +424,14 @@
         <ul class="footer-nav">
           <li><a href="material.html?mat=pla">PLA (Rapid Iteration)</a></li>
           <li><a href="material.html?mat=petg">PETG (Durable &amp; Chemical)</a></li>
-          <li><a href="material.html?mat=tpu">TPU (Shore 95A Flexible)</a></li>
           <li><a href="material.html?mat=abs">ABS (High Impact)</a></li>
           <li><a href="material.html?mat=asa">ASA (UV Resistant)</a></li>
-          <li><a href="material.html?mat=pc">PC (Polycarbonate)</a></li>
-          <li><a href="material.html?mat=pa-cf">PA-CF (Carbon Composite)</a></li>
-          <li><a href="material.html?mat=paht-cf">PAHT-CF (194°C High-Temp)</a></li>
-          <li><a href="material.html?mat=pa-gf">PA-GF (Glass Composite)</a></li>
-          <li><a href="material.html?mat=ppa-cf">PPA-CF (215°C High-Temp)</a></li>
+          <li><a href="material.html?mat=pa-cf">PA-CF (Carbon Composite) <span style="font-size:10px; color:#F59E0B;">(Coming Soon)</span></a></li>
+          <li><a href="material.html?mat=paht-cf">PAHT-CF (194°C High-Temp) <span style="font-size:10px; color:#F59E0B;">(Coming Soon)</span></a></li>
+          <li><a href="material.html?mat=ppa-cf">PPA-CF (215°C High-Temp) <span style="font-size:10px; color:#F59E0B;">(Coming Soon)</span></a></li>
+          <li><a href="material.html?mat=pa-gf">PA-GF (Glass Composite) <span style="font-size:10px; color:#F59E0B;">(Coming Soon)</span></a></li>
+          <li><a href="material.html?mat=pc">PC (Polycarbonate) <span style="font-size:10px; color:#F59E0B;">(Coming Soon)</span></a></li>
+          <li><a href="material.html?mat=tpu">TPU (Shore 95A Flexible) <span style="font-size:10px; color:#F59E0B;">(Coming Soon)</span></a></li>
         </ul>
       </div>
 
@@ -526,6 +527,18 @@
           const catBadge = document.getElementById('matCategory');
           if (catBadge) catBadge.textContent = selected.category || '';
 
+          // Status Badge (Ready vs Coming Soon)
+          const statusBadge = document.getElementById('matStatusBadge');
+          if (statusBadge) {
+            if (selected.status === 'coming_soon') {
+              statusBadge.textContent = 'COMING SOON';
+              statusBadge.className = 'datasheet-status-badge badge-status-coming-soon';
+            } else {
+              statusBadge.textContent = 'READY TO PRINT';
+              statusBadge.className = 'datasheet-status-badge badge-status-ready';
+            }
+          }
+
           const summary = document.getElementById('matSummary');
           if (summary) summary.textContent = selected.summary || '';
 
@@ -554,12 +567,18 @@
 
           // Action Box
           const rfqTarget = document.getElementById('rfqMatTarget');
-          if (rfqTarget) rfqTarget.textContent = selected.name;
+          if (rfqTarget) {
+            rfqTarget.textContent = selected.name + (selected.status === 'coming_soon' ? ' (Coming Soon)' : '');
+          }
 
           const quoteBtn = document.getElementById('matQuoteBtn');
           if (quoteBtn) {
             quoteBtn.href = 'quote.html?material=' + encodeURIComponent(selected.id);
-            quoteBtn.innerHTML = '<span>REQUEST A QUOTE WITH ' + selected.name + ' &rarr;</span>';
+            if (selected.status === 'coming_soon') {
+              quoteBtn.innerHTML = '<span>INQUIRE ABOUT ' + selected.name + ' (COMING SOON) &rarr;</span>';
+            } else {
+              quoteBtn.innerHTML = '<span>REQUEST A QUOTE WITH ' + selected.name + ' &rarr;</span>';
+            }
           }
 
           // Table Specs
@@ -655,10 +674,17 @@
               const isCurrent = m.id.toLowerCase() === selected.id.toLowerCase();
               const card = document.createElement('a');
               card.href = 'material.html?mat=' + encodeURIComponent(m.id);
-              card.className = 'switcher-card' + (isCurrent ? ' active' : '');
+              const isComingSoon = m.status === 'coming_soon';
+              const statusBadge = isComingSoon 
+                ? '<span class="badge-coming-soon" style="font-size:9px; padding:1px 5px;">Coming Soon</span>' 
+                : '<span class="badge-ready" style="font-size:9px; padding:1px 5px;">Ready</span>';
+
               card.innerHTML = `
-                <div class="switcher-badge" style="background:${m.accentColor || '#EA580C'}22; color:${m.accentColor || '#EA580C'}; border-color:${m.accentColor || '#EA580C'}44;">
-                  ${m.classification || 'POLYMER'}
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <div class="switcher-badge" style="background:${m.accentColor || '#EA580C'}22; color:${m.accentColor || '#EA580C'}; border-color:${m.accentColor || '#EA580C'}44; margin:0;">
+                    ${m.classification || 'POLYMER'}
+                  </div>
+                  ${statusBadge}
                 </div>
                 <h4 class="switcher-name">${m.name}</h4>
                 <p class="switcher-cat">${m.category || ''}</p>
