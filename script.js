@@ -265,20 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Wire Autodesk parameter dropdown selection to "Request a Quote" URL
-  autodeskCards.forEach(card => {
-    const select = card.querySelector('.autodesk-select-box');
-    const quoteBtn = card.querySelector('.btn-autodesk-black');
-    const matId = card.getAttribute('data-id');
-
-    if (select && quoteBtn && matId) {
-      select.addEventListener('change', () => {
-        const layer = select.value;
-        quoteBtn.href = `quote.html?material=${encodeURIComponent(matId)}&layer=${encodeURIComponent(layer)}`;
-      });
-    }
-  });
-
   // ==========================================================================
   // 5. HEADER ELEVATION ON SCROLL
   // ==========================================================================
