@@ -11,7 +11,7 @@
       try {
         const urlParams = new URLSearchParams(window.location.search);
         const urlTheme = urlParams.get('theme');
-        const savedTheme = urlTheme || localStorage.getItem('fusionlabs3d_theme');
+        const savedTheme = urlTheme || localStorage.getItem('fusionlabs3d_theme_v2');
         if (savedTheme === 'dark') {
           document.documentElement.setAttribute('data-theme', 'dark');
         } else {
@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=2.1">
+  <link rel="stylesheet" href="style.css?v=3.2">
 
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
@@ -1126,6 +1126,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=2.1"></script>
+  <script src="script.js?v=3.2"></script>
 </body>
 </html>

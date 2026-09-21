@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', newTheme);
     try {
-      localStorage.setItem('fusionlabs3d_theme', newTheme);
+      localStorage.setItem('fusionlabs3d_theme_v2', newTheme);
     } catch (e) {}
   }
 
