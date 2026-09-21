@@ -338,59 +338,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ==========================================================================
-  // 7. LIVE SYNC: RETRIEVE CLOUD / ADMIN PUBLISHED CONFIG
-  // ==========================================================================
-  async function checkLiveSync() {
-    try {
-      let liveConfig = null;
-
-      // Check Firebase Cloud Firestore first
-      if (typeof firebaseDb !== 'undefined' && firebaseDb) {
-        const doc = await firebaseDb.collection('site_config').doc('main').get();
-        if (doc.exists) {
-          liveConfig = doc.data();
-        }
-      }
-
-      // Fallback to localStorage
-      if (!liveConfig) {
-        const local = localStorage.getItem('fusionlabs3d_published_config');
-        if (local) {
-          liveConfig = JSON.parse(local);
-        }
-      }
-
-      if (liveConfig) {
-        // Apply text customizations if any
-        if (liveConfig.texts) {
-          Object.keys(liveConfig.texts).forEach(key => {
-            const parts = key.split('_');
-            const idx = parseInt(parts.pop(), 10);
-            const sel = parts.join('_');
-            const els = document.querySelectorAll(sel);
-            if (els[idx]) {
-              els[idx].innerHTML = liveConfig.texts[key];
-            }
-          });
-        }
-
-        // Apply dynamic image replacements if any
-        if (liveConfig.images) {
-          Object.keys(liveConfig.images).forEach(imgId => {
-            const img = document.querySelector(`[data-img-id="${imgId}"]`);
-            if (img) {
-              img.src = liveConfig.images[imgId];
-            }
-          });
-        }
-      }
-    } catch (e) {
-      console.warn('Live sync notice:', e);
-    }
-  }
-
-  checkLiveSync();
-
 });
+
 

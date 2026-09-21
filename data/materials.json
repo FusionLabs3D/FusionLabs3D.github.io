@@ -214,5 +214,32 @@
       "Extreme Performance"
     ],
     "featured": true
+  },
+  {
+    "id": "paht-cf",
+    "name": "PAHT-CF",
+    "fullName": "High-Temperature Polyamide Carbon Fiber",
+    "classification": "HIGH-TEMP CARBON COMPOSITE",
+    "code": "PAHT + HIGH-MODULUS CF",
+    "category": "Carbon & Composites",
+    "image": "assets/images/parts/paht-cf.jpg",
+    "summary": "High-temperature polyamide matrix reinforced with chopped carbon fibers. Engineered for superior thermal endurance up to 194°C HDT, exceptional z-directional layer adhesion, and high dimensional accuracy under load.",
+    "tensileStrength": "115 MPa",
+    "flexuralModulus": "8.4 GPa",
+    "heatDeflection": "194°C (0.45 MPa)",
+    "impactStrength": "13.5 kJ/m²",
+    "density": "1.22 g/cm³",
+    "elongation": "3.8%",
+    "characteristics": "194°C heat deflection, outstanding Z-axis layer strength, low moisture absorption vs standard nylon, high rigidity",
+    "thermal": "Continuous operating temperature up to 150°C, heat deflection up to 194°C under 0.45 MPa load",
+    "use_cases": "Engine bay brackets, high-load drone airframes, industrial tooling jigs, autoclave fixtures, functional mechanical gears",
+    "chemical": "High resistance to automotive oils, gasoline, coolants, hydrocarbons, and industrial cleaning solvents",
+    "slicing": "0.16 - 0.24 mm layer height, 280-300°C extrusion, hardened nozzle required, 4+ perimeter walls",
+    "accentColor": "#0F766E",
+    "tags": [
+      "194°C Thermal HDT",
+      "High-Temp Composite"
+    ],
+    "featured": true
   }
 ]

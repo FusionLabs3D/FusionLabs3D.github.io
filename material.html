@@ -24,7 +24,7 @@
   
   <!-- Primary Meta Tags -->
   <meta name="title" content="Material Datasheet | FusionLabs3D Engineering Materials">
-  <meta name="description" content="Technical datasheets, mechanical properties, thermal thresholds, and applications for engineering 3D printing filaments: PLA, PETG, TPU, ABS, ASA, PA-CF, PA-GF, PPA-CF.">
+  <meta name="description" content="Technical datasheets, mechanical properties, thermal thresholds, and applications for engineering 3D printing filaments: PLA, PETG, TPU, ABS, ASA, PA-CF, PAHT-CF, PA-GF, PPA-CF.">
   <meta name="robots" content="index, follow">
   
   <!-- Canonical URL -->
@@ -381,7 +381,7 @@
         <div class="switcher-header">
           <span class="section-tag">EXPLORE CALIBRATED FILAMENTS</span>
           <h2 class="switcher-title">Switch to Another Engineering Material</h2>
-          <p class="switcher-subtitle">Browse full mechanical datasheets across all 8 standard polymers and composites.</p>
+          <p class="switcher-subtitle">Browse full mechanical datasheets across all 9 standard polymers and composites.</p>
         </div>
 
         <div class="material-switcher-grid" id="materialsSwitcher">
@@ -425,6 +425,7 @@
           <li><a href="material.html?mat=abs">ABS (High Impact)</a></li>
           <li><a href="material.html?mat=asa">ASA (UV Weatherproof)</a></li>
           <li><a href="material.html?mat=pa-cf">PA-CF (Carbon Composite)</a></li>
+          <li><a href="material.html?mat=paht-cf">PAHT-CF (194°C High-Temp)</a></li>
           <li><a href="material.html?mat=pa-gf">PA-GF (Glass Composite)</a></li>
           <li><a href="material.html?mat=ppa-cf">PPA-CF (215°C High-Temp)</a></li>
         </ul>
@@ -606,10 +607,10 @@
           const barImpact = document.getElementById('barImpact');
           const barStability = document.getElementById('barStability');
 
-          if (selected.id === 'pa-cf' || selected.id === 'ppa-cf') {
-            if (barStiffness) barStiffness.style.width = selected.id === 'ppa-cf' ? '100%' : '95%';
-            if (barThermal) barThermal.style.width = selected.id === 'ppa-cf' ? '100%' : '85%';
-            if (barImpact) barImpact.style.width = '70%';
+          if (selected.id === 'pa-cf' || selected.id === 'ppa-cf' || selected.id === 'paht-cf') {
+            if (barStiffness) barStiffness.style.width = selected.id === 'ppa-cf' ? '100%' : (selected.id === 'paht-cf' ? '97%' : '95%');
+            if (barThermal) barThermal.style.width = selected.id === 'ppa-cf' ? '100%' : (selected.id === 'paht-cf' ? '92%' : '85%');
+            if (barImpact) barImpact.style.width = selected.id === 'paht-cf' ? '75%' : '70%';
             if (barStability) barStability.style.width = '95%';
           } else if (selected.id === 'pa-gf') {
             if (barStiffness) barStiffness.style.width = '85%';
