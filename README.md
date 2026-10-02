@@ -9,9 +9,9 @@ Official production repository for the **FusionLabs3D** website, built with a hi
 
 ## 🌐 Live Website & Channels
 
-- **Live Website (GitHub Pages):** [https://fusionlabs3d.github.io/](https://fusionlabs3d.github.io/)
-- **Technical Datasheets:** [https://fusionlabs3d.github.io/material.html](https://fusionlabs3d.github.io/material.html)
-- **Instant RFQ Portal:** [https://fusionlabs3d.github.io/quote.html](https://fusionlabs3d.github.io/quote.html)
+- **Live Website:** [https://fusionlabs3d.in/](https://fusionlabs3d.in/)
+- **Technical Datasheets:** [https://fusionlabs3d.in/material.html](https://fusionlabs3d.in/material.html)
+- **Instant RFQ Portal:** [https://fusionlabs3d.in/quote.html](https://fusionlabs3d.in/quote.html)
 - **Instagram:** [@fusionlabs3d.india](https://www.instagram.com/fusionlabs3d.india/)
 - **Direct Inquiries:** `solutions.fusionlabs3d@gmail.com`
 - **Location:** Jaipur, Rajasthan, India

@@ -28,20 +28,22 @@
   <meta name="robots" content="index, follow">
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://fusionlabs3d.github.io/quote.html">
+  <link rel="canonical" href="https://fusionlabs3d.in/quote.html">
   
   <!-- Favicons -->
-  <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
-  <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="assets/logo/favicon-64.png">
+  <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg?v=3">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon.png?v=3">
+  <link rel="alternate icon" type="image/x-icon" href="favicon.ico?v=3">
+  <link rel="shortcut icon" href="favicon.ico?v=3">
+  <link rel="apple-touch-icon" href="assets/logo/favicon-64.png?v=3">
   <meta name="theme-color" content="#FF5000">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://fusionlabs3d.github.io/quote.html">
+  <meta property="og:url" content="https://fusionlabs3d.in/quote.html">
   <meta property="og:title" content="Request a Quote | FusionLabs3D Engineering Prototyping">
   <meta property="og:description" content="Submit your STEP or STL model for prompt DFM validation, material advice, and itemized quotation.">
-  <meta property="og:image" content="https://fusionlabs3d.github.io/assets/images/og-preview.png">
+  <meta property="og:image" content="https://fusionlabs3d.in/assets/images/og-preview.png">
 
   <!-- Google Fonts: Space Grotesk, Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -169,7 +171,7 @@
             <div class="rfq-card-header">
               <div class="rfq-card-badge">PROJECT SPECIFICATION SHEET</div>
               <h2 class="rfq-card-title">Part Parameters &amp; CAD Model Link</h2>
-              <p class="rfq-card-desc">All CAD files are held in strict technical confidence and used solely for manufacturing evaluation.</p>
+              <p class="rfq-card-desc">All CAD files are held in strict technical confidence and evaluated in Orca Slicer. Rates start at &#8377;4/g with an affordable &#8377;150 minimum order threshold.</p>
             </div>
 
             <form id="engineeringRfqForm" onsubmit="handleRfqSubmit(event)" novalidate>
@@ -284,16 +286,16 @@
                       <span class="pills-group-label">🟢 READY TO PRINT (IN STOCK):</span>
                       <div class="pills-flex">
                         <button type="button" class="mat-pill-btn" data-val="pla" onclick="selectMaterialPill('pla')">
-                          PLA <span class="mat-pill-status ready">Ready</span>
+                          PLA (&#8377;4/g) <span class="mat-pill-status ready">Ready</span>
                         </button>
                         <button type="button" class="mat-pill-btn" data-val="petg" onclick="selectMaterialPill('petg')">
-                          PETG <span class="mat-pill-status ready">Ready</span>
+                          PETG (&#8377;5/g) <span class="mat-pill-status ready">Ready</span>
                         </button>
                         <button type="button" class="mat-pill-btn" data-val="abs" onclick="selectMaterialPill('abs')">
-                          ABS <span class="mat-pill-status ready">Ready</span>
+                          ABS (&#8377;6/g) <span class="mat-pill-status ready">Ready</span>
                         </button>
                         <button type="button" class="mat-pill-btn" data-val="asa" onclick="selectMaterialPill('asa')">
-                          ASA <span class="mat-pill-status ready">Ready</span>
+                          ASA (&#8377;7/g) <span class="mat-pill-status ready">Ready</span>
                         </button>
                       </div>
                     </div>
@@ -326,10 +328,10 @@
                   <select id="rfqMaterial" name="material" required onchange="syncMaterialSelector(this.value)">
                     <option value="" disabled selected>-- Select Material --</option>
                     <optgroup label="✅ Ready to Print">
-                      <option value="pla">PLA — Ready to Print</option>
-                      <option value="petg">PETG — Ready to Print</option>
-                      <option value="abs">ABS — Ready to Print</option>
-                      <option value="asa">ASA — Ready to Print</option>
+                      <option value="pla">PLA — Starting &#8377;4/g (Ready to Print)</option>
+                      <option value="petg">PETG — Starting &#8377;5/g (Ready to Print)</option>
+                      <option value="abs">ABS — Starting &#8377;6/g (Ready to Print)</option>
+                      <option value="asa">ASA — Starting &#8377;7/g (Ready to Print)</option>
                     </optgroup>
                     <optgroup label="⏳ Coming Soon">
                       <option value="tpu">TPU (Flexible) — Coming Soon</option>
@@ -383,6 +385,25 @@
 
           <!-- RIGHT COLUMN: ENGINEERING VALIDATION SIDEBAR -->
           <aside class="rfq-sidebar">
+
+            <div class="rfq-sidebar-card" style="border-left: 3px solid var(--fl-orange, #FF5000);">
+              <div class="sidebar-card-header">
+                <span class="sidebar-tag">PRICING TRANSPARENCY</span>
+                <h3 class="sidebar-title">Material Rates &amp; Minimum</h3>
+              </div>
+              <p class="sidebar-text" style="margin-bottom: 10px;">
+                Transparent pricing calculated directly via Orca Slicer based on total weight (including supports and purge):
+              </p>
+              <ul style="margin: 0 0 12px 18px; padding: 0; font-size: 13px; color: var(--text-body, #CBD5E1); line-height: 1.6;">
+                <li><strong>PLA:</strong> &#8377;4 / gram</li>
+                <li><strong>PETG:</strong> &#8377;5 / gram</li>
+                <li><strong>ABS:</strong> &#8377;6 / gram</li>
+                <li><strong>ASA:</strong> &#8377;7 / gram</li>
+              </ul>
+              <div style="font-family: var(--font-mono, monospace); font-size: 12px; color: var(--fl-orange, #FF5000); background: rgba(255,80,0,0.08); padding: 8px 12px; border-radius: 4px;">
+                &bull; Minimum Order Value: &#8377;150 per project
+              </div>
+            </div>
             
             <div class="rfq-sidebar-card">
               <div class="sidebar-card-header">
@@ -501,8 +522,11 @@
     </div>
 
     <div class="container footer-bottom">
-      <p class="copyright">&copy; 2026 FusionLabs3D. All rights reserved.</p>
-      <div style="display: flex; gap: 14px; font-size: 13px;">
+      <div>
+        <p class="copyright">&copy; 2026 FusionLabs3D&trade;. All rights reserved.</p>
+        <div class="footer-udyam-badge">Udyam Registered Enterprise &ndash; Udyam Registration No. UDYAM-RJ-17-0692446</div>
+      </div>
+      <div style="display: flex; gap: 14px; font-size: 13px; align-items: center;">
         <a href="terms.html" style="color: var(--text-muted); text-decoration: none;">Terms &amp; Conditions</a>
         <span style="color: var(--border-color);">&bull;</span>
         <span class="host-notice">Precision Additive Manufacturing &bull; Jaipur, India</span>

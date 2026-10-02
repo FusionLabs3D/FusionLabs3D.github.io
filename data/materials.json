@@ -26,7 +26,10 @@
     ],
     "featured": false,
     "status": "ready",
-    "statusLabel": "Ready to Print"
+    "statusLabel": "Ready to Print",
+    "rate": "₹4/g",
+    "price": "Starting from ₹4 / g",
+    "pricePerGram": 4
   },
   {
     "id": "petg",
@@ -55,7 +58,10 @@
     ],
     "featured": true,
     "status": "ready",
-    "statusLabel": "Ready to Print"
+    "statusLabel": "Ready to Print",
+    "rate": "₹5/g",
+    "price": "Starting from ₹5 / g",
+    "pricePerGram": 5
   },
   {
     "id": "abs",
@@ -84,7 +90,10 @@
     ],
     "featured": false,
     "status": "ready",
-    "statusLabel": "Ready to Print"
+    "statusLabel": "Ready to Print",
+    "rate": "₹6/g",
+    "price": "Starting from ₹6 / g",
+    "pricePerGram": 6
   },
   {
     "id": "asa",
@@ -113,7 +122,10 @@
     ],
     "featured": false,
     "status": "ready",
-    "statusLabel": "Ready to Print"
+    "statusLabel": "Ready to Print",
+    "rate": "₹7/g",
+    "price": "Starting from ₹7 / g",
+    "pricePerGram": 7
   },
   {
     "id": "tpu",
@@ -181,7 +193,7 @@
     "code": "PA6 + CHOPPED CF",
     "category": "Carbon & Composites",
     "image": "assets/images/parts/pa6cf-bracket.jpg",
-    "summary": "Nylon (PA6) reinforced with 20% chopped carbon fibers. Delivers high mechanical stiffness, high strength-to-weight ratio, and thermal stability.",
+    "summary": "Nylon (PA6) reinforced with chopped carbon fibers. Delivers high mechanical stiffness, high strength-to-weight ratio, and thermal stability.",
     "tensileStrength": "105 MPa",
     "flexuralModulus": "7.2 GPa",
     "heatDeflection": "150°C (0.45 MPa)",

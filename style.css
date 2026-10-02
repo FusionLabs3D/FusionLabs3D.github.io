@@ -6358,6 +6358,44 @@ a {
   border-color: var(--fl-orange, #FF5000);
   transform: translateY(-2px);
 }
+.mat-snap-thumb {
+  width: 100%;
+  height: 140px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: #0B0F19;
+  border: 1px solid var(--border-color);
+}
+.mat-snap-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.mat-snap-card:hover .mat-snap-thumb img {
+  transform: scale(1.05);
+}
+.mat-snap-price-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--fl-orange, #FF5000);
+  background: var(--fl-orange-subtle);
+  border: 1px solid rgba(255, 80, 0, 0.22);
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+.mat-snap-price-tag.special {
+  color: var(--text-light);
+  background: rgba(100, 116, 139, 0.1);
+  border-color: rgba(100, 116, 139, 0.25);
+}
 .mat-snap-top {
   display: flex;
   align-items: center;
@@ -6789,5 +6827,25 @@ a {
     padding: 18px 14px;
   }
 }
+
+/* ==========================================================================
+   UDYAM REGISTRATION ENTERPRISE FOOTER BADGE
+   ========================================================================== */
+.footer-udyam-badge {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-light, #94A3B8);
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+  opacity: 0.88;
+}
+[data-theme="light"] .footer-udyam-badge {
+  color: #64748B;
+}
+.siemens-footer-bottom .footer-udyam-badge {
+  margin-top: 4px;
+}
+
 
 

@@ -27,12 +27,14 @@
   <meta name="robots" content="index, follow">
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://fusionlabs3d.github.io/material.html">
+  <link rel="canonical" href="https://fusionlabs3d.in/material.html">
   
   <!-- Favicons -->
-  <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
-  <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="assets/logo/favicon-64.png">
+  <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg?v=3">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon.png?v=3">
+  <link rel="alternate icon" type="image/x-icon" href="favicon.ico?v=3">
+  <link rel="shortcut icon" href="favicon.ico?v=3">
+  <link rel="apple-touch-icon" href="assets/logo/favicon-64.png?v=3">
   <meta name="theme-color" content="#EA580C">
 
   <!-- Google Fonts: Space Grotesk, Inter & JetBrains Mono -->
@@ -108,7 +110,7 @@
   <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
     <div class="mobile-drawer-inner">
       <div class="mobile-drawer-header">
-        <span class="mobile-drawer-title">NAVIGATION</span>
+        <img src="assets/logo/logo-full.png" alt="FusionLabs3D" class="drawer-logo" width="150">
         <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Close navigation menu">&times;</button>
       </div>
       <ul class="mobile-nav-list">
@@ -157,7 +159,7 @@
             <h1 class="datasheet-title" id="matTitle">PA-CF</h1>
             <p class="datasheet-subtitle" id="matFullName">Carbon-Fiber Reinforced Polyamide (PA6-CF)</p>
             <p class="datasheet-lead" id="matSummary">
-              Nylon (PA6) reinforced with 20% chopped carbon fibers. Delivers high mechanical stiffness, high strength-to-weight ratio, and thermal stability.
+              Nylon (PA6) reinforced with chopped carbon fibers. Delivers high mechanical stiffness, high strength-to-weight ratio, and thermal stability.
             </p>
           </div>
 
@@ -231,6 +233,7 @@
             <div class="datasheet-rfq-action-card">
               <div class="rfq-action-badge">INSTANT CAD SIZING</div>
               <h3 class="rfq-action-title">Manufacture in <span id="rfqMatTarget">PA-CF</span></h3>
+              <div id="matPricingRate" style="font-family: var(--font-mono, monospace); font-size: 13.5px; font-weight: 700; color: var(--fl-orange, #FF5000); margin: 6px 0 10px;">Starting at &#8377;4 / g &bull; &#8377;150 Min Order</div>
               <p class="rfq-action-desc">
                 Submit your CAD file (STEP, STL, or 3MF) for immediate slicing orientation, infill calculation, and an itemized engineering quote.
               </p>
@@ -449,8 +452,11 @@
     </div>
 
     <div class="container footer-bottom">
-      <p class="copyright">&copy; 2026 FusionLabs3D. All rights reserved.</p>
-      <div style="display: flex; gap: 14px; font-size: 13px;">
+      <div>
+        <p class="copyright">&copy; 2026 FusionLabs3D&trade;. All rights reserved.</p>
+        <div class="footer-udyam-badge">Udyam Registered Enterprise &ndash; Udyam Registration No. UDYAM-RJ-17-0692446</div>
+      </div>
+      <div style="display: flex; gap: 14px; font-size: 13px; align-items: center;">
         <a href="terms.html" style="color: var(--text-muted); text-decoration: none;">Terms &amp; Conditions</a>
         <span style="color: var(--border-color);">&bull;</span>
         <span class="host-notice">Precision Additive Manufacturing &bull; Jaipur, India</span>
@@ -576,6 +582,17 @@
           const rfqTarget = document.getElementById('rfqMatTarget');
           if (rfqTarget) {
             rfqTarget.textContent = selected.name + (selected.status === 'coming_soon' ? ' (Coming Soon)' : '');
+          }
+
+          const matPricingRate = document.getElementById('matPricingRate');
+          if (matPricingRate) {
+            if (selected.rate) {
+              matPricingRate.textContent = 'Rate: ' + selected.rate + ' (Slicer Weight) \u2022 \u20B9150 Min Order';
+            } else if (selected.status === 'coming_soon') {
+              matPricingRate.textContent = 'Special Material \u2022 Custom Sliced Quote';
+            } else {
+              matPricingRate.textContent = 'Custom Sliced Quote \u2022 \u20B9150 Min Order';
+            }
           }
 
           const quoteBtn = document.getElementById('matQuoteBtn');
