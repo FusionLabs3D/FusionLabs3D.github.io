@@ -6594,16 +6594,21 @@ a {
 /* --- Streamlined Hero Styles --- */
 .streamlined-hero {
   position: relative;
-  background: var(--bg-studio-dark, #07090E);
+  background-color: #07090E;
+  background-image: 
+    radial-gradient(circle at 18% 30%, rgba(255, 80, 0, 0.10) 0%, transparent 45%),
+    radial-gradient(circle at 82% 40%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 28px 28px;
   color: #FFFFFF;
-  padding: 60px 0 54px;
+  padding: 68px 0 58px;
   overflow: hidden;
-  border-bottom: 1px solid var(--border-dark, #243044);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .streamlined-hero-grid {
   display: grid;
   grid-template-columns: 1.25fr 0.95fr;
-  gap: 40px;
+  gap: 48px;
   align-items: center;
 }
 .hero-kicker-badge {
@@ -6611,51 +6616,76 @@ a {
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--fl-orange, #FF5000);
-  background: rgba(255, 80, 0, 0.12);
+  background: rgba(255, 80, 0, 0.08);
   border: 1px solid rgba(255, 80, 0, 0.3);
-  padding: 5px 12px;
-  border-radius: 4px;
-  margin-bottom: 18px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 16px rgba(255, 80, 0, 0.12);
 }
 .hero-h1 {
   font-family: var(--font-heading);
-  font-size: clamp(28px, 4vw, 46px);
+  font-size: clamp(30px, 4.2vw, 48px);
   font-weight: 800;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: #FFFFFF;
   margin-bottom: 18px;
 }
+.hero-tagline-accent {
+  display: inline-block;
+  color: var(--fl-orange, #FF5000);
+  background: linear-gradient(135deg, #FFFFFF 20%, #FF5000 70%, #FF8800 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .hero-lead-text {
-  font-size: clamp(14px, 1.8vw, 16px);
+  font-size: clamp(14.5px, 1.8vw, 16.5px);
   color: #CBD5E1;
   line-height: 1.65;
-  margin-bottom: 26px;
+  margin-bottom: 28px;
   max-width: 620px;
 }
 .hero-cta-cluster {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 28px;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+.hero-cta-cluster .fl-btn-whatsapp {
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hero-cta-cluster .fl-btn-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 26px rgba(37, 211, 102, 0.45);
 }
 .hero-hardware-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
-  padding-top: 22px;
+  padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .hardware-chip {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 10px 14px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.hardware-chip:hover {
+  border-color: rgba(255, 80, 0, 0.4);
+  transform: translateY(-2px);
 }
 .chip-label {
   font-family: var(--font-mono);
@@ -6674,25 +6704,31 @@ a {
 }
 .hero-visual-card {
   position: relative;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 80, 0, 0.25);
   background: #00081E;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 80, 0, 0.12);
 }
 .hero-visual-card img {
   width: 100%;
-  height: 380px;
+  height: 400px;
   object-fit: cover;
   display: block;
+  transition: transform 0.4s ease;
+}
+.hero-visual-card:hover img {
+  transform: scale(1.03);
 }
 .hero-visual-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 16px 18px;
-  background: linear-gradient(180deg, transparent 0%, rgba(7, 9, 14, 0.95) 100%);
+  padding: 16px 20px;
+  background: linear-gradient(180deg, transparent 0%, rgba(7, 9, 14, 0.94) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: space-between;
